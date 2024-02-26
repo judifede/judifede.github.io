@@ -1,0 +1,44 @@
+---
+import Badge from "../components/Badge.astro";
+import LinkedInIcon from "../components/icons/LinkedIn.astro";
+import MailIcon from "../components/icons/Mail.astro";
+import GithubIcon from "../components/icons/GitHub.astro";
+---
+
+<section class="w-full md:w-[740px] mx-auto py-44">
+    <img
+        class="rounded-full size-12 mb-4"
+        src="CV_perfil.png"
+        alt="Foto del Currículum"
+    />
+    <h1 class="text-white text-3xl font-bold flex flex-row gap-x-4 pb-4">
+        🖐️, soy Diego Fernández <a
+            href="https://www.linkedin.com/in/diego-fdez-1b0009109/"
+            target="_blank"
+            rel="noopener"
+        >
+            <div class="flex justify-center items-center">
+                <Badge>Abierto a nuevas oportunidades</Badge>
+            </div>
+        </a>
+    </h1>
+    <h2 class="text-2xl text-pretty">
+        <span class="text-yellow-200/90">Desarrollador y Programador Web.</span>
+        <span class="opacity-90">De Las Palmas de Gran Canaria.</span>
+    </h2>
+
+    <nav class="flex flex-wrap gap-4 mt-8">
+        <a href="mailto:judifede217@gmail.com">
+            <MailIcon class="size-4"/>
+            Contáctame
+        </a>
+        <a href="https://www.linkedin.com/in/diego-fdez-1b0009109/">
+            <LinkedInIcon class="size-4"/>
+            LinkedIn
+        </a>
+        <a href="https://github.com/judifede">
+            <GithubIcon class="size-4"/>
+            Github
+        </a>
+    </nav>
+</section>

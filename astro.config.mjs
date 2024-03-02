@@ -4,7 +4,8 @@ import tailwind from '@astrojs/tailwind'
 // https://astro.build/config
 export default defineConfig({
 	darkMode: 'class',
-	integrations: [tailwind()]
+	integrations: [tailwind()],
+	// public: './public',
 	// ,site: 'https://judifede.github.io/astroCV',
 	// base: '/astroCV'
 })

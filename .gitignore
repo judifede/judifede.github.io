@@ -3,6 +3,7 @@ dist/
 
 # generated types
 .astro/
+importante_dist_deploy.txt
 
 # dependencies
 .vscode

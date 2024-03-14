@@ -6,6 +6,6 @@ export default defineConfig({
 	darkMode: 'class',
 	integrations: [tailwind()],
 	// public: './public',
-	// ,site: 'https://judifede.github.io/astroCV',
-	// base: '/astroCV'
+	site: 'https://judifede.github.io',
+	base: '/astroCV'
 })

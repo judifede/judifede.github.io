@@ -1,0 +1,45 @@
+---
+import ExperienceItem from "../components/ExperienceItem.astro";
+import Briefcase from "../components/icons/Briefcase.astro";
+const EXPERIENCIES = [
+  {
+    title: "Analista Programador",
+    company: "CFGS Desarrollo de Aplicaciones Web",
+    date: "Octubre 2022 - Mayo 2023",
+    descriptionList: [
+      "Evolutivos en Spring, Angular, Swagger y Postgresql.",
+      "Proyecto de datos con Pentaho y SaS Visual.",
+      "Evolutivos en proyectos de OpenCMS.",
+      "Proyecto de software privado con Apache Velocity.",
+      "Proyecto de gráficas estadísticas con el rol de Front-End, principalmente javascript con las siguientes librerías; D3, RowChart y Parcel Js.",
+    ],
+    /* ,
+    link: "https://judifede.github.io/MockupDIW/", */
+  },
+  {
+    title: "Clases Particulares Informática Básica",
+    company: "Perfil en SuperProf",
+    date: "Septiembre 2022",
+    description:
+      ".",
+  },
+];
+---
+
+  <section>
+    <h1
+      class="flex items-center mb-6 text-3xl font-semibold gap-x-3 text-white"
+    >
+      <Briefcase class="size-8" />
+      Experiencia laboral
+    </h1>
+    <ol class="relative mt-16">
+      {
+        EXPERIENCIES.map((experiencie) => (
+          <li class="">
+            <ExperienceItem {...experiencie} />
+          </li>
+        ))
+      }
+    </ol>
+  </section>

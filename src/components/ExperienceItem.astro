@@ -1,15 +1,25 @@
 ---
+import InfoIcon from "../components/icons/Info.astro";
+
 interface Props {
   title: string;
   company: string;
+  companyDetail?: string;
+  blockquote?: string;
   description?: string;
   descriptionList?: Array<string>;
-  link?: string;
   date: string;
 }
 
-const { title, company, description, descriptionList, link, date } =
-  Astro.props;
+const {
+  title,
+  company,
+  companyDetail,
+  blockquote,
+  description,
+  descriptionList,
+  date,
+} = Astro.props;
 ---
 
 <div
@@ -19,10 +29,48 @@ const { title, company, description, descriptionList, link, date } =
     class="text-yellow-400 -left-[42px] -top-[10px] absolute rounded-full text-5xl"
     >&bull;</span
   >
-  <div class="pb-12 md:col-span-2 flex flex-col items-center md:flex-none md:items-start">
+  <div
+    class="pb-12 md:col-span-2 flex flex-col items-center md:flex-none md:items-start"
+  >
     <h3 class="text-xl font-bold text-yellow-400">{title}</h3>
-    <h4 class="mt-2 mb-2 text-xl font-semibold text-white">{company}</h4>
-    <time class="text-md">{date}</time>
+    <h4 class="mt-2 text-xl font-semibold text-white">{company}</h4>
+    <blockquote
+      class="text-lg font-semibold text-white flex gap-x-1 items-center"
+    >
+      {companyDetail}
+      {
+        blockquote && (
+        <InfoIcon class="inline size-5" />
+          <div data-tip={blockquote} class="relative
+            before:content-[attr(data-tip)]
+            before:absolute
+            before:px-2 before:py-2
+            before:-left-5 before:-top-5
+            before:w-max before:max-w-xs
+            before:-translate-x-1/2 before:-translate-y-full
+            before:bg-gray-800 before:border-gray-600 before:text-white
+            before:rounded-md before:opacity-0
+            before:z-10
+            before:transition-all
+
+            pointer-events-none
+            
+            after:absolute
+            after:-right-0.5
+            after:-top-5
+            after:h-0 after:w-0
+            after:-translate-x-1/2
+            after:border-8
+            after:border-transparent
+            after:border-t-gray-800
+            after:opacity-0
+            after:transition-all
+           ">
+            </div>
+        )
+      }
+    </blockquote>
+    <time class="mt-4 text-md">{date}</time>
   </div>
   <div class="relative flex flex-col gap-2 pb-4 text-gray-300 md:col-span-3">
     {description}
@@ -32,52 +80,30 @@ const { title, company, description, descriptionList, link, date } =
           {descriptionList.map((item) => (
             <li class="text-body-color dark:text-dark-6 flex text-base">
               <span class="text-primary mr-2.5 mt-0.5">
-         <svg
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            >
-            <path
-               d="M18 9.5L11.5312 2.9375C11.25 2.65625 10.8125 2.65625 10.5312 2.9375C10.25 3.21875 10.25 3.65625 10.5312 3.9375L15.7812 9.28125H2.5C2.125 9.28125 1.8125 9.59375 1.8125 9.96875C1.8125 10.3438 2.125 10.6875 2.5 10.6875H15.8437L10.5312 16.0938C10.25 16.375 10.25 16.8125 10.5312 17.0938C10.6562 17.2188 10.8437 17.2812 11.0312 17.2812C11.2187 17.2812 11.4062 17.2188 11.5312 17.0625L18 10.5C18.2812 10.2187 18.2812 9.78125 18 9.5Z"
-               fill="currentColor"
-               />
-         </svg>
-      </span>
-      {item}</li>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M18 9.5L11.5312 2.9375C11.25 2.65625 10.8125 2.65625 10.5312 2.9375C10.25 3.21875 10.25 3.65625 10.5312 3.9375L15.7812 9.28125H2.5C2.125 9.28125 1.8125 9.59375 1.8125 9.96875C1.8125 10.3438 2.125 10.6875 2.5 10.6875H15.8437L10.5312 16.0938C10.25 16.375 10.25 16.8125 10.5312 17.0938C10.6562 17.2188 10.8437 17.2812 11.0312 17.2812C11.2187 17.2812 11.4062 17.2188 11.5312 17.0625L18 10.5C18.2812 10.2187 18.2812 9.78125 18 9.5Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              {item}
+            </li>
           ))}
         </ul>
       )
     }
-    {
-      link && (
-        <a
-          href={link}
-          target="_blank"
-          role="link"
-          class="inline-flex items-center text-lg font-medium text-yellow-200 hover:text-yellow-400"
-        >
-          Ver proyecto
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-5 icon icon-tabler icon-tabler-chevron-right"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            stroke-width="2"
-            stroke="currentColor"
-            fill="none"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <>
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M9 6l6 6l-6 6" />
-            </>
-          </svg>
-        </a>
-      )
-    }
   </div>
 </div>
+
+<style>
+  blockquote:hover div:after, blockquote:hover div:before{
+    opacity: 1;
+  }
+</style>

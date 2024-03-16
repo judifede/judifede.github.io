@@ -1,43 +1,96 @@
-<header
-    class="flex justify-center my-5 p-5 bg-azulCanarias rounded-xl w[1120px] mx-auto"
->
-    <nav class="flex flex-row gap-x-10 opacity-80 text-xl">
-        <a
-            href="/astroCV"
-            class="hover:underline hover:text-yellow-200 font-semibold underline-offset-8"
-            >Experiencia</a
-        >
-        <a
-            href="/astroCV/projects"
-            class="hover:underline hover:text-yellow-200 font-semibold underline-offset-8"
-            >Proyectos</a
-        >
-        <a
-            href="/astroCV/about"
-            class="hover:underline hover:text-yellow-200 font-semibold underline-offset-8"
-            >Sobre mí</a
-        >
+---
+const navItems = [
+  {
+    title: "Experiencia",
+    label: "experiencia",
+    url: "/astroCV",
+  },
+  {
+    title: "Proyectos",
+    label: "proyectos",
+    url: "/astroCV/projects",
+  },
+  {
+    title: "Sobre mí",
+    label: "sobre-mi",
+    url: "/astroCV/about",
+  }
+]
+---
+
+<header class="fixed top-0 z-10 flex items-center justify-center my-5 w-full mx-auto">
+    <nav class="flex flex-row gap-x-10 opacity-80 text-2xl p-3 rounded-xl">
+        {
+            navItems.map((link) => (
+            <span>
+                <a
+                class="hover:underline text-white font-semibold underline-offset-8 aux"
+                aria-label={link.label}
+                href={link.url}
+                >
+                {link.title}
+                </a>
+                <span class="wave text-azulCanarias font-semibold -z-10 pointer-events-none">{link.title}</span>
+            </span>
+            ))
+          }
+        
         <!--TODO: Cambio de idioma  -->
     </nav>
 </header>
 
 <style>
-    /* TODO: Fondo texto de mar en el Header */
-    /* .bg-azulCanarias {
-        background: linear-gradient(90deg, #4dc0b5, #3490dc);
-        background-size: 200% auto;
-        animation: wave-animation 2s infinite;
+    nav {
+    animation: nav-shadown 1s linear both;
+    animation-timeline: scroll();
+    animation-range: 0 100px;
+  }
+
+  @keyframes nav-shadown {
+    to {
+      @apply shadow-lg ring-1 backdrop-blur bg-gray-800/90  ring-white/10;
+    }
+  }
+    .aux {
+        position: absolute;
+        text-shadow:
+            -0.5px -0.5px 0 black,
+            0.5px -0.5px 0 black,
+            -0.5px 0.5px 0 black,
+            0.5px 0.5px 0 black;
+    }
+    .wave {
+        animation: wave 3.5s ease-in-out infinite;
     }
 
-    @keyframes wave-animation {
-        0% {
-            background-position: 0 0;
-        }
-        50% {
-            background-position: 100% 0;
-        }
+    @keyframes wave {
+        0%,
         100% {
-            background-position: 0 0;
+            clip-path: polygon(
+                0% 47%,
+                10% 48%,
+                33% 54%,
+                54% 60%,
+                70% 61%,
+                84% 59%,
+                100% 52%,
+                100% 100%,
+                0% 100%
+            );
         }
-    } */
+
+        50% {
+            clip-path: polygon(
+                0% 60%,
+                15% 55%,
+                34% 56%,
+                41% 52%,
+                67% 50%,
+                84% 45%,
+                100% 46%,
+                100% 100%,
+                0% 100%
+            );
+        }
+    }
 </style>

@@ -52,6 +52,24 @@ const TAGS = {
 };
 
 const PROJECTS = [
+{
+    title: "Jungle Paradise",
+    description:
+      "Videojuego web, basado en el Whac-a-Mole, tendremos que matar todos los mosquitos que podamos antes de que el tiempo acabe. Proyecto 1 - Bloque Front-end de la Formación Dual Escuela de Programadores - Desarrolladores Web Full-Stack - Reboot Academy junto a la Fundación Universitaria de Las Palmas. El reto consistió en implementar el juego para poner en práctica el trabajo con diferentes ramas de Git y las tecnologías Front-end.",
+    link: "https://judifede.github.io/Jungle-Paradise/",
+    repositorioRemoto: "https://github.com/judifede/Jungle-Paradise",
+    image: "/astroCV/projects/JungleParadise.webp",
+    tags: [TAGS.HTML5, TAGS.CSS3, TAGS.JS, TAGS.GIT],
+  },
+  {
+    title: "Solitario Web",
+    description:
+      "El juego Solitario tiene muchas variantes y este proyecto no pretende abarcar todas las posibilidades. Este proyecto dispone de 3 niveles de dificultad, animaciones en la victoria o derrota, ajustes de apariencia y cambio de idioma entre español e inglés.",
+    link: "https://judifede.github.io/SolitarioWeb/",
+    repositorioRemoto: "https://github.com/judifede/SolitarioWeb",
+    image: "/astroCV/projects/SolitarioWeb.gif",
+    tags: [TAGS.HTML5, TAGS.CSS3, TAGS.JS, TAGS.JQUERY],
+  },
   {
     title: "Ecoinge Canarias",
     description:
@@ -99,10 +117,20 @@ const PROJECTS = [
     </h1>
     {
       PROJECTS.map(
-        ({ title, description, link, repositorioRemoto, image, video, tags }) => (
+        ({
+          title,
+          description,
+          link,
+          repositorioRemoto,
+          image,
+          video,
+          tags,
+        }) => (
           <article class="flex flex-col space-x-0 space-y-8 md:flex-row md:space-x-8 md:space-y-0 mb-6">
             <div class="w-full md:w-1/2">
-              <div class={`size-full overflow-hidden transition duration-500 rounded-xl ${image && (  "md:group-hover:-translate-y-1 md:hover:shadow-2xl lg:border lg:border-gray-400 lg:hover:border-gray-200")}`}>
+              <div
+                class={`size-full overflow-hidden transition duration-500 rounded-xl ${image && "md:group-hover:-translate-y-1 md:hover:shadow-2xl lg:border lg:border-gray-400 lg:hover:border-gray-200"}`}
+              >
                 {image && (
                   <img
                     src={image}
@@ -113,7 +141,7 @@ const PROJECTS = [
                 )}
                 {video && (
                   <video
-                    class="size-full scale-125" 
+                    class="size-full scale-125"
                     autoplay
                     loop
                     muted="muted"

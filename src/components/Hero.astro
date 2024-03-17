@@ -3,6 +3,7 @@ import Badge from "../components/Badge.astro";
 import LinkedInIcon from "../components/icons/LinkedIn.astro";
 import MailIcon from "../components/icons/Mail.astro";
 import GithubIcon from "../components/icons/GitHub.astro";
+import LinkButton from "../components/LinkButton.astro";
 ---
 
 <section>
@@ -39,32 +40,17 @@ import GithubIcon from "../components/icons/GitHub.astro";
     </h2>
 
     <nav class="flex flex-wrap gap-4 mt-4 md:mt-8">
-        <a
-            href="mailto:judifede217@gmail.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 px-4 py-1 transition border rounded-full hover:text-gray-800 hover:bg-gray-100 hover:border-gray-700 text-white bg-gray-800 border-gray-600 text-lg"
-        >
+        <LinkButton href="mailto:judifede217@gmail.com">
             <MailIcon class="size-5" />
             Contáctame
-        </a>
-        <a
-            href="https://www.linkedin.com/in/diego-fdez-1b0009109/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 px-4 py-1 transition border rounded-full hover:text-gray-800 hover:bg-gray-100 hover:border-gray-700 text-white bg-gray-800 border-gray-600 text-lg"
-        >
+        </LinkButton>
+        <LinkButton href="https://www.linkedin.com/in/diego-fdez-1b0009109/">
             <LinkedInIcon class="size-5" />
             LinkedIn
-        </a>
-        <a
-            href="https://github.com/judifede"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 px-4 py-1 transition border rounded-full hover:text-gray-800 hover:bg-gray-100 hover:border-gray-700 text-white bg-gray-800 border-gray-600 text-lg"
-        >
+        </LinkButton>
+        <LinkButton href="https://github.com/judifede">
             <GithubIcon class="size-5" />
             Github
-        </a>
+        </LinkButton>
     </nav>
 </section>

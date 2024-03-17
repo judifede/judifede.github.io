@@ -2,17 +2,135 @@
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import CodeIcon from "../components/icons/Code.astro";
+import GitHubIcon from "../components/icons/GitHub.astro";
+import LinkIcon from "../components/icons/Link.astro";
+import HTML5Icon from "../components/icons/languages/HTML5.astro";
+import CSS3Icon from "../components/icons/languages/CSS3.astro";
+import JSIcon from "../components/icons/languages/JS.astro";
+import JQueryIcon from "../components/icons/languages/JQuery.astro";
+import GitIcon from "../components/icons/languages/Git.astro";
+import PHPIcon from "../components/icons/languages/PHP.astro";
+import WordpressIcon from "../components/icons/languages/Wordpress.astro";
+import LinkButton from "../components/LinkButton.astro";
+
+const TAGS = {
+  HTML5: {
+    name: "HTML5",
+    class: "bg-orange-600/50 text-white",
+    icon: HTML5Icon,
+  },
+  CSS3: {
+    name: "CSS3",
+    class: "bg-indigo-700/50 text-white",
+    icon: CSS3Icon,
+  },
+  JS: {
+    name: "Javascript",
+    class: "bg-yellow-400/50 text-white",
+    icon: JSIcon,
+  },
+  JQUERY: {
+    name: "JQuery",
+    class: "bg-sky-600/50 text-white",
+    icon: JQueryIcon,
+  },
+  GIT: {
+    name: "Git",
+    class: "bg-red-900/50 text-white",
+    icon: GitIcon,
+  },
+  PHP: {
+    name: "PHP",
+    class: "bg-[#7377AD] text-white",
+    icon: PHPIcon,
+  },
+  WORDPRESS: {
+    name: "Wordpress",
+    class: "bg-indigo-800/50 text-white",
+    icon: WordpressIcon,
+  },
+};
+
+const PROJECTS = [
+  {
+    title: "Rediseño IES El Rincón",
+    description:
+      "Durante el curso de DAW (Desarrollo de Aplicaciones Web), en un grupo de 4 personas rediseñamos la página de nuestro instituto (IES El Rincón) hasta llegar a un Mockup (maqueta de la página). Adicionalmente hicimos el mapa del sitio (footer), las migas de pan y la galería funcional (nuestro centro -> galería).",
+    link: "https://judifede.github.io/MockupDIW/",
+    repositorioRemoto: "https://github.com/judifede/MockupDIW",
+    image: "/astroCV/projects/MockupDIW.webp",
+    tags: [TAGS.HTML5, TAGS.CSS3, TAGS.JS, TAGS.GIT],
+  },
+  {
+    title: "Nakama Canino",
+    description:
+      "Nakama Canino es la marca personal centrada en la educación canina y dirigida por Arianna García. Rediseñamos toda la página web valorando las necesidades de la CEO. El trabajo se centró en el blueprint (organización del contenido), la maquetación con Elementor y código propio (CSS y JQuery). Además, se ha asesorado sobre cómo aplicar actualizaciones de diversas entradas al blog, aplicado pruebas de Usabilidad con diferentes perfiles de usuarios para poner a prueba el diseño y hacer los últimos cambios en base a los resultados evaluados.",
+    link: "https://nakamacanino.com/",
+    image: "/astroCV/projects/NakamaCanino.webp",
+    tags: [TAGS.WORDPRESS, TAGS.HTML5, TAGS.CSS3, TAGS.JS, TAGS.JQUERY],
+  },
+];
 ---
 
 <Layout>
-    <Hero />
-    <section>
-        <h1
-            class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-white"
-        >
-            <CodeIcon class="size-8" />
-            Proyectos
-        </h1>
-        
-    </section>
+  <Hero />
+  <section>
+    <h1
+      class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-white"
+    >
+      <CodeIcon class="size-8" />
+      Proyectos
+    </h1>
+    {
+      PROJECTS.map(
+        ({ title, description, link, repositorioRemoto, image, tags }) => (
+          <article class="flex flex-col space-x-0 space-y-8 md:flex-row md:space-x-8 md:space-y-0 mb-6">
+            <div class="w-full md:w-1/2">
+              <div class="size-full transition duration-500 rounded-xl  md:group-hover:-translate-y-1 md:hover:shadow-2xl lg:border lg:border-gray-400 lg:hover:border-gray-200 overflow-hidden">
+                <img
+                src={image}
+                class="size-full md:object-cover md:object-left-top transition duration-500 md:hover:scale-110"
+                loading="lazy"
+                alt="Imagen del proyecto"
+                />
+                </div>
+            </div>
+            <div class="w-full md:w-1/2">
+              <h2 class="text-2xl font-bold text-gray-100">{title}</h2>
+
+              <div class="flex flex-wrap mt-2">
+                <ul class="flex flex-wrap flex-row my-2 gap-x-2">
+                  {tags.map((tag) => (
+                    <li class="mt-2">
+                      <span
+                        class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-2 px-3 `}
+                      >
+                        <tag.icon class="size-4" />
+                        {tag.name}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                <span class="mt-2 text-gray-400">{description}</span>
+                <footer class="flex items-end justify-start mt-4 gap-x-4">
+                  {repositorioRemoto && (
+                    <LinkButton href={repositorioRemoto}>
+                      <GitHubIcon class="size-5" />
+                      Code
+                    </LinkButton>
+                  )}
+                  {link && (
+                    <LinkButton href={link}>
+                      <LinkIcon class="size-5" />
+                      Preview
+                    </LinkButton>
+                  )}
+                </footer>
+              </div>
+            </div>
+          </article>
+        ),
+      )
+    }
+  </section>
 </Layout>

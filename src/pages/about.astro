@@ -1,12 +1,28 @@
 ---
-import Hero from "../components/Hero.astro"
 import Layout from "../layouts/Layout.astro"
+import Hero from "../components/Hero.astro"
+import ProfileIcon from "../components/icons/Profile.astro";
+import SchoolIcon from "../components/icons/School.astro";
+
 ---
 
-<Layout title="Sobre mí">
+<Layout>
 	<Hero />
-
-    <h1>Sobre mí</h1>
-    <h1>Formación</h1>
+    <section>
+        <h1
+            class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-white"
+        >
+            <ProfileIcon class="size-8" />
+            Sobre mí
+        </h1>
+    </section>
+    <section>
+        <h1
+            class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-white"
+        >
+            <SchoolIcon class="size-8" />
+            Formación
+        </h1>
+    </section>
 
 </Layout>

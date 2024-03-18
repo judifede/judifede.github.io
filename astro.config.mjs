@@ -6,8 +6,7 @@ export default defineConfig({
 	darkMode: 'class',
 	integrations: [tailwind()],
 	pages: {
-		index: '/astroCV/src/pages/experience.astro',
+		index: '/src/pages/experience.astro',
 	},
-	site: 'https://judifede.github.io',
-	base: '/astroCV'
+	site: 'https://judifede.github.io'
 })

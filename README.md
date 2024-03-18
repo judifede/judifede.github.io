@@ -1,12 +1,15 @@
 # astroCV
-Porfolio construido con Astro
-# Astro Starter Kit: Basics
+Porfolio construido con Astro.
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+![image](https://github.com/judifede/judifede.github.io/assets/9841814/0047d1e2-4353-4273-b807-b6498f7118ce)
 
-## 🚀 Project Structure
+Basado en el proyecto de [Midudev](https://github.com/midudev) -> [Proyecto original](https://github.com/midudev/porfolio.dev) 
 
-Inside of your Astro project, you'll see the following folders and files:
+![image](https://github.com/judifede/judifede.github.io/assets/9841814/dd786d74-c3c9-4f9a-be24-a8d9bf127d23)
+
+## 🚀 Estructura de Astro
+
+Dentro de un proyecto Astro, tendremos las siguientes carpetas y archivos:
 
 ```text
 /
@@ -22,21 +25,21 @@ Inside of your Astro project, you'll see the following folders and files:
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Astro busca archivos `.astro` o `.md` en el directorio `src/pages/`. Cada página se expone como una ruta según su nombre de archivo.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+No hay nada especial en `src/components/`, pero ahí es donde se suelen colocar los componentes Astro/React/Vue/Svelte/Preact.
 
-Any static assets, like images, can be placed in the `public/` directory.
+Cualquier activo estático, como imágenes, se suele colocar en el directorio `public/`.
 
-## 🧞 Commands
+Adicionalmente, Astro dispone de ViewTransitions para animar cuando se cambia de una página a otra, mejorando significativamente la experiencia de usuario.
 
-All commands are run from the root of the project, from a terminal:
+## 🧞 Comandos
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Todos los comandos se ejecutan desde la raíz del proyecto, desde una terminal:
+
+| Command                   | Action                                                                        |
+| :------------------------ | :---------------------------------------------------------------------------- |
+| `npm install`             | Instala dependencias                                                          |
+| `npm run dev`             | Inicia el servidor de desarrollo local en `localhost:4321`                    |
+| `npm run build`           | Prepara el entorno de producción en `./dist/`                                 |
+| `npm run preview`         | Genera una vista previa de la compilación localmente, antes de desplegarla    |

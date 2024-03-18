@@ -55,7 +55,7 @@ const PROJECTS = [
 {
     title: "Jungle Paradise",
     description:
-      "Videojuego web, basado en el Whac-a-Mole, tendremos que matar todos los mosquitos que podamos antes de que el tiempo acabe. Proyecto 1 - Bloque Front-end de la Formación Dual Escuela de Programadores - Desarrolladores Web Full-Stack - Reboot Academy junto a la Fundación Universitaria de Las Palmas. El reto consistió en implementar el juego para poner en práctica el trabajo con diferentes ramas de Git y las tecnologías Front-end.",
+      "Proyecto 1 - Bloque Front-End de la Escuela de Programadores: Formación Dual de Desarrolladores Web Full-Stack (Fundación Universitaria de Las Palmas, Reboot Academy). Videojuego en navegador, inspirado en Whac-A-Mole, en el que tendremos que matar a todos los mosquitos que podamos antes de que acabe el tiempo. El mayor reto de este proyecto consistió en implementar el juego a través del trabajo en equipo, utilizando para ello el control de versiones con Git, y poniendo en prácticas los conocimientos  adquiridos en las tecnologías front-end.",
     link: "https://judifede.github.io/Jungle-Paradise/",
     repositorioRemoto: "https://github.com/judifede/Jungle-Paradise",
     image: "/astroCV/projects/JungleParadise.webp",
@@ -64,7 +64,7 @@ const PROJECTS = [
   {
     title: "Solitario Web",
     description:
-      "El juego Solitario tiene muchas variantes y este proyecto no pretende abarcar todas las posibilidades. Este proyecto dispone de 3 niveles de dificultad, animaciones en la victoria o derrota, ajustes de apariencia y cambio de idioma entre español e inglés.",
+      "El juego Solitario tiene muchas variantes y, aunque este proyecto no pretende abarcar todas las posibilidades disponibles, dispone de 3 niveles de dificultad y animaciones de victoria y derrota. El proytecto cuenta con ajustes de apariencia y permite cambiar el idioma entre el español y el inglés.",
     link: "https://judifede.github.io/SolitarioWeb/",
     repositorioRemoto: "https://github.com/judifede/SolitarioWeb",
     image: "/astroCV/projects/SolitarioWeb.gif",
@@ -73,7 +73,7 @@ const PROJECTS = [
   {
     title: "Ecoinge Canarias",
     description:
-      "Ecoinge Canarias es una empresa de ingeniería cuya misión es mejorar el uso de la tecnología combinándola con la sostenibilidad y el medio ambiente. El trabajo se centró en el blueprint (organización del contenido), la maquetación con Elementor y código propio (CSS y JQuery). Además, se han aplicado pruebas de Usabilidad con diferentes perfiles de usuarios para poner a prueba el diseño y hacer los últimos cambios en base a los resultados evaluados. Por último, se configura un trabajo cron en PHP para los números de los contadores.",
+      "Ecoinge Canarias es una empresa de ingeniería cuya misión es mejorar el uso de la tecnología combinándola con la sostenibilidad y el medio ambiente. El proyecto se ha centrado en el blueprint (organización de contenido), utilizando código propio (CSS y JQuery) y Elementor para su maquetación. Para poner a prueba el diseño, se han aplicado pruebas de usabilidad con diferentes perfiles de usuarios, haciendo los últimos cambios necesarios en base a los resultados obtenidos. Se ha configurado un trabajo cron en PHP para los números de los contadores",
     link: "https://ecoingecanarias.com/",
     // image: "/astroCV/projects/EcoingeCanarias.webp",
     video: "/astroCV/projects/EcoingeCanarias.mp4",
@@ -89,7 +89,7 @@ const PROJECTS = [
   {
     title: "Nakama Canino",
     description:
-      "Nakama Canino es la marca personal centrada en la educación canina y dirigida por Arianna García. Rediseñamos toda la página web valorando las necesidades de la CEO. El trabajo se centró en el blueprint (organización del contenido), la maquetación con Elementor y código propio (CSS y JQuery). Además, se ha asesorado sobre cómo aplicar actualizaciones de diversas entradas al blog, aplicado pruebas de Usabilidad con diferentes perfiles de usuarios para poner a prueba el diseño y hacer los últimos cambios en base a los resultados evaluados.",
+      "Nakama Canino es una marca personal centrada en la educación canina y dirigida por Arianna García. Valorando las necesidades de la CEO, se llevó a cabo un rediseño completo de la página web. El proyecto se ha centrado en el blueprint (organización de contenido), utilizando código propio (CSS y JQuery) y Elementor para su maquetación. Para poner a prueba el diseño, se han aplicado pruebas de usabilidad con diferentes perfiles de usuarios, haciendo los últimos cambios necesarios en base a los resultados obtenidos. Además, se ha asesorado sobre cómo aplicar actualizaciones de las entradas al blog.",
     link: "https://nakamacanino.com/",
     image: "/astroCV/projects/NakamaCanino.webp",
     tags: [TAGS.WORDPRESS, TAGS.HTML5, TAGS.CSS3, TAGS.JS, TAGS.JQUERY],
@@ -97,7 +97,7 @@ const PROJECTS = [
   {
     title: "Rediseño IES El Rincón",
     description:
-      "Durante el curso de DAW (Desarrollo de Aplicaciones Web), en un grupo de 4 personas rediseñamos la página de nuestro instituto (IES El Rincón) hasta llegar a un Mockup (maqueta de la página). Adicionalmente hicimos el mapa del sitio (footer), las migas de pan y la galería funcional (nuestro centro -> galería).",
+      "Durante el ciclo superior de Desarrollo de Aplicaciones Web, llevé a cabo en equipo un rediseño de la web de IES El Rincón, llegando a un mock-up (maqueta de la página). De forma adicional, elaboramos el mapa del sitio (footer), las migas de pan, y una galería funcional (Nuestro centro -> Galería).",
     link: "https://judifede.github.io/MockupDIW/",
     repositorioRemoto: "https://github.com/judifede/MockupDIW",
     image: "/astroCV/projects/MockupDIW.webp",
@@ -126,7 +126,7 @@ const PROJECTS = [
           video,
           tags,
         }) => (
-          <article class="flex flex-col space-x-0 space-y-8 md:flex-row md:space-x-8 md:space-y-0 mb-6">
+          <article class="flex flex-col space-x-0 space-y-8 md:flex-row md:space-x-8 md:space-y-0 mb-12">
             <div class="w-full md:w-1/2">
               <div
                 class={`size-full overflow-hidden transition duration-500 rounded-xl ${image && "md:group-hover:-translate-y-1 md:hover:shadow-2xl lg:border lg:border-gray-400 lg:hover:border-gray-200"}`}
@@ -155,6 +155,7 @@ const PROJECTS = [
               <h2 class="text-2xl font-bold text-gray-100">{title}</h2>
 
               <div class="flex flex-wrap mt-2">
+                <span class="mt-2 text-gray-200">{description}</span>
                 <ul class="flex flex-wrap flex-row my-2 gap-x-2">
                   {tags.map((tag) => (
                     <li class="mt-2">
@@ -167,7 +168,6 @@ const PROJECTS = [
                     </li>
                   ))}
                 </ul>
-                <span class="mt-2 text-gray-400">{description}</span>
                 <footer class="flex items-end justify-start mt-4 gap-x-4">
                   {repositorioRemoto && (
                     <LinkButton href={repositorioRemoto}>

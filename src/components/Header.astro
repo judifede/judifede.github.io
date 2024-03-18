@@ -24,13 +24,12 @@ const navItems = [
             navItems.map((link) => (
             <span>
                 <a
-                class="hover:underline text-white font-semibold underline-offset-8 aux"
+                class="hover:underline text-yellow-200 font-semibold underline-offset-8 aux"
                 aria-label={link.label}
                 href={link.url}
                 >
                 {link.title}
                 </a>
-                <span class="wave text-azulCanarias font-semibold -z-10 pointer-events-none">{link.title}</span>
             </span>
             ))
           }
@@ -40,7 +39,7 @@ const navItems = [
 </header>
 
 <style>
-    nav {
+   nav {
     animation: nav-shadown 1s linear both;
     animation-timeline: scroll();
     animation-range: 0 100px;
@@ -51,46 +50,4 @@ const navItems = [
       @apply shadow-lg ring-1 backdrop-blur bg-gray-800/90  ring-white/10;
     }
   }
-    .aux {
-        position: absolute;
-        text-shadow:
-            -0.5px -0.5px 0 black,
-            0.5px -0.5px 0 black,
-            -0.5px 0.5px 0 black,
-            0.5px 0.5px 0 black;
-    }
-    .wave {
-        animation: wave 3.5s ease-in-out infinite;
-    }
-
-    @keyframes wave {
-        0%,
-        100% {
-            clip-path: polygon(
-                0% 47%,
-                10% 48%,
-                33% 54%,
-                54% 60%,
-                70% 61%,
-                84% 59%,
-                100% 52%,
-                100% 100%,
-                0% 100%
-            );
-        }
-
-        50% {
-            clip-path: polygon(
-                0% 60%,
-                15% 55%,
-                34% 56%,
-                41% 52%,
-                67% 50%,
-                84% 45%,
-                100% 46%,
-                100% 100%,
-                0% 100%
-            );
-        }
-    }
 </style>

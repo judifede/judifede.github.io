@@ -1,10 +1,93 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Hero from "../components/Hero.astro";
-import Experience from "../components/Experience.astro";
+import ExperienceItem from "../components/ExperienceItem.astro";
+import Briefcase from "../components/icons/Briefcase.astro";
+const EXPERIENCIES = [
+  {
+    title: "Profesor particular",
+    company: "Perfil en Superprof",
+    date: "Noviembre 2020 - Agosto 2023",
+    description:
+      "Clases presenciales y online de informática básica y programación a través de mi perfil de Superprof.",
+  },
+  {
+    title: "Analista Programador",
+    company: "Ignos S.L",
+    date: "Octubre 2022 - Mayo 2023",
+    descriptionList: [
+      "Evolutivos en Spring, Angular, Swagger y Postgresql.",
+      "Proyecto de datos con Pentaho y SaS Visual.",
+      "Evolutivos en proyectos de OpenCMS.",
+      "Proyecto de software privado con Apache Velocity.",
+      "Proyecto de gráficas estadísticas con el rol de Front-End, principalmente javascript con las siguientes librerías; D3, RowChart y Parcel Js.",
+    ]
+  },
+  {
+    title: "Responsable del Área de Soporte",
+    company: "Ignos S.L",
+    companyDetail: "(UTE Arte Consultores)",
+    date: "Abril 2018 - Septiembre 2022",
+    description: "El proyecto SISPECAN consiste en el mantenimiento y mejora de las aplicaciones informáticas del Servicio Canario de Empleo. Mis principales funciones consistían en realizar tareas de configuración, actuaciones de bases de datos, pruebas de aplicaciones, entre otras. Como responsable del área de soporte gestionaba tareas de NIVEL1 (no implicasen modificaciones en el código) de todas las áreas del proyecto conociendo sus arquitecturas.",
+    descriptionList: [
+      "Programas ofimáticos.",
+      "DBeaver - SQLDeveloper.",
+      "Adobe Captivate.",
+      "Aplicaciones del proyecto.",
+      "JIRA - Confluence."
+    ]
+  },
+  {
+    title: "Desarrollador Front-end",
+    company: "Conversiona",
+    companyDetail: "(ahora Pagetoday)",
+    date: "Octubre 2017",
+    descriptionList: [
+      "Maquetación con HTML, CSS, Javascript, JQuery.",
+      "Responsive Design.",
+      "Edición de imágenes con Adobe PhotoShop.",
+      "PrestaShop 1.7 (módulos y header de una página web).",
+    ]
+  },
+  {
+    title: "Prácticas de Empresa",
+    company: "Mundiaudit S.L",
+    companyDetail: "CFGS DAM",
+    blockquote: "Ciclo Superior de Desarrollo de Aplicaciones Multiplataformas",
+    date: "Abril - Mayo 2017",
+    description: "Aprendí mucho la metodología de trabajo que tenían implantada y la importancia del análisis antes de escribir código. Cabe destacar que el lenguaje utilizado fue .Net (C#). Mejoré mucho la organización, el análisis y la resolución de problemas, así como la lógica de programación, con máquinas de estado, seguridad y encriptación."
+  },
+  {
+    title: "Prácticas de Empresa",
+    company: "Ábaco System",
+    companyDetail: "CFGS DAW",
+    blockquote: "Ciclo Superior de Desarrollo de Aplicaciones Web",
+    date: "Abril - Mayo 2016",
+    description: "Ábaco System es una tienda de informática que quería realizar su nueva página web. Trabajé junto a un programador autónomo que colaboraba con la empresa para este proyecto.",
+    descriptionList: [
+      "Front-end con .Net (C#).",
+      "Responsive Design.",
+      "Bootstrap.",
+      "Uikit.",
+    ]
+  },
+];
 ---
-
 <Layout>
-	<Hero />
-	<Experience/>
+  <section>
+    <h1
+      class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-white"
+    >
+      <Briefcase class="size-8" />
+      Experiencia laboral
+    </h1>
+    <ol class="relative mt-16">
+      {
+        EXPERIENCIES.map((experiencie) => (
+          <li>
+            <ExperienceItem {...experiencie} />
+          </li>
+        ))
+      }
+    </ol>
+  </section>
 </Layout>

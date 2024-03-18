@@ -5,8 +5,5 @@ import tailwind from '@astrojs/tailwind'
 export default defineConfig({
 	darkMode: 'class',
 	integrations: [tailwind()],
-	pages: {
-		index: '/src/pages/experience.astro',
-	},
 	site: 'https://judifede.github.io'
 })

@@ -1,21 +1,12 @@
 ---
-import Layout from "../layouts/Layout.astro"
-import Hero from "../components/Hero.astro"
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
 import ProfileIcon from "../components/icons/Profile.astro";
 import SchoolIcon from "../components/icons/School.astro";
-
 ---
 
 <Layout>
-	<Hero />
-    <section>
-        <h1
-            class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-white"
-        >
-            <ProfileIcon class="size-8" />
-            Sobre mí
-        </h1>
-    </section>
+    <Hero />
     <section>
         <h1
             class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-white"
@@ -24,5 +15,12 @@ import SchoolIcon from "../components/icons/School.astro";
             Formación
         </h1>
     </section>
-
+    <section>
+        <h1
+            class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-white"
+        >
+            <ProfileIcon class="size-8" />
+            Sobre mí
+        </h1>
+    </section>
 </Layout>

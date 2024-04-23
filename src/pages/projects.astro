@@ -104,12 +104,26 @@ const TAGS = {
   STRIPE: {
     name: "",
     title: "Stripe",
-    class: "bg-indigo-400/50 text-white",
+    class: "bg-gray-100/90 text-white",
     icon: StripeIcon,
   },
 };
 
 const PROJECTS = [
+  {
+    title: "Maestra en el Espectro",
+    description:
+      "Maestra en el Espectro es un proyecto centrado en la intervención psicoeducativa con personas con TDAH, autismo y/o altas capacidades (y sus familias) bajo el foco del paradigma de la neurodiversidad. El proyecto se ha centrado en el blueprint (organización de contenido), utilizando código propio (CSS y JQuery) y Elementor para su maquetación. Para poner a prueba el diseño, se han aplicado pruebas de usabilidad con diferentes perfiles de usuarios, haciendo los últimos cambios necesarios en base a los resultados obtenidos.",
+    link: "https://maestraenelespectro.com/",
+    image: "/projects/MaestraEnElEspectro.webp",
+    tags: [
+      TAGS.WORDPRESS,
+      TAGS.PHP,
+      TAGS.HTML5,
+      TAGS.CSS3,
+      TAGS.JS,
+    ],
+  },
   {
     title: "LudOhana",
     description:
@@ -164,7 +178,7 @@ const PROJECTS = [
   {
     title: "Ecoinge Canarias",
     description:
-      "Ecoinge Canarias es una empresa de ingeniería cuya misión es mejorar el uso de la tecnología combinándola con la sostenibilidad y el medio ambiente. El proyecto se ha centrado en el blueprint (organización de contenido), utilizando código propio (CSS y JQuery) y Elementor para su maquetación. Para poner a prueba el diseño, se han aplicado pruebas de usabilidad con diferentes perfiles de usuarios, haciendo los últimos cambios necesarios en base a los resultados obtenidos. Se ha configurado un trabajo cron en PHP para los números de los contadores",
+      "Ecoinge Canarias es una empresa de ingeniería cuya misión es mejorar el uso de la tecnología combinándola con la sostenibilidad y el medio ambiente. El proyecto se ha centrado en el blueprint (organización de contenido), utilizando código propio (CSS y JQuery) y Elementor para su maquetación. Para poner a prueba el diseño, se han aplicado pruebas de usabilidad con diferentes perfiles de usuarios, haciendo los últimos cambios necesarios en base a los resultados obtenidos. Se ha configurado un trabajo cron en PHP para los números de los contadores.",
     link: "https://ecoingecanarias.com/",
     video: "/projects/EcoingeCanarias.mp4",
     tags: [
@@ -269,7 +283,7 @@ const PROJECTS = [
                   {link && (
                     <LinkButton href={link}>
                       <LinkIcon class="size-5" />
-                      Preview
+                      Ver proyecto
                     </LinkButton>
                   )}
                 </footer>

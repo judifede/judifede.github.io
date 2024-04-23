@@ -7,13 +7,21 @@ import LinkButton from "../components/LinkButton.astro";
 ---
 
 <section>
-    <div class="flex flex-row items-center gap-x-5 mb-4">
+    <div class="flex items-center gap-x-5 mb-4">
         <img
             class="inline-block rounded-full size-16"
             src="/CV_perfil.webp"
             alt="Foto del Currículum"
         />
-        <Badge>Abierto a nuevas oportunidades</Badge>
+        <a
+            href="https://linkedin.com/in/midudev"
+            target="_blank"
+            rel="noopener"
+            class="flex items-center transition md:justify-center md:hover:scale-105"
+        >
+            <Badge>Abierto a nuevas oportunidades</Badge>
+        </a>
+        <!-- TOFIX URL BUTTON -->
     </div>
 
     <h1 class="text-white text-3xl font-bold pb-4">

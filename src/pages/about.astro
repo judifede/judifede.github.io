@@ -1,0 +1,113 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Profile from "../components/icons/Profile.astro";
+import School from "../components/icons/School.astro";
+import EducationItem from "../components/EducationItem.astro";
+
+const EDUCATIONS = [
+  {
+    title: "Desarrollo Web Full-Stack",
+    company: "Reboot Academy",
+    date: "Enero - Abril 2024",
+    description:
+      "Formación Dual Escuela de Programadores en colaboración con la Fundación Universitaria de Las Palmas y la Universidad de Las Palmas de Gran Canaria.",
+    files: ["Diploma.pdf", "Contenidos.pdf"],
+  },
+
+  {
+    title: "Desarrollo de Aplicaciones Multiplataforma",
+    company: "IES El Rincón",
+    url: "https://www.todofp.es/que-estudiar/loe/informatica-comunicaciones/des-aplicaciones-multiplataforma.html",
+    date: "2016 - 2017",
+    description:
+      "Ciclo Superior de Desarrollo de Aplicaciones Multiplataforma.",
+  },
+  {
+    title: "Desarrollo de Aplicaciones Web",
+    company: "IES El Rincón",
+    url: "https://www.todofp.es/que-estudiar/loe/informatica-comunicaciones/des-aplicaciones-web.html",
+    date: "2014 - 2016",
+    description: "Ciclo Superior de Desarrollo de Aplicaciones Web.",
+  },
+];
+---
+
+<Layout>
+  <section>
+    <article>
+      <h1
+        class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-white"
+      >
+        <School class="size-8" />
+        Formación
+      </h1>
+
+      <ol class="relative mt-16">
+        {
+          EDUCATIONS.map((education) => (
+            <li>
+              <EducationItem {...education} />
+            </li>
+          ))
+        }
+      </ol>
+    </article>
+
+    <article class="mt-16">
+      <h1
+        class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-white"
+      >
+        <Profile class="size-8" />
+        Sobre mí
+      </h1>
+
+      <div class="mt-16 flex justify-between items-center gap-x-4">
+        <p>
+          <span
+            >Me llamo Diego Fernández, un placer tratar contigo. Empecé en el
+            mundo de la programación en 4º ESO con HTML y CSS, sin saber que a
+            día de hoy me iba a seguir gustando tanto, tenía 15 años.
+            Actualmente he podido <strong class="text-yellow-100"
+              >trabajar en diferentes roles dentro de la informática</strong
+            >.</span
+          >
+          <br />
+          <br />
+          <span
+            >Me siento orgulloso del proyecto <strong class="text-yellow-100"
+              >Maestra en el espectro</strong
+            > porque representa, no solo el proyecto de mi pareja, sino el aprendizaje
+            de <strong class="text-yellow-100"
+              >varios años sobre salud mental</strong
+            >, sobretodo a raíz de mi diagnóstico de TEA ("Trastorno" del
+            Espectro Autista) y el autoconocimiento de lo que significa <strong
+              class="text-yellow-100"
+              >realmente ser una persona que está dentro del espectro en mi
+              contexto</strong
+            >.</span
+          >
+          <br />
+          <br />
+          <span
+            >En cuánto a mi forma de ser, me identifico como una persona <strong
+              class="text-yellow-100">empática, proactiva y analítica</strong
+            >, tengo <strong class="text-yellow-100"
+              >pasión por el ajedrez</strong
+            > desde los 10 años y también disfruto viendo diferentes deportes, juegos y competiciones.</span
+          >
+        </p>
+        <img
+          class="w-2/5"
+          src="/hero/CV_perfil.webp"
+          alt="Foto de Diego Fernández"
+        />
+      </div>
+    </article>
+  </section>
+</Layout>
+
+<style>
+  strong {
+    font-weight: 500;
+  }
+</style>

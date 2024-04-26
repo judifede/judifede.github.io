@@ -61,53 +61,67 @@ const EDUCATIONS = [
         Sobre mí
       </h1>
 
-      <div class="mt-16 flex justify-between items-center gap-x-4">
-        <p>
+      <div
+        class="mt-16 flex justify-between items-center gap-4 text-pretty flex-col md:flex-row"
+      >
+        <p
+          class="[&>*>strong]:text-yellow-100 [&>*>strong]:font-medium order-2 md:order-1"
+        >
           <span
             >Me llamo Diego Fernández, un placer tratar contigo. Empecé en el
             mundo de la programación en 4º ESO con HTML y CSS, sin saber que a
             día de hoy me iba a seguir gustando tanto, tenía 15 años.
-            Actualmente he podido <strong class="text-yellow-100"
+            Actualmente he podido <strong
               >trabajar en diferentes roles dentro de la informática</strong
             >.</span
           >
           <br />
           <br />
           <span
-            >Me siento orgulloso del proyecto <strong class="text-yellow-100"
-              >Maestra en el espectro</strong
-            > porque representa, no solo el proyecto de mi pareja, sino el aprendizaje
-            de <strong class="text-yellow-100"
-              >varios años sobre salud mental</strong
-            >, sobretodo a raíz de mi diagnóstico de TEA ("Trastorno" del
-            Espectro Autista) y el autoconocimiento de lo que significa <strong
-              class="text-yellow-100"
-              >realmente ser una persona que está dentro del espectro en mi
-              contexto</strong
+            >Me siento orgulloso del proyecto <strong
+              >"Maestra en el espectro"</strong
+            >. No solo es el proyecto de mi pareja, sino también una exploración
+            profunda de la salud mental, especialmente tras mi diagnóstico de <strong
+              >TEA.</strong
+            > Esta experiencia me ha dado un
+            profundo autoconocimiento sobre mi contexto y lo que significa <strong
+              >formar parte del espectro.</strong
+            ></span
+          >
+
+          <br />
+          <br />
+          <span>
+            Me considero una <strong
+              >persona empática, proactiva y analítica</strong
+            >. Estas cualidades se reflejan tanto en mi trabajo como en mis
+            actividades. Ya sea, desde los 10 años, a través del <strong
+              >ajedrez</strong
+            > como una de mis grandes pasiones, como al descubrir diferentes deportes,
+            juegos y competiciones. Esta variedad de intereses me ha dado una perspectiva
+            amplia y un enfoque adaptable en mi <strong
+              >carrera como programador</strong
             >.</span
           >
-          <br />
-          <br />
-          <span
-            >En cuánto a mi forma de ser, me identifico como una persona <strong
-              class="text-yellow-100">empática, proactiva y analítica</strong
-            >, tengo <strong class="text-yellow-100"
-              >pasión por el ajedrez</strong
-            > desde los 10 años y también disfruto viendo diferentes deportes, juegos y competiciones.</span
-          >
         </p>
-        <img
+
+        <!-- <img
           class="w-2/5"
           src="/hero/CV_perfil.webp"
           alt="Foto de Diego Fernández"
+        /> -->
+        <img
+          width="200"
+          height="200"
+          src="/hero/CV_perfil.webp"
+          alt="Foto de Diego Fernández"
+          class="order-1 object-cover w-64 h-full p-1
+          rotate-3 aspect-square rounded-2xl
+          bg-yellow-500/5 ring-1 ring-yellow-200/80
+          md:order-2 lg:p-2"
+          style="object-position: 50% 50%"
         />
       </div>
     </article>
   </section>
 </Layout>
-
-<style>
-  strong {
-    font-weight: 500;
-  }
-</style>

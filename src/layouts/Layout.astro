@@ -16,10 +16,11 @@ import Hero from '../components/Hero.astro';
 		<ViewTransitions />
 		<title>Porfolio de Diego Fernández - Desarrollador y Programador Web</title>
 	</head>
-	<body>
+	<body class="relative text-white" >
+		<div class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full bg-gray-950
+      bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
 		<Header/>
 		<main class="container w-full mx-auto py-20 flex flex-col gap-y-20 items-center justify-center px-4 lg:max-w-4xl md:max-w-2xl md:items-start">
-			<div class="relative h-full w-full bg-slate-950"><div class="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_500px_at_50%_200px,#3e3e3e,transparent)]"></div></div>
 			<Hero />
 			<slot />
 		</main>
@@ -39,7 +40,7 @@ import Hero from '../components/Hero.astro';
 		color: rgba(255, 255, 255, 0.9);
 		display: flex;
 		flex-direction: column;
-		height: 100vh;
+		min-height: 100vh;
 	}
 	
 </style>

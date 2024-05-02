@@ -111,6 +111,7 @@ const TAGS = {
 
 const PROJECTS = [
   {
+    projectid: "maestra_espectro",
     title: "Maestra en el Espectro",
     description:
       "Maestra en el Espectro es un proyecto centrado en la intervención psicoeducativa con personas con TDAH, autismo y/o altas capacidades (y sus familias) bajo el foco del paradigma de la neurodiversidad. El proyecto se ha centrado en el blueprint (organización de contenido), utilizando código propio (CSS y JQuery) y Elementor para su maquetación. Para poner a prueba el diseño, se han aplicado pruebas de usabilidad con diferentes perfiles de usuarios, haciendo los últimos cambios necesarios en base a los resultados obtenidos.",
@@ -125,6 +126,7 @@ const PROJECTS = [
     ],
   },
   {
+    projectid: "ludohana",
     title: "LudOhana",
     description:
       "Proyecto 3 - Bloque Full-Stack de la Escuela de Programadores: Formación Dual de Desarrolladores Web Full-Stack (Fundación Universitaria de Las Palmas, Reboot Academy). LudOhana es una página web sobre eventos, para escuelas y familias, enfocados en la educación de los niños. Se utiliza la API creada en el proyecto del bloque 2. Trabajamos principalmente con React y MaterialUI, aunque también tuvimos que adaptar el proyecto de la API para dar más funcionalidad al front. Utilizamos Stripe para las donaciones de los eventos.",
@@ -142,6 +144,7 @@ const PROJECTS = [
     ],
   },
   {
+    projectid: "ludohana_api",
     title: "LudOhana-API",
     description:
       "Proyecto 2 - Bloque Back-End de la Escuela de Programadores: Formación Dual de Desarrolladores Web Full-Stack (Fundación Universitaria de Las Palmas, Reboot Academy). LudOhana es una página web sobre eventos, para escuelas y familias, enfocados en la educación de los niños. Se crea la API que posteriormente se utilizaría en el proyecto 3. Usamos el workspace compartido de Postman para tener los endpoints almacenados por entidad, entorno (desarrollo o producción) y los tokens de autentificación necesarios. El proyecto desplegado tiene un pequeño front para presentar la integración de Stripe y hacer operaciones en nuestra base de datos una vez se procese el pago. Información completa en el README del proyecto.",
@@ -158,6 +161,7 @@ const PROJECTS = [
     ],
   },
   {
+    projectid: "jungle_paradise",
     title: "Jungle Paradise",
     description:
       "Proyecto 1 - Bloque Front-End de la Escuela de Programadores: Formación Dual de Desarrolladores Web Full-Stack (Fundación Universitaria de Las Palmas, Reboot Academy). Videojuego en navegador, inspirado en Whac-A-Mole, en el que tendremos que matar a todos los mosquitos que podamos antes de que acabe el tiempo. El mayor reto de este proyecto consistió en implementar el juego en 3 días a través del trabajo en equipo, utilizando para ello el control de versiones con Git, y poniendo en prácticas los conocimientos adquiridos en las tecnologías Front-End.",
@@ -167,6 +171,7 @@ const PROJECTS = [
     tags: [TAGS.HTML5, TAGS.CSS3, TAGS.JS, TAGS.GIT],
   },
   {
+    projectid: "solitario_web",
     title: "Solitario Web",
     description:
       "El juego Solitario tiene muchas variantes y, aunque este proyecto no pretende abarcar todas las posibilidades disponibles, dispone de 3 niveles de dificultad y animaciones de victoria y derrota. El proyecto cuenta con ajustes de apariencia y permite cambiar el idioma entre el español y el inglés.",
@@ -176,6 +181,7 @@ const PROJECTS = [
     tags: [TAGS.HTML5, TAGS.CSS3, TAGS.JS, TAGS.JQUERY],
   },
   {
+    projectid: "ecoinge_canarias",
     title: "Ecoinge Canarias",
     description:
       "Ecoinge Canarias es una empresa de ingeniería cuya misión es mejorar el uso de la tecnología combinándola con la sostenibilidad y el medio ambiente. El proyecto se ha centrado en el blueprint (organización de contenido), utilizando código propio (CSS y JQuery) y Elementor para su maquetación. Para poner a prueba el diseño, se han aplicado pruebas de usabilidad con diferentes perfiles de usuarios, haciendo los últimos cambios necesarios en base a los resultados obtenidos. Se ha configurado un trabajo cron en PHP para los números de los contadores.",
@@ -191,6 +197,7 @@ const PROJECTS = [
     ],
   },
   {
+    projectid: "nakama_canino",
     title: "Nakama Canino",
     description:
       "Nakama Canino es una marca personal centrada en la educación canina y dirigida por Arianna García. Valorando las necesidades de la CEO, se llevó a cabo un rediseño completo de la página web. El proyecto se ha centrado en el blueprint (organización de contenido), utilizando código propio (CSS y JQuery) y Elementor para su maquetación. Para poner a prueba el diseño, se han aplicado pruebas de usabilidad con diferentes perfiles de usuarios, haciendo los últimos cambios necesarios en base a los resultados obtenidos. Además, se ha asesorado sobre cómo aplicar actualizaciones de las entradas al blog.",
@@ -199,6 +206,7 @@ const PROJECTS = [
     tags: [TAGS.WORDPRESS, TAGS.HTML5, TAGS.CSS3, TAGS.JS, TAGS.JQUERY],
   },
   {
+    projectid: "rediseño_ies",
     title: "Rediseño IES El Rincón",
     description:
       "Durante el ciclo superior de Desarrollo de Aplicaciones Web, llevé a cabo en equipo un rediseño de la web de IES El Rincón, llegando a un mock-up (maqueta de la página). De forma adicional, elaboramos el mapa del sitio (footer), las migas de pan, y una galería funcional (Nuestro centro -> Galería).",
@@ -221,6 +229,7 @@ const PROJECTS = [
     {
       PROJECTS.map(
         ({
+          projectid,
           title,
           description,
           link,
@@ -229,7 +238,7 @@ const PROJECTS = [
           video,
           tags,
         }) => (
-          <article class="flex flex-col space-x-0 space-y-8 md:flex-row md:space-x-8 md:space-y-0 mb-12">
+          <article id={projectid} class="flex flex-col space-x-0 space-y-8 md:flex-row md:space-x-8 md:space-y-0 mb-12">
             <div class="w-full md:w-1/2">
               <div
                 class={`size-full overflow-hidden transition duration-500 rounded-xl ${image && "md:group-hover:-translate-y-1 md:hover:shadow-2xl lg:border lg:border-gray-400 lg:hover:border-gray-200"}`}

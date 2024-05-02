@@ -78,13 +78,16 @@ const EDUCATIONS = [
           <br />
           <br />
           <span
-            >Me siento orgulloso del proyecto <strong
-              >"Maestra en el espectro"</strong
+            >Me siento orgulloso del proyecto <a
+              href="/projects#maestra_espectro"
+              target="_blank"
+              ><strong class="text-yellow-100 font-medium"
+                >"Maestra en el espectro"</strong
+              ></a
             >. No solo es el proyecto de mi pareja, sino también una exploración
-            profunda de la salud mental, especialmente tras mi diagnóstico de <strong
-              >TEA.</strong
-            > Esta experiencia me ha dado un
-            profundo autoconocimiento sobre mi contexto y lo que significa <strong
+            profunda de la salud mental y el crecimiento personal, especialmente
+            tras mi diagnóstico de <strong>TEA.</strong> Esta experiencia me ha dado
+            un profundo autoconocimiento sobre mi contexto y lo que significa <strong
               >formar parte del espectro.</strong
             ></span
           >
@@ -105,22 +108,13 @@ const EDUCATIONS = [
           >
         </p>
 
-        <!-- <img
-          class="w-2/5"
-          src="/hero/CV_perfil.webp"
-          alt="Foto de Diego Fernández"
-        /> -->
-        <img
-          width="200"
-          height="200"
-          src="/hero/CV_perfil.webp"
-          alt="Foto de Diego Fernández"
-          class="order-1 object-cover w-64 h-full p-1
-          rotate-3 aspect-square rounded-2xl
-          bg-yellow-500/5 ring-1 ring-yellow-200/80
-          md:order-2 lg:p-2"
-          style="object-position: 50% 50%"
-        />
+        <div class="min-w-72 w-96 order-1 md:order-2 p-1 lg:p-2">
+          <picture >
+            <source media="(max-width:767px)" srcset="/about/about_mv.png" />
+            <img class="" src="/about/about.png" alt="About" />
+          </picture>
+        </div>
+        
       </div>
     </article>
   </section>

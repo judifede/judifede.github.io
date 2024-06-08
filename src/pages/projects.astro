@@ -109,7 +109,7 @@ const TAGS = {
   },
 };
 
-const PROJECTS = [
+const PROJECTS_CORPORATE = [
   {
     projectid: "maestra_espectro",
     title: "Maestra en el Espectro",
@@ -124,7 +124,35 @@ const PROJECTS = [
       TAGS.CSS3,
       TAGS.JS,
     ],
+  },  
+  {
+    projectid: "ecoinge_canarias",
+    title: "Ecoinge Canarias",
+    description:
+      "Ecoinge Canarias es una empresa de ingeniería cuya misión es mejorar el uso de la tecnología combinándola con la sostenibilidad y el medio ambiente. El proyecto se ha centrado en el blueprint (organización de contenido), utilizando código propio (CSS y JQuery) y Elementor para su maquetación. Para poner a prueba el diseño, se han aplicado pruebas de usabilidad con diferentes perfiles de usuarios, haciendo los últimos cambios necesarios en base a los resultados obtenidos. Se ha configurado un trabajo cron en PHP para los números de los contadores.",
+    link: "https://ecoingecanarias.com/",
+    video: "/projects/EcoingeCanarias.mp4",
+    tags: [
+      TAGS.WORDPRESS,
+      TAGS.PHP,
+      TAGS.HTML5,
+      TAGS.CSS3,
+      TAGS.JS,
+      TAGS.JQUERY,
+    ],
   },
+  {
+    projectid: "nakama_canino",
+    title: "Nakama Canino",
+    description:
+      "Nakama Canino es una marca personal centrada en la educación canina y dirigida por Arianna García. Valorando las necesidades de la CEO, se llevó a cabo un rediseño completo de la página web. El proyecto se ha centrado en el blueprint (organización de contenido), utilizando código propio (CSS y JQuery) y Elementor para su maquetación. Para poner a prueba el diseño, se han aplicado pruebas de usabilidad con diferentes perfiles de usuarios, haciendo los últimos cambios necesarios en base a los resultados obtenidos. Además, se ha asesorado sobre cómo aplicar actualizaciones de las entradas al blog.",
+    link: "https://nakamacanino.com/",
+    image: "/projects/NakamaCanino.webp",
+    tags: [TAGS.WORDPRESS, TAGS.HTML5, TAGS.CSS3, TAGS.JS, TAGS.JQUERY],
+  },
+];
+
+const PROJECTS_PERSONAL = [
   {
     projectid: "ludohana",
     title: "LudOhana",
@@ -181,31 +209,6 @@ const PROJECTS = [
     tags: [TAGS.HTML5, TAGS.CSS3, TAGS.JS, TAGS.JQUERY],
   },
   {
-    projectid: "ecoinge_canarias",
-    title: "Ecoinge Canarias",
-    description:
-      "Ecoinge Canarias es una empresa de ingeniería cuya misión es mejorar el uso de la tecnología combinándola con la sostenibilidad y el medio ambiente. El proyecto se ha centrado en el blueprint (organización de contenido), utilizando código propio (CSS y JQuery) y Elementor para su maquetación. Para poner a prueba el diseño, se han aplicado pruebas de usabilidad con diferentes perfiles de usuarios, haciendo los últimos cambios necesarios en base a los resultados obtenidos. Se ha configurado un trabajo cron en PHP para los números de los contadores.",
-    link: "https://ecoingecanarias.com/",
-    video: "/projects/EcoingeCanarias.mp4",
-    tags: [
-      TAGS.WORDPRESS,
-      TAGS.PHP,
-      TAGS.HTML5,
-      TAGS.CSS3,
-      TAGS.JS,
-      TAGS.JQUERY,
-    ],
-  },
-  {
-    projectid: "nakama_canino",
-    title: "Nakama Canino",
-    description:
-      "Nakama Canino es una marca personal centrada en la educación canina y dirigida por Arianna García. Valorando las necesidades de la CEO, se llevó a cabo un rediseño completo de la página web. El proyecto se ha centrado en el blueprint (organización de contenido), utilizando código propio (CSS y JQuery) y Elementor para su maquetación. Para poner a prueba el diseño, se han aplicado pruebas de usabilidad con diferentes perfiles de usuarios, haciendo los últimos cambios necesarios en base a los resultados obtenidos. Además, se ha asesorado sobre cómo aplicar actualizaciones de las entradas al blog.",
-    link: "https://nakamacanino.com/",
-    image: "/projects/NakamaCanino.webp",
-    tags: [TAGS.WORDPRESS, TAGS.HTML5, TAGS.CSS3, TAGS.JS, TAGS.JQUERY],
-  },
-  {
     projectid: "rediseño_ies",
     title: "Rediseño IES El Rincón",
     description:
@@ -224,16 +227,16 @@ const PROJECTS = [
       class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-white"
     >
       <CodeIcon class="size-8" />
-      Proyectos
+      Proyectos Corporativos
     </h1>
     {
-      PROJECTS.map(
+      PROJECTS_CORPORATE.map(
         ({
           projectid,
           title,
           description,
           link,
-          repositorioRemoto,
+          //repositorioRemoto,
           image,
           video,
           tags,
@@ -261,6 +264,90 @@ const PROJECTS = [
                     src={video}
                   />
                 )}
+              </div>
+            </div>
+            <div class="w-full md:w-1/2">
+              <h2 class="text-2xl font-bold text-gray-100">{title}</h2>
+
+              <div class="flex flex-wrap mt-2">
+                <span class="mt-2 text-gray-200">{description}</span>
+                <ul class="flex flex-wrap flex-row my-2 gap-x-2">
+                  {tags.map((tag) => (
+                    <li class="mt-2">
+                      <span
+                        class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-2 px-3 `}
+                      >
+                        <tag.icon
+                          class={`size-4 ${tag.title === "Stripe" && "w-12"}`}
+                        />
+                        {tag.name}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                <footer class="flex items-end justify-start mt-4 gap-x-4">
+                  {/* {repositorioRemoto && (
+                    <LinkButton href={repositorioRemoto}>
+                      <GitHubIcon class="size-5" />
+                      Code
+                    </LinkButton>
+                  )} */}
+                  {link && (
+                    <LinkButton href={link}>
+                      <LinkIcon class="size-5" />
+                      Ver proyecto
+                    </LinkButton>
+                  )}
+                </footer>
+              </div>
+            </div>
+          </article>
+        )
+      )
+    }
+  </section>
+  <section>
+    <h1
+      class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-white"
+    >
+      <CodeIcon class="size-8" />
+      Proyectos Personales
+    </h1>
+    {
+      PROJECTS_PERSONAL.map(
+        ({
+          projectid,
+          title,
+          description,
+          link,
+          repositorioRemoto,
+          image,
+          //video,
+          tags,
+        }) => (
+          <article id={projectid} class="flex flex-col space-x-0 space-y-8 md:flex-row md:space-x-8 md:space-y-0 mb-12">
+            <div class="w-full md:w-1/2">
+              <div
+                class={`size-full overflow-hidden transition duration-500 rounded-xl ${image && "md:group-hover:-translate-y-1 md:hover:shadow-2xl lg:border lg:border-gray-400 lg:hover:border-gray-200"}`}
+              >
+                {image && (
+                  <img
+                    src={image}
+                    class="size-full md:object-cover md:object-left-top transition duration-500 md:hover:scale-110"
+                    loading="lazy"
+                    alt="Imagen del proyecto"
+                  />
+                )}
+                {/* {video && (
+                  <video
+                    class="size-full scale-125"
+                    autoplay
+                    loop
+                    muted="muted"
+                    controlslist="nodownload"
+                    src={video}
+                  />
+                )} */}
               </div>
             </div>
             <div class="w-full md:w-1/2">

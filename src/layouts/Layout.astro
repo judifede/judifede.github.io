@@ -3,6 +3,10 @@ import '@fontsource-variable/onest';
 import Header from '../components/Header.astro';
 import { ViewTransitions } from 'astro:transitions';
 import Hero from '../components/Hero.astro';
+import LinkedInIcon from "../components/icons/LinkedIn.astro";
+import MailIcon from "../components/icons/Mail.astro";
+import GithubIcon from "../components/icons/GitHub.astro";
+import LinkButton from "../components/LinkButton.astro";
 ---
 
 <!doctype html>
@@ -20,10 +24,24 @@ import Hero from '../components/Hero.astro';
 		<div class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full bg-gray-950
       bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
 		<Header/>
-		<main class="container w-full mx-auto py-20 flex flex-col gap-y-20 items-center justify-center px-4 lg:max-w-4xl md:max-w-2xl md:items-start">
+		<main class="container w-full mx-auto py-32 flex flex-col gap-y-20 items-center justify-center px-4 lg:max-w-4xl md:max-w-2xl md:items-start">
 			<Hero />
 			<slot />
 		</main>
+		<footer class="flex flex-col items-center gap-3 py-4 bg-[rgb(0,23,103)]/50">
+			<nav class="flex flex-wrap gap-4 mt-4 md:mt-8">
+				<LinkButton href="mailto:judifede217@gmail.com">
+					<MailIcon class="size-6" />
+				</LinkButton>
+				<LinkButton href="https://www.linkedin.com/in/diego-fdez-1b0009109/">
+					<LinkedInIcon class="size-6" />
+				</LinkButton>
+				<LinkButton href="https://github.com/judifede">
+					<GithubIcon class="size-6" />
+				</LinkButton>
+			</nav>
+			<span class="text-lg font-medium">Diego Fernández</span>
+		</footer>
 	</body>
 </html>
 <style is:global>

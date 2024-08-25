@@ -6,7 +6,7 @@ interface Props {
   company: string;
   companyDetail?: string;
   blockquote?: string;
-  description?: string;
+  descriptions?: Array<string>;
   descriptionList?: Array<string>;
   date: string;
 }
@@ -16,7 +16,7 @@ const {
   company,
   companyDetail,
   blockquote,
-  description,
+  descriptions,
   descriptionList,
   date,
 } = Astro.props;
@@ -40,7 +40,7 @@ const {
       {companyDetail}
       {
         blockquote && (
-        <InfoIcon class="inline size-5" />
+        <InfoIcon class="inline size-5 text-yellow-400" />
           <div data-tip={blockquote} class="relative
             before:content-[attr(data-tip)]
             before:absolute
@@ -73,7 +73,9 @@ const {
     <time class="mt-4 text-md">{date}</time>
   </div>
   <div class="relative flex flex-col gap-2 pb-4 text-gray-300 md:col-span-3">
-    {description}
+    {descriptions && descriptions.map((description) => (
+      <p class="my-1">{description}</p>
+    ))}
     {
       descriptionList && (
         <ul class="space-y-3">

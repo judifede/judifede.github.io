@@ -3,22 +3,22 @@ import Layout from "../layouts/Layout.astro";
 import ExperienceItem from "../components/ExperienceItem.astro";
 import Briefcase from "../components/icons/Briefcase.astro";
 const EXPERIENCIES = [
-{
+  {
     title: "Desarrollador Web",
     company: "21ninjas",
     date: "Abril 2024 - Actualmente",
-    description:
+    descriptions: [
       "Segunda etapa de la Formación Dual Escuela de Programadores - Desarrolladores Web Full-Stack.",
-      descriptionList: [
-      "En progreso...",
     ],
+    descriptionList: ["En progreso..."],
   },
   {
     title: "Profesor particular",
     company: "Superprof",
     date: "Noviembre 2020 - Agosto 2023",
-    description:
+    descriptions: [
       "Clases presenciales y online de informática básica y programación a través de mi perfil en Superprof.",
+    ],
   },
   {
     title: "Analista Programador",
@@ -30,21 +30,25 @@ const EXPERIENCIES = [
       "Proyecto de datos con Pentaho y SaS Visual",
       "Proyecto de software privado con Apache Velocity",
       "Proyecto de gráficas estadísticas en front-End, utilizando principalmente JavaScript (D3 | RowChart | Parceljs).",
-    ]
+    ],
   },
   {
     title: "Responsable del Área de Soporte",
     company: "Ignos S.L",
     companyDetail: "(UTE Arte Consultores)",
     date: "Abril 2018 - Septiembre 2022",
-    description: "El proyecto SISPECAN consiste en el mantenimiento y mejora de las aplicaciones informáticas del Servicio Canario de Empleo. Mis principales funciones consistían en realizar tareas de configuración, actuaciones de bases de datos, pruebas de aplicaciones, entre otras. Como responsable del área de soporte gestionaba tareas de NIVEL1 (no implicasen modificaciones en el código) de todas las áreas del proyecto conociendo sus arquitecturas.",
+    descriptions: [
+      "El proyecto SISPECAN consiste en el mantenimiento y mejora de las aplicaciones informáticas del Servicio Canario de Empleo.",
+      "Mis principales funciones consistían en realizar tareas de configuración, actuaciones de bases de datos, pruebas de aplicaciones.",
+      "Como responsable del área de soporte gestionaba tareas de NIVEL1 (no implicasen modificaciones en el código) de todas las áreas del proyecto conociendo sus arquitecturas.",
+    ],
     descriptionList: [
       "Ofimática",
       "DBeaver | SQLDeveloper",
       "Adobe Captivate",
       "Aplicaciones del proyecto",
-      "JIRA | Confluence"
-    ]
+      "JIRA | Confluence",
+    ],
   },
   {
     title: "Desarrollador Front-End",
@@ -56,7 +60,7 @@ const EXPERIENCIES = [
       "Responsive Design",
       "Edición de imágenes con Adobe PhotoShop",
       "PrestaShop 1.7",
-    ]
+    ],
   },
   {
     title: "Desarrollador Back-End",
@@ -64,10 +68,11 @@ const EXPERIENCIES = [
     companyDetail: "CFGS DAM",
     blockquote: "Ciclo Superior de Desarrollo de Aplicaciones Multiplataformas",
     date: "Abril - Mayo 2017",
-    description: "Aprendizaje de la metodología de trabajo implantada y la importancia del análisis previo al código. Mejoras a nivel personal en la organización, análisis y resolución de problemas, así como la lógica de programación, utilizando máquinas de estado, seguridad y encriptación.",
-    descriptionList: [
-      ".Net (C#)",
-    ]
+    descriptions: [
+      "Aprendizaje de la metodología de trabajo implantada y la importancia del análisis previo al código.",
+      "Mejoras a nivel personal en la organización, análisis y resolución de problemas, así como la lógica de programación, utilizando máquinas de estado, seguridad y encriptación.",
+    ],
+    descriptionList: [".Net (C#)"],
   },
   {
     title: "Desarrollador Front-End",
@@ -75,16 +80,15 @@ const EXPERIENCIES = [
     companyDetail: "CFGS DAW",
     blockquote: "Ciclo Superior de Desarrollo de Aplicaciones Web",
     date: "Abril - Mayo 2016",
-    description: "Ábaco System es una tienda de informática que quería realizar su nueva página web. Trabajé junto a un programador autónomo que colaboraba con la empresa para este proyecto.",
-    descriptionList: [
-      ".Net (C#)",
-      "Responsive Design",
-      "Bootstrap",
-      "Uikit",
-    ]
+    descriptions: [
+      "Ábaco System es una tienda de informática que quería realizar su nueva página web.",
+      "Trabajé junto a un programador autónomo que colaboraba con la empresa para este proyecto.",
+    ],
+    descriptionList: [".Net (C#)", "Responsive Design", "Bootstrap", "Uikit"],
   },
 ];
 ---
+
 <Layout>
   <section>
     <h1

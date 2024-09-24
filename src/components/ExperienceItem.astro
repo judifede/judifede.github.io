@@ -1,5 +1,6 @@
 ---
 import InfoIcon from "../components/icons/Info.astro";
+import LinkIcon from "../components/icons/Link.astro";
 
 interface Props {
   title: string;
@@ -8,6 +9,7 @@ interface Props {
   blockquote?: string;
   descriptions?: Array<string>;
   descriptionList?: Array<string>;
+  link?: Array<string>;
   date: string;
 }
 
@@ -18,6 +20,7 @@ const {
   blockquote,
   descriptions,
   descriptionList,
+  link,
   date,
 } = Astro.props;
 ---
@@ -32,21 +35,21 @@ const {
   <div
     class="pb-12 md:col-span-2 flex flex-col items-center md:flex-none md:items-start"
   >
-    <h3 class="text-xl font-bold text-yellow-400">{title}</h3>
-    <h4 class="mt-2 text-xl font-semibold text-white">{company}</h4>
+    <h2 class="text-xl font-bold text-yellow-400">{title}</h2>
+    <h3 class="mt-2 text-xl font-semibold text-white inline-block">{company}</h3>
     <blockquote
       class="text-lg font-semibold text-white flex gap-x-1 items-center"
     >
       {companyDetail}
       {
         blockquote && (
-        <InfoIcon class="inline size-5 text-yellow-400" />
+        <InfoIcon class="inline-block size-5 text-yellow-400" />
           <div data-tip={blockquote} class="relative
             before:content-[attr(data-tip)]
             before:absolute
-            before:px-2 before:py-2
+            before:px-4 before:py-2
             before:-left-5 before:-top-5
-            before:w-max before:max-w-xs
+            before:w-[317px] before:max-w-xs
             before:-translate-x-1/2 before:-translate-y-full
             before:bg-gray-800 before:border-gray-600 before:text-white
             before:rounded-md before:opacity-0
@@ -79,8 +82,8 @@ const {
     {
       descriptionList && (
         <ul class="space-y-3">
-          {descriptionList.map((item) => (
-            <li class="text-body-color dark:text-dark-6 flex text-base">
+          {descriptionList.map((item, index) => (
+            <li class="min-w-80 text-body-color dark:text-dark-6 flex text-base">
               <span class="text-primary mr-2.5 mt-0.5">
                 <svg
                   width="20"
@@ -95,12 +98,25 @@ const {
                   />
                 </svg>
               </span>
-              {item}
+              <p class="flex flex-col w-full">
+                <span class="">
+                  {item}
+                </span>
+
+                { link &&
+                  link?.[index] != "" &&
+                  <a href={link?.[index]} target="_blank" class="text-yellow-200/90 font-semibold flex justify-end gap-2 mt-2" >
+                    <LinkIcon class="size-5" />
+                    Ver proyecto
+                  </a>
+                }
+              </p>
             </li>
           ))}
         </ul>
       )
     }
+    
   </div>
 </article>
 

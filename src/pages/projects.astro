@@ -238,7 +238,7 @@ const PROJECTS_PERSONAL = [
           descriptions,
           link,
           //repositorioRemoto,
-          image,
+          // image,
           video,
           tags,
         }) => (
@@ -248,16 +248,18 @@ const PROJECTS_PERSONAL = [
           >
             <div class="w-full md:w-1/2">
               <div
-                class={`size-full overflow-hidden transition duration-500 rounded-xl ${image && "md:group-hover:-translate-y-1 md:hover:shadow-2xl lg:border lg:border-gray-400 lg:hover:border-gray-200"}`}
+                class={`size-full overflow-hidden transition duration-500 rounded-xl
+                   md:group-hover:-translate-y-1 md:hover:shadow-2xl lg:border lg:border-gray-400 lg:hover:border-gray-200`
+                  }
               >
-                {image && (
+                {/* {image && (
                   <img
                     src={image}
                     class="size-full md:object-cover md:object-left-top transition duration-500 md:hover:scale-110"
                     loading="lazy"
                     alt="Imagen del proyecto"
                   />
-                )}
+                )} */}
                 {video && (
                   <video
                     class="size-full scale-125"

@@ -1,12 +1,9 @@
 ---
 import '@fontsource-variable/onest';
 import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import { ViewTransitions } from 'astro:transitions';
 import Hero from '../components/Hero.astro';
-import LinkedInIcon from "../components/icons/LinkedIn.astro";
-import MailIcon from "../components/icons/Mail.astro";
-import GithubIcon from "../components/icons/GitHub.astro";
-import LinkButton from "../components/LinkButton.astro";
 ---
 
 <!doctype html>
@@ -28,20 +25,7 @@ import LinkButton from "../components/LinkButton.astro";
 			<Hero />
 			<slot />
 		</main>
-		<footer class="flex flex-col items-center gap-3 py-4 bg-[rgb(0,23,103)]/50">
-			<nav class="flex flex-wrap gap-4 mt-4 md:mt-8">
-				<LinkButton href="mailto:judifede217@gmail.com">
-					<MailIcon class="size-6" />
-				</LinkButton>
-				<LinkButton href="https://www.linkedin.com/in/diego-fdez-1b0009109/">
-					<LinkedInIcon class="size-6" />
-				</LinkButton>
-				<LinkButton href="https://github.com/judifede">
-					<GithubIcon class="size-6" />
-				</LinkButton>
-			</nav>
-			<span class="text-lg font-medium">Diego Fernández</span>
-		</footer>
+		<Footer />
 	</body>
 </html>
 

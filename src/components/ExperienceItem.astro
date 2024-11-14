@@ -1,6 +1,8 @@
 ---
 import InfoIcon from "../components/icons/Info.astro";
 import LinkIcon from "../components/icons/Link.astro";
+import GalleryIcon from "../components/icons/Gallery.astro";
+import Gallery from "./Gallery.astro";
 
 interface Props {
   title: string;
@@ -9,8 +11,15 @@ interface Props {
   blockquote?: string;
   descriptions?: Array<string>;
   descriptionList?: Array<string>;
-  link?: Array<string>;
+  link?: Array<Link>;
   date: string;
+}
+
+interface Link {
+  url?: string,
+  gallery?: string,
+  galleryPath?: string,
+  length?: number,
 }
 
 const {
@@ -55,8 +64,6 @@ const {
             before:rounded-md before:opacity-0
             before:z-10
             before:transition-all
-
-            pointer-events-none
             
             after:absolute
             after:-right-0.5
@@ -68,6 +75,8 @@ const {
             after:border-t-gray-800
             after:opacity-0
             after:transition-all
+
+            pointer-events-none
            ">
             </div>
         )
@@ -104,12 +113,24 @@ const {
                 </span>
 
                 { link &&
-                  link?.[index] != "" &&
-                  <a href={link?.[index]} target="_blank" class="text-yellow-200/90 font-semibold flex justify-end gap-2 mt-2" >
+                  link?.[index].url != undefined ?
+                  <a href={link?.[index].url} target="_blank" class="text-yellow-200/90 font-semibold flex justify-end gap-2 mt-2" >
                     <LinkIcon class="size-5" />
                     Ver proyecto
                   </a>
+                  :  link?.[index].gallery != undefined ?
+                  <span id={link?.[index].gallery} class="text-yellow-200/90 font-semibold flex justify-end gap-2 mt-2 cursor-pointer" >
+                    <GalleryIcon class="size-5" />
+                    Ver proyecto
+                  </span>
+                  <Gallery 
+                  galleryPath={link?.[index].galleryPath} 
+                  galleryButtonID={link?.[index].gallery}
+                  length={link?.[index].length}
+                  />
+                  : ""
                 }
+                
               </p>
             </li>
           ))}
@@ -121,7 +142,8 @@ const {
 </article>
 
 <style>
-  blockquote:hover div:after, blockquote:hover div:before{
+  blockquote:hover div:after,
+  blockquote:hover div:before{
     opacity: 1;
   }
 </style>

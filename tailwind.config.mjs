@@ -5,7 +5,7 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				azulCanarias: '#0768A9'
+				
 			}
 		},
 	},

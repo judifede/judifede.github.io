@@ -1,117 +1,117 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from '../layouts/Layout.astro'
 
-import CodeIcon from "../components/icons/Code.astro";
+import CodeIcon from '../components/icons/Code.astro'
 
-import GitHubIcon from "../components/icons/GitHub.astro";
-import LinkIcon from "../components/icons/Link.astro";
+import GitHubIcon from '../components/icons/GitHub.astro'
+import LinkIcon from '../components/icons/Link.astro'
 
-import HTML5Icon from "../components/icons/languages/HTML5.astro";
-import CSS3Icon from "../components/icons/languages/CSS3.astro";
-import JSIcon from "../components/icons/languages/JS.astro";
-import JQueryIcon from "../components/icons/languages/JQuery.astro";
-import GitIcon from "../components/icons/languages/Git.astro";
-import PHPIcon from "../components/icons/languages/PHP.astro";
-import WordpressIcon from "../components/icons/languages/Wordpress.astro";
-import NodeJSIcon from "../components/icons/languages/NodeJS.astro";
-import PostmanIcon from "../components/icons/languages/Postman.astro";
-import ExpressJSIcon from "../components/icons/languages/ExpressJS.astro";
-import SequelizeIcon from "../components/icons/languages/Sequelize.astro";
-import ReactIcon from "../components/icons/languages/React.astro";
-import MaterialUIIcon from "../components/icons/languages/MaterialUI.astro";
-import StripeIcon from "../components/icons/languages/Stripe.astro";
+import HTML5Icon from '../components/icons/languages/HTML5.astro'
+import CSS3Icon from '../components/icons/languages/CSS3.astro'
+import JSIcon from '../components/icons/languages/JS.astro'
+import JQueryIcon from '../components/icons/languages/JQuery.astro'
+import GitIcon from '../components/icons/languages/Git.astro'
+import PHPIcon from '../components/icons/languages/PHP.astro'
+import WordpressIcon from '../components/icons/languages/Wordpress.astro'
+import NodeJSIcon from '../components/icons/languages/NodeJS.astro'
+import PostmanIcon from '../components/icons/languages/Postman.astro'
+import ExpressJSIcon from '../components/icons/languages/ExpressJS.astro'
+import SequelizeIcon from '../components/icons/languages/Sequelize.astro'
+import ReactIcon from '../components/icons/languages/React.astro'
+import MaterialUIIcon from '../components/icons/languages/MaterialUI.astro'
+import StripeIcon from '../components/icons/languages/Stripe.astro'
 
-import LinkButton from "../components/LinkButton.astro";
+import LinkButton from '../components/LinkButton.astro'
 
 const TAGS = {
-  HTML5: {
-    name: "HTML5",
-    title: "",
-    class: "bg-orange-600/50 text-white",
-    icon: HTML5Icon,
-  },
-  CSS3: {
-    name: "CSS3",
-    title: "",
-    class: "bg-indigo-700/50 text-white",
-    icon: CSS3Icon,
-  },
-  JS: {
-    name: "Javascript",
-    title: "",
-    class: "bg-yellow-400/50 text-white",
-    icon: JSIcon,
-  },
-  JQUERY: {
-    name: "JQuery",
-    title: "",
-    class: "bg-sky-600/50 text-white",
-    icon: JQueryIcon,
-  },
-  GIT: {
-    name: "Git",
-    title: "",
-    class: "bg-red-900/50 text-white",
-    icon: GitIcon,
-  },
-  PHP: {
-    name: "PHP",
-    title: "",
-    class: "bg-[#6c70a4] text-white",
-    icon: PHPIcon,
-  },
-  WORDPRESS: {
-    name: "Wordpress",
-    title: "",
-    class: "bg-indigo-800/50 text-white",
-    icon: WordpressIcon,
-  },
-  NODEJS: {
-    name: "NodeJS",
-    title: "",
-    class: "bg-green-800/50 text-white",
-    icon: NodeJSIcon,
-  },
-  POSTMAN: {
-    name: "Postman",
-    title: "",
-    class: "bg-orange-600/50 text-white",
-    icon: PostmanIcon,
-  },
-  EXPRESSJS: {
-    name: "ExpressJS",
-    title: "",
-    class: "bg-gray-100/50 text-white",
-    icon: ExpressJSIcon,
-  },
-  SEQUELIZE: {
-    name: "Sequelize",
-    title: "",
-    class: "bg-indigo-800/50 text-white",
-    icon: SequelizeIcon,
-  },
-  REACT: {
-    name: "React",
-    title: "",
-    class: "bg-indigo-800/50 text-white",
-    icon: ReactIcon,
-  },
-  MATERIALUI: {
-    name: "MaterialUI",
-    title: "",
-    class: "bg-indigo-800/50 text-white",
-    icon: MaterialUIIcon,
-  },
-  STRIPE: {
-    name: "",
-    title: "Stripe",
-    class: "bg-gray-100/90 text-white",
-    icon: StripeIcon,
-  },
-};
+	HTML5: {
+		name: 'HTML5',
+		title: '',
+		class: 'bg-orange-600/50 text-white',
+		icon: HTML5Icon,
+	},
+	CSS3: {
+		name: 'CSS3',
+		title: '',
+		class: 'bg-indigo-700/50 text-white',
+		icon: CSS3Icon,
+	},
+	JS: {
+		name: 'Javascript',
+		title: '',
+		class: 'bg-yellow-400/50 text-white',
+		icon: JSIcon,
+	},
+	JQUERY: {
+		name: 'JQuery',
+		title: '',
+		class: 'bg-sky-600/50 text-white',
+		icon: JQueryIcon,
+	},
+	GIT: {
+		name: 'Git',
+		title: '',
+		class: 'bg-red-900/50 text-white',
+		icon: GitIcon,
+	},
+	PHP: {
+		name: 'PHP',
+		title: '',
+		class: 'bg-[#6c70a4] text-white',
+		icon: PHPIcon,
+	},
+	WORDPRESS: {
+		name: 'Wordpress',
+		title: '',
+		class: 'bg-indigo-800/50 text-white',
+		icon: WordpressIcon,
+	},
+	NODEJS: {
+		name: 'NodeJS',
+		title: '',
+		class: 'bg-green-800/50 text-white',
+		icon: NodeJSIcon,
+	},
+	POSTMAN: {
+		name: 'Postman',
+		title: '',
+		class: 'bg-orange-600/50 text-white',
+		icon: PostmanIcon,
+	},
+	EXPRESSJS: {
+		name: 'ExpressJS',
+		title: '',
+		class: 'bg-gray-100/50 text-white',
+		icon: ExpressJSIcon,
+	},
+	SEQUELIZE: {
+		name: 'Sequelize',
+		title: '',
+		class: 'bg-indigo-800/50 text-white',
+		icon: SequelizeIcon,
+	},
+	REACT: {
+		name: 'React',
+		title: '',
+		class: 'bg-indigo-800/50 text-white',
+		icon: ReactIcon,
+	},
+	MATERIALUI: {
+		name: 'MaterialUI',
+		title: '',
+		class: 'bg-indigo-800/50 text-white',
+		icon: MaterialUIIcon,
+	},
+	STRIPE: {
+		name: '',
+		title: 'Stripe',
+		class: 'bg-gray-100/90 text-white',
+		icon: StripeIcon,
+	},
+}
 
 const PROJECTS_CORPORATE = [
-  /*
+	/*
   {
     projectid: "maestra_espectro",
     title: "Maestra en el Espectro",
@@ -128,131 +128,131 @@ const PROJECTS_CORPORATE = [
     ],
   }, 
   */
-  {
-    projectid: "ecoinge_canarias",
-    title: "Ecoinge Canarias",
-    descriptions: [
-      "Ecoinge Canarias es una empresa de ingeniería cuya misión es mejorar el uso de la tecnología combinándola con la sostenibilidad y el medio ambiente.",
-      "El proyecto se ha centrado en el blueprint (organización de contenido), utilizando código propio (CSS y JQuery) y Elementor para su maquetación.",
-      "Para poner a prueba el diseño, se han aplicado pruebas de usabilidad con diferentes perfiles de usuarios, haciendo los últimos cambios necesarios en base a los resultados obtenidos.",
-      "Se ha configurado un trabajo cron en PHP para los números de los contadores.",
-    ],
-    link: "https://ecoingecanarias.com/",
-    video: "/projects/EcoingeCanarias.mp4",
-    tags: [
-      TAGS.WORDPRESS,
-      TAGS.PHP,
-      TAGS.HTML5,
-      TAGS.CSS3,
-      TAGS.JS,
-      TAGS.JQUERY,
-    ],
-  }
-];
+	{
+		projectid: 'ecoinge_canarias',
+		title: 'Ecoinge Canarias',
+		descriptions: [
+			'Ecoinge Canarias es una empresa de ingeniería cuya misión es mejorar el uso de la tecnología combinándola con la sostenibilidad y el medio ambiente.',
+			'El proyecto se ha centrado en el blueprint (organización de contenido), utilizando código propio (CSS y JQuery) y Elementor para su maquetación.',
+			'Para poner a prueba el diseño, se han aplicado pruebas de usabilidad con diferentes perfiles de usuarios, haciendo los últimos cambios necesarios en base a los resultados obtenidos.',
+			'Se ha configurado un trabajo cron en PHP para los números de los contadores.',
+		],
+		link: 'https://ecoingecanarias.com/',
+		video: '/projects/EcoingeCanarias.mp4',
+		tags: [
+			TAGS.WORDPRESS,
+			TAGS.PHP,
+			TAGS.HTML5,
+			TAGS.CSS3,
+			TAGS.JS,
+			TAGS.JQUERY,
+		],
+	}
+]
 
 const PROJECTS_PERSONAL = [
-  {
-    projectid: "ludohana",
-    title: "LudOhana",
-    descriptions: [
-      "Proyecto 3 - Bloque Full-Stack de la Escuela de Programadores: Formación Dual de Desarrolladores Web Full-Stack (Fundación Universitaria de Las Palmas, Reboot Academy).",
-      "LudOhana es una página web sobre eventos, para escuelas y familias, enfocados en la educación de los niños. Se utiliza la API creada en el proyecto del bloque 2.",
-      "Trabajamos principalmente con React y MaterialUI, aunque también tuvimos que adaptar el proyecto de la API para dar más funcionalidad al front. Utilizamos Stripe para las donaciones de los eventos.",
-      "Información completa en el README del proyecto.",
-    ],
-    link: "https://ludohana.zeabur.app",
-    repositorioRemoto: "https://github.com/judifede/LudOhana",
-    image: "/projects/LudOhana.webp",
-    tags: [
-      TAGS.HTML5,
-      TAGS.CSS3,
-      TAGS.JS,
-      TAGS.REACT,
-      TAGS.MATERIALUI,
-      TAGS.STRIPE,
-      TAGS.GIT,
-    ],
-  },
-  {
-    projectid: "ludohana_api",
-    title: "LudOhana-API",
-    descriptions: [
-      "Proyecto 2 - Bloque Back-End de la Escuela de Programadores: Formación Dual de Desarrolladores Web Full-Stack (Fundación Universitaria de Las Palmas, Reboot Academy).",
-      "LudOhana es una página web sobre eventos, para escuelas y familias, enfocados en la educación de los niños. Se crea la API que posteriormente se utilizaría en el proyecto 3.",
-      "Usamos el workspace compartido de Postman para tener los endpoints almacenados por entidad, entorno (desarrollo o producción) y los tokens de autentificación necesarios. Además de Node, Express, Sequelize y MySQL.",
-      "El proyecto desplegado tiene un pequeño front para presentar la integración de Stripe y hacer operaciones en nuestra base de datos una vez se procese el pago.",
-      "Información completa en el README del proyecto.",
-    ],
-    repositorioRemoto: "https://github.com/Yennsanpro/LudOhana-API",
-    image: "/projects/LudOhanaAPI.webp",
-    tags: [
-      TAGS.NODEJS,
-      TAGS.EXPRESSJS,
-      TAGS.SEQUELIZE,
-      TAGS.POSTMAN,
-      TAGS.STRIPE,
-      TAGS.GIT,
-    ],
-  },
-  {
-    projectid: "jungle_paradise",
-    title: "Jungle Paradise",
-    descriptions: [
-      "Proyecto 1 - Bloque Front-End de la Escuela de Programadores: Formación Dual de Desarrolladores Web Full-Stack (Fundación Universitaria de Las Palmas, Reboot Academy).",
-      "Videojuego en navegador, inspirado en Whac-A-Mole, en el que tendremos que matar a todos los mosquitos que podamos antes de que acabe el tiempo.",
-      "El mayor reto de este proyecto consistió en implementar el juego en 3 días, utilizando para ello el control de versiones con Git, y poniendo en prácticas los conocimientos adquiridos en las tecnologías Front-End.",
-    ],
-    link: "https://judifede.github.io/Jungle-Paradise/",
-    repositorioRemoto: "https://github.com/judifede/Jungle-Paradise",
-    image: "/projects/JungleParadise.webp",
-    tags: [TAGS.HTML5, TAGS.CSS3, TAGS.JS, TAGS.GIT],
-  },
-  {
-    projectid: "solitario_web",
-    title: "Solitario Web",
-    descriptions: [
-      "El juego Solitario tiene muchas variantes y, aunque este proyecto no pretende abarcar todas las posibilidades disponibles, dispone de 3 niveles de dificultad y animaciones de victoria y derrota.",
-      "El proyecto cuenta con ajustes de apariencia y permite cambiar el idioma entre el español y el inglés.",
-    ],
-    link: "https://judifede.github.io/SolitarioWeb/",
-    repositorioRemoto: "https://github.com/judifede/SolitarioWeb",
-    image: "/projects/SolitarioWeb.gif",
-    tags: [TAGS.HTML5, TAGS.CSS3, TAGS.JS, TAGS.JQUERY],
-  }
+	{
+		projectid: 'ludohana',
+		title: 'LudOhana',
+		descriptions: [
+			'Proyecto 3 - Bloque Full-Stack de la Escuela de Programadores: Formación Dual de Desarrolladores Web Full-Stack (Fundación Universitaria de Las Palmas, Reboot Academy).',
+			'LudOhana es una página web sobre eventos, para escuelas y familias, enfocados en la educación de los niños. Se utiliza la API creada en el proyecto del bloque 2.',
+			'Trabajamos principalmente con React y MaterialUI, aunque también tuvimos que adaptar el proyecto de la API para dar más funcionalidad al front. Utilizamos Stripe para las donaciones de los eventos.',
+			'Información completa en el README del proyecto.',
+		],
+		link: 'https://ludohana.zeabur.app',
+		repositorioRemoto: 'https://github.com/judifede/LudOhana',
+		image: '/projects/LudOhana.webp',
+		tags: [
+			TAGS.HTML5,
+			TAGS.CSS3,
+			TAGS.JS,
+			TAGS.REACT,
+			TAGS.MATERIALUI,
+			TAGS.STRIPE,
+			TAGS.GIT,
+		],
+	},
+	{
+		projectid: 'ludohana_api',
+		title: 'LudOhana-API',
+		descriptions: [
+			'Proyecto 2 - Bloque Back-End de la Escuela de Programadores: Formación Dual de Desarrolladores Web Full-Stack (Fundación Universitaria de Las Palmas, Reboot Academy).',
+			'LudOhana es una página web sobre eventos, para escuelas y familias, enfocados en la educación de los niños. Se crea la API que posteriormente se utilizaría en el proyecto 3.',
+			'Usamos el workspace compartido de Postman para tener los endpoints almacenados por entidad, entorno (desarrollo o producción) y los tokens de autentificación necesarios. Además de Node, Express, Sequelize y MySQL.',
+			'El proyecto desplegado tiene un pequeño front para presentar la integración de Stripe y hacer operaciones en nuestra base de datos una vez se procese el pago.',
+			'Información completa en el README del proyecto.',
+		],
+		repositorioRemoto: 'https://github.com/Yennsanpro/LudOhana-API',
+		image: '/projects/LudOhanaAPI.webp',
+		tags: [
+			TAGS.NODEJS,
+			TAGS.EXPRESSJS,
+			TAGS.SEQUELIZE,
+			TAGS.POSTMAN,
+			TAGS.STRIPE,
+			TAGS.GIT,
+		],
+	},
+	{
+		projectid: 'jungle_paradise',
+		title: 'Jungle Paradise',
+		descriptions: [
+			'Proyecto 1 - Bloque Front-End de la Escuela de Programadores: Formación Dual de Desarrolladores Web Full-Stack (Fundación Universitaria de Las Palmas, Reboot Academy).',
+			'Videojuego en navegador, inspirado en Whac-A-Mole, en el que tendremos que matar a todos los mosquitos que podamos antes de que acabe el tiempo.',
+			'El mayor reto de este proyecto consistió en implementar el juego en 3 días, utilizando para ello el control de versiones con Git, y poniendo en prácticas los conocimientos adquiridos en las tecnologías Front-End.',
+		],
+		link: 'https://judifede.github.io/Jungle-Paradise/',
+		repositorioRemoto: 'https://github.com/judifede/Jungle-Paradise',
+		image: '/projects/JungleParadise.webp',
+		tags: [TAGS.HTML5, TAGS.CSS3, TAGS.JS, TAGS.GIT],
+	},
+	{
+		projectid: 'solitario_web',
+		title: 'Solitario Web',
+		descriptions: [
+			'El juego Solitario tiene muchas variantes y, aunque este proyecto no pretende abarcar todas las posibilidades disponibles, dispone de 3 niveles de dificultad y animaciones de victoria y derrota.',
+			'El proyecto cuenta con ajustes de apariencia y permite cambiar el idioma entre el español y el inglés.',
+		],
+		link: 'https://judifede.github.io/SolitarioWeb/',
+		repositorioRemoto: 'https://github.com/judifede/SolitarioWeb',
+		image: '/projects/SolitarioWeb.gif',
+		tags: [TAGS.HTML5, TAGS.CSS3, TAGS.JS, TAGS.JQUERY],
+	}
 ];
 ---
 
 <Layout>
-  <section>
-    <h1
-      class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-white"
-    >
-      <CodeIcon class="size-8" />
+	<section>
+		<h1
+			class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-white"
+		>
+			<CodeIcon class="size-8" />
       Proyectos Corporativos
-    </h1>
-    {
-      PROJECTS_CORPORATE.map(
-        ({
-          projectid,
-          title,
-          descriptions,
-          link,
-          //repositorioRemoto,
-          // image,
-          video,
-          tags,
-        }) => (
-          <article
-            id={projectid}
-            class="flex flex-col space-x-0 space-y-8 md:flex-row md:space-x-8 md:space-y-0 mb-12"
-          >
-            <div class="w-full md:w-1/2">
-              <div
-                class={`size-full overflow-hidden transition duration-500 rounded-xl
+		</h1>
+		{
+			PROJECTS_CORPORATE.map(
+				({
+					projectid,
+					title,
+					descriptions,
+					link,
+					//repositorioRemoto,
+					// image,
+					video,
+					tags,
+				}) => (
+					<article
+						id={projectid}
+						class="flex flex-col space-x-0 space-y-8 md:flex-row md:space-x-8 md:space-y-0 mb-12"
+					>
+						<div class="w-full md:w-1/2">
+							<div
+								class={`size-full overflow-hidden transition duration-500 rounded-xl
                    md:group-hover:-translate-y-1 md:hover:shadow-2xl lg:border lg:border-gray-400 lg:hover:border-gray-200`
-                  }
-              >
-                {/* {image && (
+								}
+							>
+								{/* {image && (
                   <img
                     src={image}
                     class="size-full md:object-cover md:object-left-top transition duration-500 md:hover:scale-110"
@@ -260,98 +260,98 @@ const PROJECTS_PERSONAL = [
                     alt="Imagen del proyecto"
                   />
                 )} */}
-                {video && (
-                  <video
-                    class="size-full scale-125"
-                    autoplay
-                    loop
-                    muted="muted"
-                    controlslist="nodownload"
-                    src={video}
-                  />
-                )}
-              </div>
-            </div>
-            <div class="w-full md:w-1/2">
-              <h2 class="text-2xl font-bold text-gray-100">{title}</h2>
+								{video && (
+									<video
+										class="size-full scale-125"
+										autoplay
+										loop
+										muted="muted"
+										controlslist="nodownload"
+										src={video}
+									/>
+								)}
+							</div>
+						</div>
+						<div class="w-full md:w-1/2">
+							<h2 class="text-2xl font-bold text-gray-100">{title}</h2>
 
-              <div class="flex flex-wrap mt-2">
-                <span class="mt-2 text-gray-200">
-                  {descriptions && descriptions.map((description) => (
-                    <p class="my-2">{description}</p>
-                  ))}
-                </span>
-                <ul class="flex flex-wrap flex-row my-2 gap-x-2">
-                  {tags.map((tag) => (
-                    <li class="mt-2">
-                      <span
-                        class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-2 px-3 `}
-                      >
-                        <tag.icon
-                          class={`size-4 ${tag.title === "Stripe" && "w-12"}`}
-                        />
-                        {tag.name}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                <footer class="flex items-end justify-start mt-4 gap-x-4">
-                  {/* {repositorioRemoto && (
+							<div class="flex flex-wrap mt-2">
+								<span class="mt-2 text-gray-200">
+									{descriptions && descriptions.map((description) => (
+										<p class="my-2">{description}</p>
+									))}
+								</span>
+								<ul class="flex flex-wrap flex-row my-2 gap-x-2">
+									{tags.map((tag) => (
+										<li class="mt-2">
+											<span
+												class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-2 px-3 `}
+											>
+												<tag.icon
+													class={`size-4 ${tag.title === 'Stripe' && 'w-12'}`}
+												/>
+												{tag.name}
+											</span>
+										</li>
+									))}
+								</ul>
+								<footer class="flex items-end justify-start mt-4 gap-x-4">
+									{/* {repositorioRemoto && (
                     <LinkButton href={repositorioRemoto}>
                       <GitHubIcon class="size-5" />
                       Code
                     </LinkButton>
                   )} */}
-                  {link && (
-                    <LinkButton href={link}>
-                      <LinkIcon class="size-5" />
+									{link && (
+										<LinkButton href={link}>
+											<LinkIcon class="size-5" />
                       Ver proyecto
-                    </LinkButton>
-                  )}
-                </footer>
-              </div>
-            </div>
-          </article>
-        )
-      )
-    }
-  </section>
-  <section>
-    <h1
-      class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-white"
-    >
-      <CodeIcon class="size-8" />
+										</LinkButton>
+									)}
+								</footer>
+							</div>
+						</div>
+					</article>
+				)
+			)
+		}
+	</section>
+	<section>
+		<h1
+			class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-white"
+		>
+			<CodeIcon class="size-8" />
       Proyectos Personales
-    </h1>
-    {
-      PROJECTS_PERSONAL.map(
-        ({
-          projectid,
-          title,
-          descriptions,
-          link,
-          repositorioRemoto,
-          image,
-          //video,
-          tags,
-        }) => (
-          <article
-            id={projectid}
-            class="flex flex-col space-x-0 space-y-8 md:flex-row md:space-x-8 md:space-y-0 mb-12"
-          >
-            <div class="w-full md:w-1/2">
-              <div
-                class={`size-full overflow-hidden transition duration-500 rounded-xl ${image && "md:group-hover:-translate-y-1 md:hover:shadow-2xl lg:border lg:border-gray-400 lg:hover:border-gray-200"}`}
-              >
-                {image && (
-                  <img
-                    src={image}
-                    class="size-full md:object-cover md:object-left-top transition duration-500 md:hover:scale-110"
-                    loading="lazy"
-                    alt="Imagen del proyecto"
-                  />
-                )}
-                {/* {video && (
+		</h1>
+		{
+			PROJECTS_PERSONAL.map(
+				({
+					projectid,
+					title,
+					descriptions,
+					link,
+					repositorioRemoto,
+					image,
+					//video,
+					tags,
+				}) => (
+					<article
+						id={projectid}
+						class="flex flex-col space-x-0 space-y-8 md:flex-row md:space-x-8 md:space-y-0 mb-12"
+					>
+						<div class="w-full md:w-1/2">
+							<div
+								class={`size-full overflow-hidden transition duration-500 rounded-xl ${image && 'md:group-hover:-translate-y-1 md:hover:shadow-2xl lg:border lg:border-gray-400 lg:hover:border-gray-200'}`}
+							>
+								{image && (
+									<img
+										src={image}
+										class="size-full md:object-cover md:object-left-top transition duration-500 md:hover:scale-110"
+										loading="lazy"
+										alt="Imagen del proyecto"
+									/>
+								)}
+								{/* {video && (
                   <video
                     class="size-full scale-125"
                     autoplay
@@ -361,50 +361,50 @@ const PROJECTS_PERSONAL = [
                     src={video}
                   />
                 )} */}
-              </div>
-            </div>
-            <div class="w-full md:w-1/2">
-              <h2 class="text-2xl font-bold text-gray-100">{title}</h2>
+							</div>
+						</div>
+						<div class="w-full md:w-1/2">
+							<h2 class="text-2xl font-bold text-gray-100">{title}</h2>
 
-              <div class="flex flex-wrap mt-2">
-                <span class="mt-2 text-gray-200">
-                  {descriptions && descriptions.map((description) => (
-                    <p class="my-2">{description}</p>
-                  ))}
-                </span>
-                <ul class="flex flex-wrap flex-row my-2 gap-x-2">
-                  {tags.map((tag) => (
-                    <li class="mt-2">
-                      <span
-                        class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-2 px-3 `}
-                      >
-                        <tag.icon
-                          class={`size-4 ${tag.title === "Stripe" && "w-12"}`}
-                        />
-                        {tag.name}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                <footer class="flex items-end justify-start mt-4 gap-x-4">
-                  {repositorioRemoto && (
-                    <LinkButton href={repositorioRemoto}>
-                      <GitHubIcon class="size-5" />
+							<div class="flex flex-wrap mt-2">
+								<span class="mt-2 text-gray-200">
+									{descriptions && descriptions.map((description) => (
+										<p class="my-2">{description}</p>
+									))}
+								</span>
+								<ul class="flex flex-wrap flex-row my-2 gap-x-2">
+									{tags.map((tag) => (
+										<li class="mt-2">
+											<span
+												class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-2 px-3 `}
+											>
+												<tag.icon
+													class={`size-4 ${tag.title === 'Stripe' && 'w-12'}`}
+												/>
+												{tag.name}
+											</span>
+										</li>
+									))}
+								</ul>
+								<footer class="flex items-end justify-start mt-4 gap-x-4">
+									{repositorioRemoto && (
+										<LinkButton href={repositorioRemoto}>
+											<GitHubIcon class="size-5" />
                       Code
-                    </LinkButton>
-                  )}
-                  {link && (
-                    <LinkButton href={link}>
-                      <LinkIcon class="size-5" />
+										</LinkButton>
+									)}
+									{link && (
+										<LinkButton href={link}>
+											<LinkIcon class="size-5" />
                       Ver proyecto
-                    </LinkButton>
-                  )}
-                </footer>
-              </div>
-            </div>
-          </article>
-        )
-      )
-    }
-  </section>
+										</LinkButton>
+									)}
+								</footer>
+							</div>
+						</div>
+					</article>
+				)
+			)
+		}
+	</section>
 </Layout>

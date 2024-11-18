@@ -1,10 +1,9 @@
 ---
-import "swiper/css";
-import "swiper/css/navigation";
-import "photoswipe/style.css";
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'photoswipe/style.css'
 
-import CloseIcon from "./icons/Close.astro";
-
+import CloseIcon from './icons/Close.astro'
 
 interface Props {
   galleryPath: string | undefined;
@@ -12,131 +11,130 @@ interface Props {
   length: number | undefined;
 }
 
-const { galleryPath, galleryButtonID, length } = Astro.props;
+const { galleryPath, galleryButtonID, length } = Astro.props
 
-const images = Array(length).fill("/gallery/" + galleryPath);
+const images = Array(length).fill('/gallery/' + galleryPath);
 ---
-<CloseIcon id="closeGallery" 
-fillColor="yellow-400"
-class="hidden cursor-pointer fixed right-10 top-5 w-7 z-40"></CloseIcon>
+
+<CloseIcon
+	id="closeGallery"
+	class="hidden cursor-pointer text-yellow-400 fixed right-10 top-5 w-7 z-40"
+/>
 <div
-  id="backgroundGallery"
-  class="hidden fixed top-0 left-0 
+	id="backgroundGallery"
+	class="hidden fixed top-0 left-0
   size-full bg-black/60 z-30
   transition-all duration-300"
 >
 </div>
 <div
-  class="max-w-[90%]
+	class="max-w-[90%]
   hidden fixed md:top-20 top-16 left-[50%] -translate-x-[50%] z-40
   transition-all duration-300"
-  id="wrapperGallery"
+	id="wrapperGallery"
 >
-  <div class="swiper">
-    <div class="swiper-wrapper lg:!w-[1024px]">
-      {
-        images.map((image, index) => (
-          <div class="swiper-slide h-full min-h-96">
-            <a
-              class="inline-block md:h-[80vh] h-[90vh] w-full lg:w-[280px] lg:translate-x-14"
-              href={image + (index + 1) + ".jpg"}
-              data-pswp-width="1200"
-              data-pswp-height="2200"
-              data-pswp-index={index}
-            >
-              <img
-                class="size-full"
-                src={image + (index + 1) + ".jpg"}
-                alt={`EducaAjedrez Image ${index + 1}`}
-              />
-            </a>
-          </div>
-        ))
-      }
-    </div>
+	<div class="swiper">
+		<div class="swiper-wrapper lg:!w-[1024px]">
+			{
+				images.map((image, index) => (
+					<div class="swiper-slide h-full min-h-96">
+						<a
+							class="inline-block md:h-[80vh] h-[90vh] w-full lg:w-[280px] lg:translate-x-14"
+							href={image + (index + 1) + '.jpg'}
+							data-pswp-width="1200"
+							data-pswp-height="2200"
+							data-pswp-index={index}
+						>
+							<img
+								class="size-full"
+								src={image + (index + 1) + '.jpg'}
+								alt={`EducaAjedrez Image ${index + 1}`}
+							/>
+						</a>
+					</div>
+				))
+			}
+		</div>
 
-    <div class="swiper-button-prev !text-yellow-400"></div>
-    <div class="swiper-button-next !text-yellow-400"></div>
-  </div>
+		<div class="swiper-button-prev !text-yellow-400"></div>
+		<div class="swiper-button-next !text-yellow-400"></div>
+	</div>
 </div>
 
 <style is:global>
+  @media (max-width: 1024px) {
+    .pswp__zoom-wrap {
+      width: 100% !important;
+      margin: auto !important;
+    }
 
-	@media (max-width: 1024px) {
-		
-		.pswp__zoom-wrap{
-			width: 100% !important;
-			margin: auto !important;
-		}
-		
-		.pswp img{
-			position: relative !important;
-			margin: auto !important;
-		}
-	}
+    .pswp img {
+      position: relative !important;
+      margin: auto !important;
+    }
+  }
 </style>
 
-
 <script>
-  import Swiper from "swiper";
-  import { Navigation } from "swiper/modules";
-  import PhotoSwipeLightbox from "photoswipe/lightbox";
+import Swiper from 'swiper'
+import { Navigation } from 'swiper/modules'
+import PhotoSwipeLightbox from 'photoswipe/lightbox'
 
-  const swiper = new Swiper(".swiper", {
-    modules: [Navigation],
-    loop: true,
-    slidesPerView: 1,
-    spaceBetween: 0,
-    breakpoints: {
-      1200: {
-        slidesPerView: 3,
-      },
-      768: {
-        slidesPerView: 2,
-        spaceBetween: 15,
-      },
-    },
-    navigation: {
-      prevEl: ".swiper-button-prev",
-      nextEl: ".swiper-button-next",
-    },
-  });
+new Swiper('.swiper', {
+  	modules: [Navigation],
+  	slidesPerView: 1,
+  	spaceBetween: 0,
+  	breakpoints: {
+  		1200: {
+  			slidesPerView: 3,
+  		},
+  		768: {
+  			slidesPerView: 2,
+  			spaceBetween: 15,
+  		},
+  	},
+  	navigation: {
+  		prevEl: '.swiper-button-prev',
+  		nextEl: '.swiper-button-next',
+  	},
+})
 
-  const lightbox = new PhotoSwipeLightbox({
-    gallery: "#wrapperGallery",
-    children: "a",
-    pswpModule: () => import("photoswipe"),
-  });
-  lightbox.init();
+const lightbox = new PhotoSwipeLightbox({
+  	gallery: '#wrapperGallery',
+  	children: 'a',
+  	pswpModule: () => import('photoswipe'),
+})
+lightbox.init()
 </script>
 
-<script define:vars={{galleryButtonID}}>
-  document.addEventListener("DOMContentLoaded", () => {
-    const gallery_button = document.querySelector(`#${galleryButtonID}`);
-    if (gallery_button) {
-      gallery_button.addEventListener("click", () => {
-        document.querySelector("#closeGallery").classList.toggle("hidden");
-        document.querySelector("#backgroundGallery").classList.toggle("hidden");
-        document.querySelector("#wrapperGallery").classList.toggle("hidden");
-      });
-    }
+<script define:vars={{ galleryButtonID }}>
+ document.addEventListener('DOMContentLoaded', () => {
+  	const gallery_button = document.querySelector(`#${galleryButtonID}`)
+ 	const backgroundGallery = document.querySelector('#backgroundGallery')
+	const closeGallery = document.querySelector('#closeGallery')
+	const wrapperGallery = document.querySelector('#wrapperGallery')
 
-    const backgroundGallery = document.querySelector("#backgroundGallery");
-    if (backgroundGallery) {
-      backgroundGallery.addEventListener("click", () => {
-        document.querySelector("#closeGallery").classList.toggle("hidden");
-        document.querySelector("#backgroundGallery").classList.toggle("hidden");
-        document.querySelector("#wrapperGallery").classList.toggle("hidden");
-      });
-    }
+	function hideGallery() {
+  		wrapperGallery.classList.toggle('hidden')
+			backgroundGallery.classList.toggle('hidden')
+			closeGallery.classList.toggle('hidden')
+	}
+  	if (gallery_button) {
+  		gallery_button.addEventListener('click', () => {
+  			hideGallery()
+  		})
+	}
 
-    const closeGallery = document.querySelector("#closeGallery");
-    if (closeGallery) {
-      closeGallery.addEventListener("click", () => {
-        document.querySelector("#closeGallery").classList.toggle("hidden");
-        document.querySelector("#backgroundGallery").classList.toggle("hidden");
-        document.querySelector("#wrapperGallery").classList.toggle("hidden");
-      });
-    }
-  });
+  	if (backgroundGallery) {
+  		backgroundGallery.addEventListener('click', () => {
+  			hideGallery()
+  		})
+	}
+
+  	if (closeGallery) {
+  		closeGallery.addEventListener('click', () => {
+  			hideGallery()
+  		})
+	}
+ })
 </script>

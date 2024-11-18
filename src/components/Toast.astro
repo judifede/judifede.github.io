@@ -1,0 +1,69 @@
+---
+import CloseIcon from './icons/Close.astro'
+import CheckIcon from './icons/Check.astro'
+---
+
+<div
+  id="global-toast"
+  class="hidden fixed top-14 right-14 flex items-center w-full max-w-80 p-4 rounded-lg shadow z-40
+  text-green-700 bg-green-50 transition-all duration-300"
+  role="alert"
+>
+  <span class="text-green-700 inline-flex items-center justify-center flex-shrink-0 w-8 h-8">
+    <CheckIcon class="w-6 h-6" />
+  </span>
+
+  <p id="toast-message" class="ms-3 text-sm font-normal text-pretty"></p>
+  <button
+    type="button"
+    class="ms-auto -mx-1.5 -my-1.5 rounded-lg p-1.5 inline-flex items-center justify-center h-8 w-8
+  bg-green-50 text-green-700 hover:text-green-50 hover:bg-green-700"
+    aria-label="Close"
+  >
+    <CloseIcon class="w-32 h-32" id="toast-close" />
+  </button>
+</div>
+
+<script>
+  class Toast {
+    private toast: HTMLElement | null
+    private message: HTMLElement | null
+    private closeBtn: HTMLElement | null
+    private duration: number = 5000
+
+    constructor() {
+      this.toast = document.getElementById('global-toast')
+      this.message = document.getElementById('toast-message')
+      this.closeBtn = document.getElementById('toast-close')
+
+      if (this.closeBtn) {
+        this.closeBtn.addEventListener('click', () => this.hide())
+      }
+    }
+
+    show(message: string, duration?: number): void {
+      if (this.message && this.toast) {
+        this.message.textContent = message
+        this.toast.classList.remove('hidden')
+        this.toast.classList.add('animate-slide-in-down-on')
+        this.toast.classList.remove('animate-slide-in-down-off')
+        setTimeout(() => this.hide(), duration || this.duration)
+      }
+    }
+
+    hide(): void {
+      if (this.toast) {
+        this.toast.classList.remove('animate-slide-in-down-on')
+        this.toast.classList.add('animate-slide-in-down-off')
+      }
+    }
+  }
+
+  declare global {
+    interface Window {
+      globalToast: Toast
+    }
+  }
+
+  window.globalToast = new Toast()
+</script>

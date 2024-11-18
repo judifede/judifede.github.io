@@ -1,41 +1,41 @@
 ---
 const navItems = [
-  {
-    title: "Experiencia",
-    label: "Enlace a experiencia",
-    url: "/",
-  },
-  {
-    title: "Proyectos",
-    label: "Enlace a proyectos",
-    url: "/projects",
-  },
-  {
-    title: "Sobre mí",
-    label: "Enlace a sobre mí",
-    url: "/about",
-  }
+	{
+		title: 'Experiencia',
+		label: 'Enlace a experiencia',
+		url: '/',
+	},
+	{
+		title: 'Proyectos',
+		label: 'Enlace a proyectos',
+		url: '/projects',
+	},
+	{
+		title: 'Sobre mí',
+		label: 'Enlace a sobre mí',
+		url: '/about',
+	}
 ]
 ---
 
 <header class="fixed top-0 z-10 flex items-center justify-center my-5 w-full mx-auto">
-    <nav class="flex flex-row gap-x-10 opacity-90 text-2xl p-3 rounded-xl">
-        {
-            navItems.map((link) => (
-            <span>
-                <a
-                class="hover:underline text-yellow-300 font-bold underline-offset-[10px]"
-                aria-label={link.label}
-                href={link.url}
-                >
-                {link.title}
-                </a>
-            </span>
-            ))
-          }
+	<nav class="flex flex-row gap-x-10 opacity-90 text-2xl p-3 rounded-xl">
+		{
+			navItems.map((link) => (
+				<span>
+					<a
+						class="hover:underline text-yellow-300 font-bold underline-offset-[10px]"
+						aria-label={link.label}
+						href={link.url}
+					>
+						{link.title}
+					</a>
+				</span>
+			))
+		}
         
         <!--TODO: Cambio de idioma  -->
-    </nav>
+	</nav>
 </header>
 
 <style>

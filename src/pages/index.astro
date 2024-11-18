@@ -1,129 +1,129 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import ExperienceItem from "../components/ExperienceItem.astro";
-import Briefcase from "../components/icons/Briefcase.astro";
+import Layout from '../layouts/Layout.astro'
+import ExperienceItem from '../components/ExperienceItem.astro'
+import Briefcase from '../components/icons/Briefcase.astro'
 
 const EXPERIENCIES = [
-  {
-    title: "Desarrollador Web",
-    company: "21ninjas",
-    date: "Abril 2024 - Octubre 2024",
-    blockquote:
-      "Segunda etapa de la Formación Dual Escuela de Programadores - Desarrolladores Web Full-Stack.",
-    descriptionList: [
-      "Nueva página web de 21ninjas. Muchos debates productivos con el diseñador y una variedad de herramientas utilizadas para poder impletamentar una maqueta con tanta personalidad. Wordpress, Elementor, PHP, Javascript y CSS",
-      // "Esta página web pone en contacto a Startups con Inversores. Mis tareas se basaron en los formularios de registro, interacturar con la biblioteca de medios para los ficheros desde el panel de admin y las plantillas individuales de ambos roles.",
-      // "Nueva página web de la Facultad de Ciencias del Mar de la Universidad de Las Palmas de Gran Canaria (ULPGC)",
-      "SPAR Gran Canaria. Tareas de mantenimiento como nuevas noticias, sorteos y folletos",
-      "Proyecto RVSBL. Tienda de bikinis desarrollada en Shopify con secciones creadas desde cero con el lenguaje de programación liquid.",
-      "Práctica de Wordpress, Elementor, Woocommerce y desarrollo en el núcleo de Wordpress (Custom Post Type, Templates, Plugins, Custom Fields) sobre una escuela fictica de ajedrez.",
-    ],
-    link: [
-      { url: "https://21ninjas.es/" },
-      //"url": {"https://fundedbyangels.com/"},
-      //"url": {"https://fcm.ulpgc.es/"},
-      { url: "https://spargrancanaria.es/" },
-      { url: "https://rvsbl.com/" },
-      {
-        gallery: "Gallery-EducaAjedrez",
-        galleryPath: "EducaAjedrez/educaajedrez.local_",
-        length: 8,
-      },
-    ],
-  },
-  {
-    title: "Profesor particular",
-    company: "Superprof",
-    date: "Noviembre 2020 - Agosto 2023",
-    descriptions: [
-      "Clases presenciales y online de informática básica y programación a través de mi perfil en Superprof.",
-    ],
-  },
-  {
-    title: "Analista Programador",
-    company: "Ignos S.L.",
-    date: "Octubre 2022 - Mayo 2023",
-    descriptionList: [
-      "Evolutivos en Spring, Angular, Swagger y Postgresql",
-      "Evolutivos en proyectos de OpenCMS",
-      "Proyecto de datos con Pentaho y SaS Visual",
-      "Proyecto de software privado con Apache Velocity",
-      "Proyecto de gráficas estadísticas en front-End, utilizando principalmente JavaScript (D3 | RowChart | Parceljs)",
-    ],
-  },
-  {
-    title: "Responsable del Área de Soporte",
-    company: "Ignos S.L",
-    companyDetail: "(UTE Arte Consultores)",
-    date: "Abril 2018 - Septiembre 2022",
-    descriptions: [
-      "El proyecto SISPECAN consiste en el mantenimiento y mejora de las aplicaciones informáticas del Servicio Canario de Empleo.",
-      "Mis principales funciones consistían en realizar tareas de configuración, actuaciones de bases de datos, pruebas de aplicaciones.",
-      "Como responsable del área de soporte gestionaba tareas de NIVEL1 (no implicasen modificaciones en el código) de todas las áreas del proyecto conociendo sus arquitecturas.",
-    ],
-    descriptionList: [
-      "Ofimática",
-      "DBeaver | SQLDeveloper",
-      "Adobe Captivate",
-      "Aplicaciones del proyecto",
-      "JIRA | Confluence",
-    ],
-  },
-  {
-    title: "Desarrollador Front-End",
-    company: "Conversiona",
-    companyDetail: "(ahora Pagetoday)",
-    date: "Octubre 2017",
-    descriptionList: [
-      "Maquetación realizada con HTML, CSS, Javascript y JQuery",
-      "Responsive Design",
-      "Edición de imágenes con Adobe PhotoShop",
-      "PrestaShop 1.7",
-    ],
-  },
-  {
-    title: "Desarrollador Back-End",
-    company: "Mundiaudit S.L",
-    companyDetail: "CFGS DAM",
-    blockquote: "Ciclo Superior de Desarrollo de Aplicaciones Multiplataformas",
-    date: "Abril - Mayo 2017",
-    descriptions: [
-      "Aprendizaje de la metodología de trabajo implantada y la importancia del análisis previo al código.",
-      "Mejoras a nivel personal en la organización, análisis y resolución de problemas, así como la lógica de programación, utilizando máquinas de estado, seguridad y encriptación.",
-    ],
-    descriptionList: [".Net (C#)"],
-  },
-  {
-    title: "Desarrollador Front-End",
-    company: "Ábaco System",
-    companyDetail: "CFGS DAW",
-    blockquote: "Ciclo Superior de Desarrollo de Aplicaciones Web",
-    date: "Abril - Mayo 2016",
-    descriptions: [
-      "Ábaco System es una tienda de informática que quería realizar su nueva página web.",
-      "Trabajé junto a un programador autónomo que colaboraba con la empresa para este proyecto.",
-    ],
-    descriptionList: [".Net (C#)", "Responsive Design", "Bootstrap", "Uikit"],
-  },
+	{
+		title: 'Desarrollador Web',
+		company: '21ninjas',
+		date: 'Abril 2024 - Octubre 2024',
+		blockquote:
+      'Segunda etapa de la Formación Dual Escuela de Programadores - Desarrolladores Web Full-Stack.',
+		descriptionList: [
+			'Nueva página web de 21ninjas. Muchos debates productivos con el diseñador y una variedad de herramientas utilizadas para poder impletamentar una maqueta con tanta personalidad. Wordpress, Elementor, PHP, Javascript y CSS',
+			// "Esta página web pone en contacto a Startups con Inversores. Mis tareas se basaron en los formularios de registro, interacturar con la biblioteca de medios para los ficheros desde el panel de admin y las plantillas individuales de ambos roles.",
+			// "Nueva página web de la Facultad de Ciencias del Mar de la Universidad de Las Palmas de Gran Canaria (ULPGC)",
+			'SPAR Gran Canaria. Tareas de mantenimiento como nuevas noticias, sorteos y folletos',
+			'Proyecto RVSBL. Tienda de bikinis desarrollada en Shopify con secciones creadas desde cero con el lenguaje de programación liquid.',
+			'Práctica de Wordpress, Elementor, Woocommerce y desarrollo en el núcleo de Wordpress (Custom Post Type, Templates, Plugins, Custom Fields) sobre una escuela fictica de ajedrez.',
+		],
+		link: [
+			{ url: 'https://21ninjas.es/' },
+			//"url": {"https://fundedbyangels.com/"},
+			//"url": {"https://fcm.ulpgc.es/"},
+			{ url: 'https://spargrancanaria.es/' },
+			{ url: 'https://rvsbl.com/' },
+			{
+				gallery: 'Gallery-EducaAjedrez',
+				galleryPath: 'EducaAjedrez/educaajedrez.local_',
+				length: 8,
+			},
+		],
+	},
+	{
+		title: 'Profesor particular',
+		company: 'Superprof',
+		date: 'Noviembre 2020 - Agosto 2023',
+		descriptions: [
+			'Clases presenciales y online de informática básica y programación a través de mi perfil en Superprof.',
+		],
+	},
+	{
+		title: 'Analista Programador',
+		company: 'Ignos S.L.',
+		date: 'Octubre 2022 - Mayo 2023',
+		descriptionList: [
+			'Evolutivos en Spring, Angular, Swagger y Postgresql',
+			'Evolutivos en proyectos de OpenCMS',
+			'Proyecto de datos con Pentaho y SaS Visual',
+			'Proyecto de software privado con Apache Velocity',
+			'Proyecto de gráficas estadísticas en front-End, utilizando principalmente JavaScript (D3 | RowChart | Parceljs)',
+		],
+	},
+	{
+		title: 'Responsable del Área de Soporte',
+		company: 'Ignos S.L',
+		companyDetail: '(UTE Arte Consultores)',
+		date: 'Abril 2018 - Septiembre 2022',
+		descriptions: [
+			'El proyecto SISPECAN consiste en el mantenimiento y mejora de las aplicaciones informáticas del Servicio Canario de Empleo.',
+			'Mis principales funciones consistían en realizar tareas de configuración, actuaciones de bases de datos, pruebas de aplicaciones.',
+			'Como responsable del área de soporte gestionaba tareas de NIVEL1 (no implicasen modificaciones en el código) de todas las áreas del proyecto conociendo sus arquitecturas.',
+		],
+		descriptionList: [
+			'Ofimática',
+			'DBeaver | SQLDeveloper',
+			'Adobe Captivate',
+			'Aplicaciones del proyecto',
+			'JIRA | Confluence',
+		],
+	},
+	{
+		title: 'Desarrollador Front-End',
+		company: 'Conversiona',
+		companyDetail: '(ahora Pagetoday)',
+		date: 'Octubre 2017',
+		descriptionList: [
+			'Maquetación realizada con HTML, CSS, Javascript y JQuery',
+			'Responsive Design',
+			'Edición de imágenes con Adobe PhotoShop',
+			'PrestaShop 1.7',
+		],
+	},
+	{
+		title: 'Desarrollador Back-End',
+		company: 'Mundiaudit S.L',
+		companyDetail: 'CFGS DAM',
+		blockquote: 'Ciclo Superior de Desarrollo de Aplicaciones Multiplataformas',
+		date: 'Abril - Mayo 2017',
+		descriptions: [
+			'Aprendizaje de la metodología de trabajo implantada y la importancia del análisis previo al código.',
+			'Mejoras a nivel personal en la organización, análisis y resolución de problemas, así como la lógica de programación, utilizando máquinas de estado, seguridad y encriptación.',
+		],
+		descriptionList: ['.Net (C#)'],
+	},
+	{
+		title: 'Desarrollador Front-End',
+		company: 'Ábaco System',
+		companyDetail: 'CFGS DAW',
+		blockquote: 'Ciclo Superior de Desarrollo de Aplicaciones Web',
+		date: 'Abril - Mayo 2016',
+		descriptions: [
+			'Ábaco System es una tienda de informática que quería realizar su nueva página web.',
+			'Trabajé junto a un programador autónomo que colaboraba con la empresa para este proyecto.',
+		],
+		descriptionList: ['.Net (C#)', 'Responsive Design', 'Bootstrap', 'Uikit'],
+	},
 ];
 ---
 
 <Layout>
-  <section>
-    <h1
-      class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-white"
-    >
-      <Briefcase class="size-8" />
+	<section>
+		<h1
+			class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-white"
+		>
+			<Briefcase class="size-8" />
       Experiencia laboral
-    </h1>
-    <ol class="relative mt-16">
-      {
-        EXPERIENCIES.map((experiencie) => (
-          <li>
-            <ExperienceItem {...experiencie} />
-          </li>
-        ))
-      }
-    </ol>
-  </section>
+		</h1>
+		<ol class="relative mt-16">
+			{
+				EXPERIENCIES.map((experiencie) => (
+					<li>
+						<ExperienceItem {...experiencie} />
+					</li>
+				))
+			}
+		</ol>
+	</section>
 </Layout>

@@ -1,115 +1,115 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Profile from "../components/icons/Profile.astro";
-import School from "../components/icons/School.astro";
-import EducationItem from "../components/EducationItem.astro";
+import Layout from '../layouts/Layout.astro'
+import Profile from '../components/icons/Profile.astro'
+import School from '../components/icons/School.astro'
+import EducationItem from '../components/EducationItem.astro'
 
 const EDUCATIONS = [
-  {
-    title: "Desarrollo Web Full-Stack",
-    company: "Reboot Academy",
-    date: "Enero - Abril 2024",
-    description:
-      "Formación Dual Escuela de Programadores en colaboración con la Fundación Universitaria de Las Palmas y la Universidad de Las Palmas de Gran Canaria.",
-    files: ["Diploma.pdf", "Contenidos.pdf"],
-  },
+	{
+		title: 'Desarrollo Web Full-Stack',
+		company: 'Reboot Academy',
+		date: 'Enero - Abril 2024',
+		description:
+      'Formación Dual Escuela de Programadores en colaboración con la Fundación Universitaria de Las Palmas y la Universidad de Las Palmas de Gran Canaria.',
+		files: ['Diploma.pdf', 'Contenidos.pdf'],
+	},
 
-  {
-    title: "Desarrollo de Aplicaciones Multiplataforma",
-    company: "IES El Rincón",
-    url: "https://www.todofp.es/que-estudiar/loe/informatica-comunicaciones/des-aplicaciones-multiplataforma.html",
-    date: "2016 - 2017",
-    description:
-      "Ciclo Superior de Desarrollo de Aplicaciones Multiplataforma.",
-  },
-  {
-    title: "Desarrollo de Aplicaciones Web",
-    company: "IES El Rincón",
-    url: "https://www.todofp.es/que-estudiar/loe/informatica-comunicaciones/des-aplicaciones-web.html",
-    date: "2014 - 2016",
-    description: "Ciclo Superior de Desarrollo de Aplicaciones Web.",
-  },
+	{
+		title: 'Desarrollo de Aplicaciones Multiplataforma',
+		company: 'IES El Rincón',
+		url: 'https://www.todofp.es/que-estudiar/loe/informatica-comunicaciones/des-aplicaciones-multiplataforma.html',
+		date: '2016 - 2017',
+		description:
+      'Ciclo Superior de Desarrollo de Aplicaciones Multiplataforma.',
+	},
+	{
+		title: 'Desarrollo de Aplicaciones Web',
+		company: 'IES El Rincón',
+		url: 'https://www.todofp.es/que-estudiar/loe/informatica-comunicaciones/des-aplicaciones-web.html',
+		date: '2014 - 2016',
+		description: 'Ciclo Superior de Desarrollo de Aplicaciones Web.',
+	},
 ];
 ---
 
 <Layout>
-  <section>
-    <article>
-      <h1
-        class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-white"
-      >
-        <School class="size-8" />
+	<section>
+		<article>
+			<h1
+				class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-white"
+			>
+				<School class="size-8" />
         Formación
-      </h1>
+			</h1>
 
-      <ol class="relative mt-16">
-        {
-          EDUCATIONS.map((education) => (
-            <li>
-              <EducationItem {...education} />
-            </li>
-          ))
-        }
-      </ol>
-    </article>
+			<ol class="relative mt-16">
+				{
+					EDUCATIONS.map((education) => (
+						<li>
+							<EducationItem {...education} />
+						</li>
+					))
+				}
+			</ol>
+		</article>
 
-    <article class="mt-16">
-      <h1
-        class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-white"
-      >
-        <Profile class="size-8" />
+		<article class="mt-16">
+			<h1
+				class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-white"
+			>
+				<Profile class="size-8" />
         Sobre mí
-      </h1>
+			</h1>
 
-      <div
-        class="mt-16 flex justify-between items-center gap-4 text-pretty flex-col md:flex-row"
-      >
-        <p
-          class="[&>*>strong]:text-yellow-100 [&>*>strong]:font-medium order-2 md:order-1"
-        >
-          <span
-            >Me llamo Diego Fernández, un placer tratar contigo. Empecé en el
+			<div
+				class="mt-16 flex justify-between items-center gap-4 text-pretty flex-col md:flex-row"
+			>
+				<p
+					class="[&>*>strong]:text-yellow-100 [&>*>strong]:font-medium order-2 md:order-1"
+				>
+					<span
+					>Me llamo Diego Fernández, un placer tratar contigo. Empecé en el
             mundo de la programación en 4º ESO con HTML y CSS, sin saber que a
             día de hoy me iba a seguir gustando tanto, tenía 15 años.
             Actualmente he podido <strong
-              >trabajar en diferentes roles dentro de la informática</strong
-            >.</span
-          >
-          <br />
-          <br />
-          <span
-            >Me siento orgulloso de estos últimos años porque he podido disfrutar de una exploración
+						>trabajar en diferentes roles dentro de la informática</strong
+						>.</span
+					>
+					<br />
+					<br />
+					<span
+					>Me siento orgulloso de estos últimos años porque he podido disfrutar de una exploración
             profunda de la salud mental y el crecimiento personal, especialmente
             tras mi diagnóstico de <strong>TEA.</strong> Esta experiencia me ha dado
             un profundo autoconocimiento sobre mi contexto y lo que significa <strong
-              >formar parte del espectro.</strong
-            ></span
-          >
+						>formar parte del espectro.</strong
+						></span
+					>
 
-          <br />
-          <br />
-          <span>
+					<br />
+					<br />
+					<span>
             Me considero una <strong
-              >persona empática, proactiva y analítica</strong
-            >. Estas cualidades se reflejan tanto en mi trabajo como en mis
+						>persona empática, proactiva y analítica</strong
+						>. Estas cualidades se reflejan tanto en mi trabajo como en mis
             actividades. Ya sea, desde los 10 años, a través del <strong
-              >ajedrez</strong
-            > como una de mis grandes pasiones, como al descubrir diferentes deportes,
+						>ajedrez</strong
+						> como una de mis grandes pasiones, como al descubrir diferentes deportes,
             juegos y competiciones. Esta variedad de intereses me ha dado una perspectiva
             amplia y un enfoque adaptable en mi <strong
-              >carrera como programador</strong
-            >.</span
-          >
-        </p>
+						>carrera como programador</strong
+						>.</span
+					>
+				</p>
 
-        <div class="min-w-72 w-96 order-1 md:order-2 p-1 lg:p-2">
-          <picture >
-            <source media="(max-width:767px)" srcset="/about/about_mv.png" />
-            <img class="" src="/about/about.png" alt="About" />
-          </picture>
-        </div>
+				<div class="min-w-72 w-96 order-1 md:order-2 p-1 lg:p-2">
+					<picture >
+						<source media="(max-width:767px)" srcset="/about/about_mv.png" />
+						<img class="" src="/about/about.png" alt="About" />
+					</picture>
+				</div>
         
-      </div>
-    </article>
-  </section>
+			</div>
+		</article>
+	</section>
 </Layout>

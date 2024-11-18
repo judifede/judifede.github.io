@@ -1,12 +1,44 @@
 ---
-const { href, ariaAnchor } = Astro.props
+const { href, ariaAnchor, clipboardMode } = Astro.props
+
 ---
+
 <a
-    href={href}
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label={ariaAnchor}
-    class="inline-flex items-center justify-center gap-2 px-4 py-1 transition border rounded-full hover:text-gray-800 hover:bg-gray-100 hover:border-gray-700 text-white bg-gray-800 border-gray-600 text-lg"
+	href={href}
+	target="_blank"
+	rel="noopener noreferrer"
+	aria-label={ariaAnchor}
+    class=`${clipboardMode===true ? 'clipboard-anchor' : ''} inline-flex items-center justify-center gap-2 px-4 py-1 transition border rounded-full hover:text-gray-800 hover:bg-gray-100 hover:border-gray-700 text-white bg-gray-800 border-gray-600 text-lg`
 >
-    <slot />
+	<slot />
 </a>
+
+{clipboardMode && (
+	<script is:inline define:vars={{ href }}>
+    document.addEventListener('DOMContentLoaded', () => {
+    	const clipboardAnchor = document.querySelector('.clipboard-anchor')
+
+    	const setupClipboardListener = () => {
+    		if (window.matchMedia('(min-width: 500px)').matches) {
+    			if (clipboardAnchor) {
+    				clipboardAnchor.addEventListener('click', (event) => {
+    					event.preventDefault()
+    					const email = href.replace('mailto:', '')
+    					navigator.clipboard.writeText(email)
+    						.then(() => {
+    							window.globalToast.show(`'${email}' se ha copiado en el portapapeles`)
+    						})
+    						.catch(err => {
+    							console.error('Error al copiar al portapapeles: ', err)
+    						})
+    				})
+    			}
+    		}
+    	}
+
+    	setupClipboardListener()
+
+    	window.addEventListener('resize', setupClipboardListener)
+    })
+	</script>
+)}

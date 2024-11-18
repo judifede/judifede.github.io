@@ -1,66 +1,66 @@
 ---
-import Badge from "../components/Badge.astro";
-import LinkedInIcon from "../components/icons/LinkedIn.astro";
-import MailIcon from "../components/icons/Mail.astro";
-import GithubIcon from "../components/icons/GitHub.astro";
-import LinkButton from "../components/LinkButton.astro";
+import Badge from '../components/Badge.astro'
+import LinkedInIcon from '../components/icons/LinkedIn.astro'
+import MailIcon from '../components/icons/Mail.astro'
+import GithubIcon from '../components/icons/GitHub.astro'
+import LinkButton from '../components/LinkButton.astro';
 ---
 
 <section>
-    <div class="flex items-center gap-x-5 mb-4">
-        <img
-            class="inline-block rounded-full size-16"
-            src="/hero/CV_perfil.webp"
-            alt="Foto del Currículum"
-        />
-        <a
-            href="https://www.linkedin.com/in/diego-fdez-1b0009109/"
-            target="_blank"
-            rel="noopener"
-            aria-label="Enlace a LinkedIn de Diego Fernández con el texto abierto a nuevas oportunidades"
-            class="flex items-center transition md:justify-center md:hover:scale-105"
-        >
-            <Badge>Abierto a nuevas oportunidades</Badge>
-        </a>
+	<div class="flex items-center gap-x-5 mb-4">
+		<img
+			class="inline-block rounded-full size-16"
+			src="/hero/CV_perfil.webp"
+			alt="Foto del Currículum"
+		/>
+		<a
+			href="https://www.linkedin.com/in/diego-fdez-1b0009109/"
+			target="_blank"
+			rel="noopener"
+			aria-label="Enlace a LinkedIn de Diego Fernández con el texto abierto a nuevas oportunidades"
+			class="flex items-center transition md:justify-center md:hover:scale-105"
+		>
+			<Badge>Abierto a nuevas oportunidades</Badge>
+		</a>
         <!-- TOFIX URL BUTTON -->
-    </div>
+	</div>
 
-    <h1 class="text-white text-3xl font-bold pb-4">
+	<h1 class="text-white text-3xl font-bold pb-4">
         🖐️, soy Diego Fernández
-        <a
-            href="https://www.linkedin.com/in/diego-fdez-1b0009109/"
-            target="_blank"
-            rel="noopener"
-            aria-label="Enlace a LinkedIn de Diego Fernández"
-            class="flex items-center transition md:hover:scale-105"
-        >
-        </a>
-    </h1>
-    <div class="text-pretty">
-        <h2 class="text-3xl font-medium text-yellow-200/90 m-0">Desarrollador Full Stack</h2>
-        <h3 class="text-2xl font-medium text-yellow-200/90 m-0">Apasionado del Front End</h3>
-        <span class="text-2xl opacity-90 flex items-center gap-x-2"
-            >de Las Palmas de Gran Canaria, Canarias.
-            <img
-                class="inline-block size-6"
-                src="/hero/bandera_canarias.webp"
-                alt="Bandera de Canarias"
-            />
-        </span>
-    </div>
+		<a
+			href="https://www.linkedin.com/in/diego-fdez-1b0009109/"
+			target="_blank"
+			rel="noopener"
+			aria-label="Enlace a LinkedIn de Diego Fernández"
+			class="flex items-center transition md:hover:scale-105"
+		>
+		</a>
+	</h1>
+	<div class="text-pretty">
+		<h2 class="text-3xl font-medium text-yellow-200/90 m-0">Desarrollador Full Stack</h2>
+		<h3 class="text-2xl font-medium text-yellow-200/90 m-0">Apasionado del Front End</h3>
+		<span class="text-2xl opacity-90 flex items-center gap-x-2"
+		>de Las Palmas de Gran Canaria, Canarias.
+			<img
+				class="inline-block size-6"
+				src="/hero/bandera_canarias.webp"
+				alt="Bandera de Canarias"
+			/>
+		</span>
+	</div>
 
-    <nav class="flex flex-wrap gap-4 mt-4 md:mt-8">
-        <LinkButton href="mailto:judifede217@gmail.com">
-            <MailIcon class="size-5" />
+	<nav class="flex flex-wrap gap-4 mt-4 md:mt-8">
+		<LinkButton ariaAnchor="Enlace a Gmail de Diego Fernández" href="mailto:judifede217@gmail.com" clipboardMode={true}>
+			<MailIcon class="size-5" />
             Contáctame
-        </LinkButton>
-        <LinkButton href="https://www.linkedin.com/in/diego-fdez-1b0009109/">
-            <LinkedInIcon class="size-5" />
+		</LinkButton>
+		<LinkButton ariaAnchor="Enlace a LinkedIn de Diego Fernández" href="https://www.linkedin.com/in/diego-fdez-1b0009109/">
+			<LinkedInIcon class="size-5" />
             LinkedIn
-        </LinkButton>
-        <LinkButton href="https://github.com/judifede">
-            <GithubIcon class="size-5" />
+		</LinkButton>
+		<LinkButton ariaAnchor="Enlace a Github de Diego Fernández" href="https://github.com/judifede">
+			<GithubIcon class="size-5" />
             Github
-        </LinkButton>
-    </nav>
+		</LinkButton>
+	</nav>
 </section>

@@ -12,33 +12,32 @@ const { href, ariaAnchor, clipboardMode } = Astro.props
 >
 	<slot />
 </a>
-
 {clipboardMode && (
 	<script is:inline define:vars={{ href }}>
     document.addEventListener('DOMContentLoaded', () => {
-    	const clipboardAnchor = document.querySelector('.clipboard-anchor')
+    	const clipboardAnchors = document.querySelectorAll('.clipboard-anchor');
 
     	const setupClipboardListener = () => {
     		if (window.matchMedia('(min-width: 500px)').matches) {
-    			if (clipboardAnchor) {
+    			clipboardAnchors.forEach(clipboardAnchor => {
     				clipboardAnchor.addEventListener('click', (event) => {
-    					event.preventDefault()
-    					const email = href.replace('mailto:', '')
+    					event.preventDefault();
+    					const email = href.replace('mailto:', '');
     					navigator.clipboard.writeText(email)
     						.then(() => {
-    							window.globalToast.show(`'${email}' se ha copiado en el portapapeles`)
+    							window.globalToast.show(`'${email}' se ha copiado en el portapapeles`);
     						})
     						.catch(err => {
-    							console.error('Error al copiar al portapapeles: ', err)
-    						})
-    				})
-    			}
+    							console.error('Error al copiar al portapapeles: ', err);
+    						});
+    				});
+    			});
     		}
-    	}
+    	};
 
-    	setupClipboardListener()
+    	setupClipboardListener();
 
-    	window.addEventListener('resize', setupClipboardListener)
-    })
+    	window.addEventListener('resize', setupClipboardListener);
+    });
 	</script>
 )}

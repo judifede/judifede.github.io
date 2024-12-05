@@ -8,6 +8,7 @@ import LinkIcon from '../components/icons/Link.astro'
 
 import HTML5Icon from '../components/icons/languages/HTML5.astro'
 import CSS3Icon from '../components/icons/languages/CSS3.astro'
+import TailwindIcon from '../components/icons/languages/Tailwind.astro'
 import JSIcon from '../components/icons/languages/JS.astro'
 import JQueryIcon from '../components/icons/languages/JQuery.astro'
 import GitIcon from '../components/icons/languages/Git.astro'
@@ -20,6 +21,7 @@ import SequelizeIcon from '../components/icons/languages/Sequelize.astro'
 import ReactIcon from '../components/icons/languages/React.astro'
 import MaterialUIIcon from '../components/icons/languages/MaterialUI.astro'
 import StripeIcon from '../components/icons/languages/Stripe.astro'
+import VueIcon from '../components/icons/languages/Vue.astro'
 
 import LinkButton from '../components/LinkButton.astro'
 
@@ -35,6 +37,12 @@ const TAGS = {
 		title: '',
 		class: 'bg-indigo-700/50 text-white',
 		icon: CSS3Icon,
+	},
+	TAILWIND: {
+		name: 'Tailwind',
+		title: '',
+		class: 'bg-teal-700/50 text-white',
+		icon: TailwindIcon,
 	},
 	JS: {
 		name: 'Javascript',
@@ -108,26 +116,15 @@ const TAGS = {
 		class: 'bg-gray-100/90 text-white',
 		icon: StripeIcon,
 	},
+	VUE: {
+		name: 'Vue',
+		title: '',
+		class: 'bg-emerald-700/50 text-white',
+		icon: VueIcon,
+	},
 }
 
 const PROJECTS_CORPORATE = [
-	/*
-  {
-    projectid: "maestra_espectro",
-    title: "Maestra en el Espectro",
-    descriptions:
-      "Maestra en el Espectro es un proyecto centrado en la intervención psicoeducativa con personas con TDAH, autismo y/o altas capacidades (y sus familias) bajo el foco del paradigma de la neurodiversidad. El proyecto se ha centrado en el blueprint (organización de contenido), utilizando código propio (CSS y JQuery) y Elementor para su maquetación. Para poner a prueba el diseño, se han aplicado pruebas de usabilidad con diferentes perfiles de usuarios, haciendo los últimos cambios necesarios en base a los resultados obtenidos.",
-    link: "https://maestraenelespectro.com/",
-    image: "/projects/MaestraEnElEspectro.webp",
-    tags: [
-      TAGS.WORDPRESS,
-      TAGS.PHP,
-      TAGS.HTML5,
-      TAGS.CSS3,
-      TAGS.JS,
-    ],
-  }, 
-  */
 	{
 		projectid: 'ecoinge_canarias',
 		title: 'Ecoinge Canarias',
@@ -151,6 +148,29 @@ const PROJECTS_CORPORATE = [
 ]
 
 const PROJECTS_PERSONAL = [
+{
+		projectid: 'competitive-bracket-generator',
+		title: 'Competitive Bracket Generator',
+		descriptions: [
+			'Generador de Bracket para torneos, copas, ligas, etc.',
+			'Primero, podremos mediante un formulario crear la lista de jugadores, elegir el tipo de competición y ponerle nombre. Tras esto pasaremos al cuerpo principal de la aplicación.',
+			'Al ver el bracket tenemos 4 acciones:',
+			'1. Volver atrás, 2. Reordenar el bracket, 3. Actualizar el bracket (para descartar o añadir jugadores) y 4. Elegir ganador.',
+			'Enfocado principalmente al entrenamiento de Vue, junto a Tailwind, disponemos de slots condicionales, etiquetado de componente por prop, variables de estado (ref, reactive y computed) y, el núcleo del proyecto, los brackets generados de forma dinámica.',
+			'Proyecto responsive, modales con "vue-final-modal" y mensajes toast con "vue-sonner".',
+		],
+		link: 'https://competitive-bracket-generator.vercel.app/',
+		repositorioRemoto: 'https://github.com/judifede/Competitive-Bracket-Generator',
+		image: '/projects/CompetitionBracketGenerator.webp',
+		tags: [
+			TAGS.HTML5,
+			TAGS.CSS3,
+			TAGS.TAILWIND,
+			TAGS.JS,
+			TAGS.VUE,
+			TAGS.GIT,
+		],
+	},
 	{
 		projectid: 'ludohana',
 		title: 'LudOhana',
@@ -275,7 +295,7 @@ const PROJECTS_PERSONAL = [
 						<div class="w-full md:w-1/2">
 							<h2 class="text-2xl font-bold text-gray-100">{title}</h2>
 
-							<div class="flex flex-wrap mt-2">
+							<div class="flex flex-wrap mt-2 h-4/5">
 								<span class="mt-2 text-gray-200">
 									{descriptions && descriptions.map((description) => (
 										<p class="my-2">{description}</p>
@@ -366,7 +386,7 @@ const PROJECTS_PERSONAL = [
 						<div class="w-full md:w-1/2">
 							<h2 class="text-2xl font-bold text-gray-100">{title}</h2>
 
-							<div class="flex flex-wrap mt-2">
+							<div class="flex flex-wrap mt-2 h-4/5">
 								<span class="mt-2 text-gray-200">
 									{descriptions && descriptions.map((description) => (
 										<p class="my-2">{description}</p>

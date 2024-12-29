@@ -1,8 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro'
 
-import CodeIcon from '../components/icons/Code.astro'
-
 import GitHubIcon from '../components/icons/GitHub.astro'
 import LinkIcon from '../components/icons/Link.astro'
 
@@ -153,14 +151,26 @@ const PROJECTS_CORPORATE = [
     projectid: 'ecoinge_canarias',
     title: 'Ecoinge Canarias',
     descriptions: [
-      'Ecoinge Canarias es una empresa de ingeniería cuya misión es mejorar el uso de la tecnología combinándola con la sostenibilidad y el medio ambiente.',
-      'El proyecto se ha centrado en el blueprint (organización de contenido), utilizando código propio (CSS y JQuery) y Elementor para su maquetación.',
+      '<strong class="text-yellow-100">Ecoinge Canarias</strong> es una empresa de ingeniería cuya misión es mejorar el uso de la tecnología combinándola con la sostenibilidad y el medio ambiente.',
+      'El proyecto se ha centrado en el blueprint (organización de contenido), utilizando código propio <strong class="text-yellow-100">(CSS y JQuery)</strong> y Elementor para su maquetación.',
       'Para poner a prueba el diseño, se han aplicado pruebas de usabilidad con diferentes perfiles de usuarios, haciendo los últimos cambios necesarios en base a los resultados obtenidos.',
-      'Se ha configurado un trabajo cron en PHP para los números de los contadores.',
+      'Se ha configurado un <strong class="text-yellow-100">trabajo cron en PHP</strong> para los números de los contadores.',
     ],
     link: 'https://ecoingecanarias.com/',
     video: '/projects/EcoingeCanarias.mp4',
     tags: [TAGS.WORDPRESS, TAGS.PHP, TAGS.HTML5, TAGS.CSS3, TAGS.JS, TAGS.JQUERY],
+  },
+  {
+    projectid: 'finanza_honesta',
+    title: 'Finanza Honesta',
+    descriptions: [
+      '<strong class="text-yellow-100">Finanza Honesta</strong> es un proyecto enfocado en la educación y salud financiera de las personas.',
+      'El proyecto es una <strong class="text-yellow-100">landing page</strong> para promocionar su newsletter, que permite mantener a los usuarios informados sobre las últimas noticias y consejos financieros.',
+      `Se hace uso de <strong class="text-yellow-100">Systeme.io</strong>, una herramienta de marketing que permite maquetar landings con su dominio.`,
+    ],
+    link: 'https://finanzahonesta.systeme.io/newsletter',
+    image: '/projects/FinanzaHonesta.webp',
+    tags: [TAGS.HTML5, TAGS.CSS3, TAGS.JS],
   },
 ]
 
@@ -169,9 +179,9 @@ const PROJECTS_PRUEBAS_TECNICAS = [
     projectid: 'pt_phrase_AI',
     title: 'Generación de Texto IA',
     descriptions: [
-      'Objetivo de la prueba: Permitir a los usuarios generar texto utilizando una API que simule el comportamiento de una Inteligencia Artificial para generación de texto.',
+      '<strong class="text-yellow-100">Objetivo de la prueba:</strong> Permitir a los usuarios generar texto utilizando una API que simule el comportamiento de una Inteligencia Artificial para generación de texto.',
       'Se opta por generar frases célebres en base a la palabra de nuestro prompt con un debounce. Se destaca la animación de escritura para la generación de texto, la implementación del ORM Prisma y la conexión de la base de datos remota mediante el servicio Turso.',
-      'Todos los detalles en el README del repositorio.',
+      'Todos los detalles en el <strong class="text-yellow-100">README</strong> del repositorio.',
     ],
     link: 'https://pt-phrase-ai.vercel.app/',
     repositorioRemoto: 'https://github.com/judifede/PT_Generacion_Texto_IA',
@@ -198,7 +208,7 @@ const PROJECTS_PERSONAL = [
     descriptions: [
       'Generador de Bracket para torneos, copas, ligas, etc.',
       'Primero, podremos mediante un formulario crear la lista de jugadores, elegir el tipo de competición y ponerle nombre. Tras esto pasaremos al cuerpo principal de la aplicación.',
-      'Al ver el bracket tenemos 4 acciones:',
+      'Al ver el bracket tenemos <strong class="text-yellow-100">4 acciones:</strong>',
       '- Volver atrás',
       '- Reordenar el bracket',
       '- Actualizar el bracket (para descartar o añadir jugadores)',
@@ -215,7 +225,7 @@ const PROJECTS_PERSONAL = [
     projectid: 'ludohana',
     title: 'LudOhana',
     descriptions: [
-      'Proyecto 3 - Bloque Full-Stack de la Escuela de Programadores: Formación Dual de Desarrolladores Web Full-Stack (Fundación Universitaria de Las Palmas, Reboot Academy).',
+      '<strong class="text-yellow-100">Proyecto 3 - Bloque Full-Stack de la Escuela de Programadores:</strong> Formación Dual de Desarrolladores Web Full-Stack (Fundación Universitaria de Las Palmas, Reboot Academy).',
       'LudOhana es una página web sobre eventos, para escuelas y familias, enfocados en la educación de los niños. Se utiliza la API creada en el proyecto del bloque 2.',
       'Trabajamos principalmente con React y MaterialUI, aunque también tuvimos que adaptar el proyecto de la API para dar más funcionalidad al front. Utilizamos Stripe para las donaciones de los eventos.',
       'Información completa en el README del proyecto.',
@@ -229,7 +239,7 @@ const PROJECTS_PERSONAL = [
     projectid: 'ludohana_api',
     title: 'LudOhana-API',
     descriptions: [
-      'Proyecto 2 - Bloque Back-End de la Escuela de Programadores: Formación Dual de Desarrolladores Web Full-Stack (Fundación Universitaria de Las Palmas, Reboot Academy).',
+      '<strong class="text-yellow-100">Proyecto 2 - Bloque Back-End de la Escuela de Programadores:</strong> Formación Dual de Desarrolladores Web Full-Stack (Fundación Universitaria de Las Palmas, Reboot Academy).',
       'LudOhana es una página web sobre eventos, para escuelas y familias, enfocados en la educación de los niños. Se crea la API que posteriormente se utilizaría en el proyecto 3.',
       'Usamos el workspace compartido de Postman para tener los endpoints almacenados por entidad, entorno (desarrollo o producción) y los tokens de autentificación necesarios. Además de Node, Express, Sequelize y MySQL.',
       'El proyecto desplegado tiene un pequeño front para presentar la integración de Stripe y hacer operaciones en nuestra base de datos una vez se procese el pago.',
@@ -243,7 +253,7 @@ const PROJECTS_PERSONAL = [
     projectid: 'jungle_paradise',
     title: 'Jungle Paradise',
     descriptions: [
-      'Proyecto 1 - Bloque Front-End de la Escuela de Programadores: Formación Dual de Desarrolladores Web Full-Stack (Fundación Universitaria de Las Palmas, Reboot Academy).',
+      '<strong class="text-yellow-100">Proyecto 1 - Bloque Front-End de la Escuela de Programadores:</strong> Formación Dual de Desarrolladores Web Full-Stack (Fundación Universitaria de Las Palmas, Reboot Academy).',
       'Videojuego en navegador, inspirado en Whac-A-Mole, en el que tendremos que matar a todos los mosquitos que podamos antes de que acabe el tiempo.',
       'El mayor reto de este proyecto consistió en implementar el juego en 3 días, utilizando para ello el control de versiones con Git, y poniendo en prácticas los conocimientos adquiridos en las tecnologías Front-End.',
     ],
@@ -284,7 +294,7 @@ const PROJECTS_PERSONAL = [
           descriptions,
           link,
           //repositorioRemoto,
-          // image,
+          image,
           video,
           tags,
         }) => (
@@ -298,14 +308,14 @@ const PROJECTS_PERSONAL = [
                 class={`size-full overflow-hidden transition duration-500 rounded-xl
                    md:group-hover:-translate-y-1 md:hover:shadow-2xl lg:border lg:border-gray-400 lg:hover:border-gray-200`}
               >
-                {/* {image && (
+                {image && (
                   <img
                     src={image}
                     class="size-full max-h-[420px] md:object-cover md:object-center transition duration-500 md:hover:scale-110"
                     loading="lazy"
                     alt="Imagen del proyecto"
                   />
-                )} */}
+                )}
                 {video && (
                   <video
                     class="size-full max-h-[420px] scale-125"
@@ -320,9 +330,9 @@ const PROJECTS_PERSONAL = [
             </div>
             <div class="w-full">
               <div class="flex flex-col flex-wrap mt-2 h-4/5">
-                <span class="mt-3 text-gray-200">
+                <span class="mt-3">
                   {descriptions &&
-                    descriptions.map((description) => <p class="my-2">{description}</p>)}
+                    descriptions.map((description) => <p class="my-2" set:html={description} />)}
                 </span>
                 <ul class="flex flex-wrap flex-row my-2 gap-x-2">
                   {tags.map((tag) => (
@@ -406,9 +416,9 @@ const PROJECTS_PERSONAL = [
             </div>
             <div class="w-full">
               <div class="flex flex-col flex-wrap mt-2 h-4/5">
-                <span class="mt-3 text-gray-200">
+                <span class="mt-3">
                   {descriptions &&
-                    descriptions.map((description) => <p class="my-2">{description}</p>)}
+                    descriptions.map((description) => <p class="my-2" set:html={description} />)}
                 </span>
                 <ul class="flex flex-wrap flex-row my-2 gap-x-2">
                   {tags.map((tag) => (
@@ -491,9 +501,9 @@ const PROJECTS_PERSONAL = [
             </div>
             <div class="w-full">
               <div class="flex flex-col flex-wrap mt-2 h-4/5">
-                <span class="mt-3 text-gray-200">
+                <span class="mt-3">
                   {descriptions &&
-                    descriptions.map((description) => <p class="my-2">{description}</p>)}
+                    descriptions.map((description) => <p class="my-2" set:html={description} />)}
                 </span>
                 <ul class="flex flex-wrap flex-row my-2 gap-x-2">
                   {tags.map((tag) => (

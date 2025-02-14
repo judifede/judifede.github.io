@@ -28,6 +28,8 @@ import LinkButton from '../components/LinkButton.astro'
 import ProfileIcon from '../components/icons/Profile.astro'
 import PruebaIcon from '../components/icons/Prueba.astro'
 import Briefcase from '../components/icons/Briefcase.astro'
+import ArrowLeft from '../components/icons/ArrowLeft.astro'
+import ArrowRight from '../components/icons/ArrowRight.astro'
 
 const TAGS = {
   HTML5: {
@@ -280,6 +282,11 @@ const PROJECTS_PERSONAL = [
 
 <Layout>
   <section>
+    <nav class="flex justify-between items-center py-4">
+      <ArrowLeft className="size-8" link="/" />
+
+      <ArrowRight className="size-8" link="/about" />
+    </nav>
     <h1
       class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-yellow-300"
     >

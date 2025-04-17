@@ -23,6 +23,10 @@ import ReactIcon from '../components/icons/languages/React.astro'
 import MaterialUIIcon from '../components/icons/languages/MaterialUI.astro'
 import StripeIcon from '../components/icons/languages/Stripe.astro'
 import VueIcon from '../components/icons/languages/Vue.astro'
+import ChromeIcon from '../components/icons/languages/Chrome.astro'
+import PythonIcon from '../components/icons/languages/Python.astro'
+import FlaskIcon from '../components/icons/languages/Flask.astro'
+import MongoDBIcon from '../components/icons/languages/MongoDB.astro'
 
 import LinkButton from '../components/LinkButton.astro'
 import ProfileIcon from '../components/icons/Profile.astro'
@@ -134,6 +138,30 @@ const TAGS = {
     class: 'bg-indigo-800/50 text-white',
     icon: MaterialUIIcon,
   },
+  CHROME: {
+    name: 'Chrome',
+    title: '',
+    class: 'bg-sky-600/50 text-white',
+    icon: ChromeIcon,
+  },
+  PYTHON: {
+    name: 'Python',
+    title: '',
+    class: 'bg-yellow-400/50 text-white',
+    icon: PythonIcon,
+  },
+  FLASK: {
+    name: 'Flask',
+    title: '',
+    class: 'bg-gray-100/50 text-white',
+    icon: FlaskIcon,
+  },
+  MONGODB: {
+    name: 'MongoDB',
+    title: '',
+    class: 'bg-emerald-600/50 text-white',
+    icon: MongoDBIcon,
+  },
   STRIPE: {
     name: '',
     title: 'Stripe',
@@ -159,6 +187,7 @@ const PROJECTS_CORPORATE = [
       'Se ha configurado un <strong class="text-yellow-100">trabajo cron en PHP</strong> para los números de los contadores.',
     ],
     link: 'https://ecoingecanarias.com/',
+    imageDesign: 'cover',
     video: '/projects/EcoingeCanarias.mp4',
     tags: [TAGS.WORDPRESS, TAGS.PHP, TAGS.HTML5, TAGS.CSS3, TAGS.JS, TAGS.JQUERY],
   },
@@ -172,6 +201,7 @@ const PROJECTS_CORPORATE = [
     ],
     link: 'https://finanzahonesta.systeme.io/newsletter',
     image: '/projects/FinanzaHonesta.webp',
+    imageDesign: 'cover',
     tags: [TAGS.HTML5, TAGS.CSS3, TAGS.JS],
   },
 ]
@@ -188,6 +218,7 @@ const PROJECTS_PRUEBAS_TECNICAS = [
     link: 'https://pt-phrase-ai.vercel.app/',
     repositorioRemoto: 'https://github.com/judifede/PT_Generacion_Texto_IA',
     image: '/projects/PTPhrasePreview.webp',
+    imageDesign: 'cover',
     tags: [
       TAGS.HTML5,
       TAGS.CSS3,
@@ -205,6 +236,32 @@ const PROJECTS_PRUEBAS_TECNICAS = [
 
 const PROJECTS_PERSONAL = [
   {
+    projectid: 'todotoday-extension',
+    title: 'ToDoToday Extensión',
+    descriptions: [
+      '<strong class="text-yellow-100">Extensión de Chrome</strong> que permite gestionar tareas.',
+      'La extensión se conecta a una API creada con <strong class="text-yellow-100">Flask (Hosteada en Render) y MongoDB (Atlas)</strong>, permitiendo gestionar las tareas de forma remota.',
+      'Permite añadir, editar, eliminar y marcar tareas como completadas una vez el <strong class="text-yellow-100">usuario</strong> ha iniciado sesión.',
+      'Además, el <strong class="text-yellow-100">modo claro y oscuro con Tailwind</strong> y controlar el tamaño de los fuentes para la <strong class="text-yellow-100">accesibilidad</strong>.',
+      'En el <strong class="text-yellow-100">README</strong> del repositorio se explica cómo usarla de forma local y cómo <strong class="text-yellow-100">instalar la extensión</strong>.',
+    ],
+    repositorioRemoto: 'https://github.com/judifede/ToDo-Today',
+    image: '/projects/ToDoToday-Extensión.webp',
+    imageDesign: 'contain',
+    tags: [
+      TAGS.HTML5,
+      TAGS.CSS3,
+      TAGS.TAILWIND,
+      TAGS.JS,
+      TAGS.REACT,
+      TAGS.GIT,
+      TAGS.CHROME,
+      TAGS.PYTHON,
+      TAGS.FLASK,
+      TAGS.MONGODB,
+    ],
+  },
+  {
     projectid: 'competitive-bracket-generator',
     title: 'Competitive Bracket Generator',
     descriptions: [
@@ -221,6 +278,7 @@ const PROJECTS_PERSONAL = [
     link: 'https://competitive-bracket-generator.vercel.app/',
     repositorioRemoto: 'https://github.com/judifede/Competitive-Bracket-Generator',
     image: '/projects/CompetitionBracketGenerator.webp',
+    imageDesign: 'cover',
     tags: [TAGS.HTML5, TAGS.CSS3, TAGS.TAILWIND, TAGS.JS, TAGS.VUE, TAGS.GIT],
   },
   {
@@ -235,6 +293,7 @@ const PROJECTS_PERSONAL = [
     link: 'https://ludohana.zeabur.app',
     repositorioRemoto: 'https://github.com/judifede/LudOhana',
     image: '/projects/LudOhana.webp',
+    imageDesign: 'cover',
     tags: [TAGS.HTML5, TAGS.CSS3, TAGS.JS, TAGS.REACT, TAGS.MATERIALUI, TAGS.STRIPE, TAGS.GIT],
   },
   {
@@ -249,6 +308,7 @@ const PROJECTS_PERSONAL = [
     ],
     repositorioRemoto: 'https://github.com/Yennsanpro/LudOhana-API',
     image: '/projects/LudOhanaAPI.webp',
+    imageDesign: 'cover',
     tags: [TAGS.NODEJS, TAGS.EXPRESSJS, TAGS.SEQUELIZE, TAGS.POSTMAN, TAGS.STRIPE, TAGS.GIT],
   },
   {
@@ -262,6 +322,7 @@ const PROJECTS_PERSONAL = [
     link: 'https://judifede.github.io/Jungle-Paradise/',
     repositorioRemoto: 'https://github.com/judifede/Jungle-Paradise',
     image: '/projects/JungleParadise.webp',
+    imageDesign: 'cover',
     tags: [TAGS.HTML5, TAGS.CSS3, TAGS.JS, TAGS.GIT],
   },
   {
@@ -275,6 +336,7 @@ const PROJECTS_PERSONAL = [
     link: 'https://judifede.github.io/SolitarioWeb/',
     repositorioRemoto: 'https://github.com/judifede/SolitarioWeb',
     image: '/projects/SolitarioWeb.gif',
+    imageDesign: 'cover',
     tags: [TAGS.HTML5, TAGS.CSS3, TAGS.JS, TAGS.JQUERY],
   },
 ]
@@ -302,6 +364,7 @@ const PROJECTS_PERSONAL = [
           link,
           //repositorioRemoto,
           image,
+          imageDesign,
           video,
           tags,
         }) => (
@@ -318,7 +381,7 @@ const PROJECTS_PERSONAL = [
                 {image && (
                   <img
                     src={image}
-                    class="size-full max-h-[420px] md:object-cover md:object-center transition duration-500 md:hover:scale-110"
+                    class={`size-full max-h-[420px] md:object-${imageDesign} md:object-center transition duration-500 md:hover:scale-110`}
                     loading="lazy"
                     alt="Imagen del proyecto"
                   />
@@ -388,6 +451,7 @@ const PROJECTS_PERSONAL = [
           link,
           repositorioRemoto,
           image,
+          imageDesign,
           // video,
           tags,
         }) => (
@@ -404,7 +468,7 @@ const PROJECTS_PERSONAL = [
                 {image && (
                   <img
                     src={image}
-                    class="size-full max-h-[420px] md:object-cover md:object-center transition duration-500 md:hover:scale-110"
+                    class={`size-full max-h-[420px] md:object-${imageDesign} md:object-center transition duration-500 md:hover:scale-110`}
                     loading="lazy"
                     alt="Imagen del proyecto"
                   />
@@ -474,6 +538,7 @@ const PROJECTS_PERSONAL = [
           link,
           repositorioRemoto,
           image,
+          imageDesign,
           //video,
           tags,
         }) => (
@@ -489,7 +554,7 @@ const PROJECTS_PERSONAL = [
                 {image && (
                   <img
                     src={image}
-                    class="size-full max-h-[420px] md:object-cover md:object-center transition duration-500 md:hover:scale-110"
+                    class={`size-full max-h-[420px] md:object-${imageDesign} md:object-center transition duration-500 md:hover:scale-110`}
                     loading="lazy"
                     alt="Imagen del proyecto"
                   />

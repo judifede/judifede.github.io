@@ -2,6 +2,12 @@
 export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	darkMode: 'class',
+	safelist: [
+		// Agrega aquí todas las clases posibles que `imageDesign` pueda generar
+		'object-cover',
+		'object-contain',
+		'object-fill',
+	  ],
 	theme: {
 		extend: {
 			keyframes: {

@@ -27,6 +27,7 @@ import ChromeIcon from '../components/icons/languages/Chrome.astro'
 import PythonIcon from '../components/icons/languages/Python.astro'
 import FlaskIcon from '../components/icons/languages/Flask.astro'
 import MongoDBIcon from '../components/icons/languages/MongoDB.astro'
+import DockerIcon from '../components/icons/languages/Docker.astro'
 
 import LinkButton from '../components/LinkButton.astro'
 import ProfileIcon from '../components/icons/Profile.astro'
@@ -144,6 +145,12 @@ const TAGS = {
     class: 'bg-sky-600/50 text-white',
     icon: ChromeIcon,
   },
+  DOCKER: {
+    name: 'Docker',
+    title: '',
+    class: 'bg-sky-600/50 text-white',
+    icon: DockerIcon,
+  },
   PYTHON: {
     name: 'Python',
     title: '',
@@ -255,6 +262,7 @@ const PROJECTS_PERSONAL = [
       TAGS.JS,
       TAGS.REACT,
       TAGS.GIT,
+      TAGS.DOCKER,
       TAGS.CHROME,
       TAGS.PYTHON,
       TAGS.FLASK,

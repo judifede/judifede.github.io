@@ -1,9 +1,9 @@
 ---
-import Badge from '../components/Badge.astro'
+import Insignia from '../components/Insignia.astro'
 import LinkedInIcon from '../components/icons/LinkedIn.astro'
-import MailIcon from '../components/icons/Mail.astro'
+import CorreoIcon from '../components/icons/Correo.astro'
 import GithubIcon from '../components/icons/GitHub.astro'
-import LinkButton from '../components/LinkButton.astro';
+import BotonEnlace from '../components/BotonEnlace.astro';
 ---
 
 <section>
@@ -20,9 +20,8 @@ import LinkButton from '../components/LinkButton.astro';
 			aria-label="Enlace a LinkedIn de Diego Fernández con el texto abierto a nuevas oportunidades"
 			class="flex items-center transition md:justify-center md:hover:scale-105"
 		>
-			<Badge>Abierto a nuevas oportunidades</Badge>
+			<Insignia>Abierto a nuevas oportunidades</Insignia>
 		</a>
-        <!-- TOFIX URL BUTTON -->
 	</div>
 
 	<h1 class="text-white text-3xl font-bold pb-4">
@@ -50,17 +49,17 @@ import LinkButton from '../components/LinkButton.astro';
 	</div>
 
 	<nav class="flex flex-wrap gap-4 mt-4 md:mt-8">
-		<LinkButton ariaAnchor="Enlace a Gmail de Diego Fernández" href="mailto:judifede217@gmail.com" clipboardMode={true}>
-			<MailIcon class="size-5" />
+		<BotonEnlace etiquetaAria="Enlace a Gmail de Diego Fernández" href="mailto:judifede217@gmail.com" modoPortapapeles={true}>
+			<CorreoIcon class="size-5" />
             Contáctame
-		</LinkButton>
-		<LinkButton ariaAnchor="Enlace a LinkedIn de Diego Fernández" href="https://www.linkedin.com/in/diego-fdez-1b0009109/">
+		</BotonEnlace>
+		<BotonEnlace etiquetaAria="Enlace a LinkedIn de Diego Fernández" href="https://www.linkedin.com/in/diego-fdez-1b0009109/">
 			<LinkedInIcon class="size-5" />
             LinkedIn
-		</LinkButton>
-		<LinkButton ariaAnchor="Enlace a Github de Diego Fernández" href="https://github.com/judifede">
+		</BotonEnlace>
+		<BotonEnlace etiquetaAria="Enlace a Github de Diego Fernández" href="https://github.com/judifede">
 			<GithubIcon class="size-5" />
             Github
-		</LinkButton>
+		</BotonEnlace>
 	</nav>
 </section>

@@ -1,9 +1,9 @@
 ---
-import InfoIcon from '../components/icons/Info.astro'
-import LinkIcon from '../components/icons/Link.astro'
-import GalleryIcon from '../components/icons/Gallery.astro'
-import Gallery from './Gallery.astro'
-import ArrowRight from './icons/ArrowRight.astro';
+import InformacionIcon from '../components/icons/Informacion.astro'
+import EnlaceIcon from '../components/icons/Enlace.astro'
+import GaleriaIcon from '../components/icons/Galeria.astro'
+import Galeria from './Galeria.astro'
+import FlechaDerecha from './icons/FlechaDerecha.astro';
 
 interface Props {
   title: string;
@@ -12,15 +12,15 @@ interface Props {
   blockquote?: string;
   descriptions?: Array<string>;
   descriptionList?: Array<string>;
-  link?: Array<Link>;
+  link?: Array<Enlace>;
   date: string;
 }
 
-interface Link {
+interface Enlace {
   url?: string,
-  gallery?: string,
-  galleryPath?: string,
-  length?: number,
+  galeria?: string,
+  rutaGaleria?: string,
+  cantidad?: number,
 }
 
 const {
@@ -53,7 +53,7 @@ const {
 			{companyDetail}
 			{
 				blockquote && (
-        <InfoIcon class="inline-block size-5 text-yellow-400" />
+        <InformacionIcon class="inline-block size-5 text-yellow-400" />
           <div data-tip={blockquote} class="relative
             before:content-[attr(data-tip)]
             before:absolute
@@ -95,7 +95,7 @@ const {
 					{descriptionList.map((item, index) => (
 						<li class="min-w-80 text-body-color dark:text-dark-6 flex text-base">
 							<span class="text-primary mr-2.5 mt-0.5">
-								<ArrowRight />
+								<FlechaDerecha />
 							</span>
 							<p class="flex flex-col w-full">
 								<span class="">
@@ -105,18 +105,18 @@ const {
 								{ link &&
                   link?.[index].url != undefined ?
 									<a href={link?.[index].url} target="_blank" class="text-yellow-200/90 font-semibold flex justify-end gap-2 mt-2" >
-										<LinkIcon class="size-5" />
+										<EnlaceIcon class="size-5" />
                     Ver proyecto
 									</a>
-									:  link?.[index].gallery != undefined ?
-                  <span id={link?.[index].gallery} class="text-yellow-200/90 font-semibold flex justify-end gap-2 mt-2 cursor-pointer" >
-                  	<GalleryIcon class="size-5" />
+									:  link?.[index].galeria != undefined ?
+                  <span id={link?.[index].galeria} class="text-yellow-200/90 font-semibold flex justify-end gap-2 mt-2 cursor-pointer" >
+                  	<GaleriaIcon class="size-5" />
                     Ver proyecto
                   </span>
-                  <Gallery 
-                  	galleryPath={link?.[index].galleryPath} 
-                  	galleryButtonID={link?.[index].gallery}
-                  	length={link?.[index].length}
+                  <Galeria 
+                  	rutaGaleria={link?.[index].rutaGaleria} 
+                  	idBotonGaleria={link?.[index].galeria}
+                  	cantidad={link?.[index].cantidad}
                   />
 										: ''
 								}

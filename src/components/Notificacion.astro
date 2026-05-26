@@ -1,0 +1,71 @@
+---
+import CerrarIcon from './icons/Cerrar.astro'
+import VerificarIcon from './icons/Verificar.astro'
+---
+
+<div
+  id="notificacion-global"
+  class="hidden fixed top-14 right-14 flex items-center w-full max-w-80 p-4 rounded-lg shadow z-40
+  text-green-700 bg-green-50 transition-all duration-300"
+  role="alert"
+>
+  <span class="text-green-700 inline-flex items-center justify-center flex-shrink-0 w-8 h-8">
+    <VerificarIcon class="w-6 h-6" />
+  </span>
+
+  <p id="mensaje-notificacion" class="ms-3 text-sm font-normal text-pretty"></p>
+  <button
+    type="button"
+    class="ms-auto -mx-1.5 -my-1.5 rounded-lg p-1.5 inline-flex items-center justify-center h-8 w-8
+  bg-green-50 text-green-700 hover:text-green-50 hover:bg-green-700"
+    aria-label="Close"
+  >
+    <CerrarIcon class="w-32 h-32" id="cerrar-notificacion" />
+  </button>
+</div>
+
+<script>
+  class Notificacion {
+    private notificacion: HTMLElement | null
+    private mensaje: HTMLElement | null
+    private cerrarBtn: HTMLElement | null
+    private duracion: number = 5000
+    private temporizador: ReturnType<typeof setTimeout> | null = null
+
+    constructor() {
+      this.notificacion = document.getElementById('notificacion-global')
+      this.mensaje = document.getElementById('mensaje-notificacion')
+      this.cerrarBtn = document.getElementById('cerrar-notificacion')
+
+      if (this.cerrarBtn) {
+        this.cerrarBtn.addEventListener('click', () => this.ocultar())
+      }
+    }
+
+    mostrar(mensaje: string, duracion?: number): void {
+      if (this.mensaje && this.notificacion) {
+        if (this.temporizador) clearTimeout(this.temporizador)
+        this.mensaje.textContent = mensaje
+        this.notificacion.classList.remove('hidden')
+        this.notificacion.classList.add('animate-slide-in-down-on')
+        this.notificacion.classList.remove('animate-slide-in-down-off')
+        this.temporizador = setTimeout(() => this.ocultar(), duracion || this.duracion)
+      }
+    }
+
+    ocultar(): void {
+      if (this.notificacion) {
+        this.notificacion.classList.remove('animate-slide-in-down-on')
+        this.notificacion.classList.add('animate-slide-in-down-off')
+      }
+    }
+  }
+
+  declare global {
+    interface Window {
+      notificacionGlobal: Notificacion
+    }
+  }
+
+  window.notificacionGlobal = new Notificacion()
+</script>

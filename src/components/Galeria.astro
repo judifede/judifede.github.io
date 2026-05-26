@@ -3,25 +3,25 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'photoswipe/style.css'
 
-import CloseIcon from './icons/Close.astro'
+import CerrarIcon from './icons/Cerrar.astro'
 
 interface Props {
-  galleryPath: string | undefined;
-  galleryButtonID: string | undefined;
-  length: number | undefined;
+  rutaGaleria: string | undefined;
+  idBotonGaleria: string | undefined;
+  cantidad: number | undefined;
 }
 
-const { galleryPath, galleryButtonID, length } = Astro.props
+const { rutaGaleria, idBotonGaleria, cantidad } = Astro.props
 
-const images = Array(length).fill('/gallery/' + galleryPath);
+const images = Array(cantidad).fill('/gallery/' + rutaGaleria);
 ---
 
-<CloseIcon
-	id="closeGallery"
+<CerrarIcon
+	id="cerrarGaleria"
 	class="hidden cursor-pointer text-yellow-400 fixed right-10 top-5 w-7 z-40"
 />
 <div
-	id="backgroundGallery"
+	id="fondoGaleria"
 	class="hidden fixed top-0 left-0
   size-full bg-black/60 z-30
   transition-all duration-300"
@@ -31,7 +31,7 @@ const images = Array(length).fill('/gallery/' + galleryPath);
 	class="max-w-[90%]
   hidden fixed md:top-20 top-16 left-[50%] -translate-x-[50%] z-40
   transition-all duration-300"
-	id="wrapperGallery"
+	id="contenedorGaleria"
 >
 	<div class="swiper">
 		<div class="swiper-wrapper lg:!w-[1024px]">
@@ -48,7 +48,7 @@ const images = Array(length).fill('/gallery/' + galleryPath);
 							<img
 								class="size-full"
 								src={image + (index + 1) + '.jpg'}
-								alt={`EducaAjedrez Image ${index + 1}`}
+								alt={`EducaAjedrez Imagen ${index + 1}`}
 							/>
 						</a>
 					</div>
@@ -100,40 +100,40 @@ new Swiper('.swiper', {
 })
 
 const lightbox = new PhotoSwipeLightbox({
-  	gallery: '#wrapperGallery',
+  	gallery: '#contenedorGaleria',
   	children: 'a',
   	pswpModule: () => import('photoswipe'),
 })
 lightbox.init()
 </script>
 
-<script define:vars={{ galleryButtonID }}>
+<script define:vars={{ idBotonGaleria }}>
  document.addEventListener('DOMContentLoaded', () => {
-  	const gallery_button = document.querySelector(`#${galleryButtonID}`)
- 	const backgroundGallery = document.querySelector('#backgroundGallery')
-	const closeGallery = document.querySelector('#closeGallery')
-	const wrapperGallery = document.querySelector('#wrapperGallery')
+  	const botonGaleria = document.querySelector(`#${idBotonGaleria}`)
+ 	const fondoGaleria = document.querySelector('#fondoGaleria')
+	const cerrarGaleria = document.querySelector('#cerrarGaleria')
+	const contenedorGaleria = document.querySelector('#contenedorGaleria')
 
-	function hideGallery() {
-  		wrapperGallery.classList.toggle('hidden')
-			backgroundGallery.classList.toggle('hidden')
-			closeGallery.classList.toggle('hidden')
+	function ocultarGaleria() {
+  		contenedorGaleria.classList.toggle('hidden')
+			fondoGaleria.classList.toggle('hidden')
+			cerrarGaleria.classList.toggle('hidden')
 	}
-  	if (gallery_button) {
-  		gallery_button.addEventListener('click', () => {
-  			hideGallery()
+  	if (botonGaleria) {
+  		botonGaleria.addEventListener('click', () => {
+  			ocultarGaleria()
   		})
 	}
 
-  	if (backgroundGallery) {
-  		backgroundGallery.addEventListener('click', () => {
-  			hideGallery()
+  	if (fondoGaleria) {
+  		fondoGaleria.addEventListener('click', () => {
+  			ocultarGaleria()
   		})
 	}
 
-  	if (closeGallery) {
-  		closeGallery.addEventListener('click', () => {
-  			hideGallery()
+  	if (cerrarGaleria) {
+  		cerrarGaleria.addEventListener('click', () => {
+  			ocultarGaleria()
   		})
 	}
  })

@@ -1,0 +1,49 @@
+---
+interface Props {
+  href: string;
+  etiquetaAria?: string;
+  modoPortapapeles?: boolean;
+}
+
+const { href, etiquetaAria, modoPortapapeles } = Astro.props
+
+---
+
+<a
+	href={href}
+	target="_blank"
+	rel="noopener noreferrer"
+	aria-label={etiquetaAria}
+    class=`${modoPortapapeles === true ? 'anclaje-portapapeles' : ''} inline-flex items-center justify-center gap-2 px-4 py-1 transition border rounded-full hover:text-gray-800 hover:bg-gray-100 hover:border-gray-700 text-white bg-gray-800 border-gray-600 text-lg`
+>
+	<slot />
+</a>
+{modoPortapapeles && (
+	<script define:vars={{ href }}>
+    document.addEventListener('DOMContentLoaded', () => {
+      const anclajesPortapapeles = document.querySelectorAll('.anclaje-portapapeles')
+
+      const configurarPortapapeles = () => {
+        if (window.matchMedia('(min-width: 500px)').matches) {
+          anclajesPortapapeles.forEach(anclaje => {
+            anclaje.addEventListener('click', (event) => {
+              event.preventDefault()
+              const correo = href.replace('mailto:', '')
+              navigator.clipboard.writeText(correo)
+                .then(() => {
+                  window.notificacionGlobal.mostrar(`'${correo}' se ha copiado en el portapapeles`)
+                })
+                .catch(err => {
+                  console.error('Error al copiar al portapapeles: ', err)
+                })
+            })
+          })
+        }
+      }
+
+      configurarPortapapeles()
+
+      window.addEventListener('resize', configurarPortapapeles)
+    })
+	</script>
+)}

@@ -1,0 +1,22 @@
+---
+import LinkedInIcon from '../components/icons/LinkedIn.astro'
+import CorreoIcon from '../components/icons/Correo.astro'
+import GithubIcon from '../components/icons/GitHub.astro'
+import BotonEnlace from '../components/BotonEnlace.astro';
+
+---
+
+<footer class="flex flex-col items-center gap-3 py-4 bg-blue-900/50">
+	<nav class="flex flex-wrap gap-4 mt-4 md:mt-8">
+		<BotonEnlace etiquetaAria="Enlace a Gmail de Diego Fernández" href="mailto:judifede217@gmail.com" modoPortapapeles={true}>
+			<CorreoIcon class="size-6" />
+		</BotonEnlace>
+		<BotonEnlace etiquetaAria="Enlace a LinkedIn de Diego Fernández" href="https://www.linkedin.com/in/diego-fdez-1b0009109/">
+			<LinkedInIcon class="size-6" />
+		</BotonEnlace>
+		<BotonEnlace etiquetaAria="Enlace a Github de Diego Fernández" href="https://github.com/judifede">
+			<GithubIcon class="size-6" />
+		</BotonEnlace>
+	</nav>
+	<span class="text-lg font-medium">Diego Fernández</span>
+</footer>

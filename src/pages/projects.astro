@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro'
 
 import GitHubIcon from '../components/icons/GitHub.astro'
-import LinkIcon from '../components/icons/Link.astro'
+import EnlaceIcon from '../components/icons/Enlace.astro'
 
 import HTML5Icon from '../components/icons/languages/HTML5.astro'
 import CSS3Icon from '../components/icons/languages/CSS3.astro'
@@ -29,42 +29,42 @@ import FlaskIcon from '../components/icons/languages/Flask.astro'
 import MongoDBIcon from '../components/icons/languages/MongoDB.astro'
 import DockerIcon from '../components/icons/languages/Docker.astro'
 
-import LinkButton from '../components/LinkButton.astro'
-import ProfileIcon from '../components/icons/Profile.astro'
+import BotonEnlace from '../components/BotonEnlace.astro'
+import PerfilIcon from '../components/icons/Perfil.astro'
 import PruebaIcon from '../components/icons/Prueba.astro'
-import Briefcase from '../components/icons/Briefcase.astro'
-import ArrowLeft from '../components/icons/ArrowLeft.astro'
-import ArrowRight from '../components/icons/ArrowRight.astro'
+import Maletin from '../components/icons/Maletin.astro'
+import FlechaIzquierda from '../components/icons/FlechaIzquierda.astro'
+import FlechaDerecha from '../components/icons/FlechaDerecha.astro'
 
 
-const TAGS = {
-  HTML5: { name: 'HTML5', title: '', class: 'bg-orange-600/50 text-white', icon: HTML5Icon },
-  CSS3: { name: 'CSS3', title: '', class: 'bg-indigo-700/50 text-white', icon: CSS3Icon },
-  TAILWIND: { name: 'Tailwind', title: '', class: 'bg-teal-700/50 text-white', icon: TailwindIcon },
-  JS: { name: 'Javascript', title: '', class: 'bg-yellow-400/50 text-white', icon: JSIcon },
-  JQUERY: { name: 'JQuery', title: '', class: 'bg-sky-600/50 text-white', icon: JQueryIcon },
-  GIT: { name: 'Git', title: '', class: 'bg-red-900/50 text-white', icon: GitIcon },
-  PHP: { name: 'PHP', title: '', class: 'bg-[#6c70a4] text-white', icon: PHPIcon },
-  WORDPRESS: { name: 'Wordpress', title: '', class: 'bg-indigo-800/50 text-white', icon: WordpressIcon },
-  NODEJS: { name: 'NodeJS', title: '', class: 'bg-green-800/50 text-white', icon: NodeJSIcon },
-  POSTMAN: { name: 'Postman', title: '', class: 'bg-orange-600/50 text-white', icon: PostmanIcon },
-  EXPRESSJS: { name: 'ExpressJS', title: '', class: 'bg-gray-100/50 text-white', icon: ExpressJSIcon },
-  SEQUELIZE: { name: 'Sequelize', title: '', class: 'bg-indigo-800/50 text-white', icon: SequelizeIcon },
-  PRISMA: { name: 'Prisma', title: '', class: 'bg-gray-100/50 text-white', icon: PrismaIcon },
-  TURSO: { name: 'Turso', title: '', class: 'bg-gray-100/50 text-white', icon: TursoIcon },
-  VERCEL: { name: 'Vercel', title: '', class: 'bg-gray-100/50 text-white', icon: VercelIcon },
-  REACT: { name: 'React', title: '', class: 'bg-indigo-800/50 text-white', icon: ReactIcon },
-  MATERIALUI: { name: 'MaterialUI', title: '', class: 'bg-indigo-800/50 text-white', icon: MaterialUIIcon },
-  CHROME: { name: 'Chrome', title: '', class: 'bg-sky-600/50 text-white', icon: ChromeIcon },
-  DOCKER: { name: 'Docker', title: '', class: 'bg-sky-600/50 text-white', icon: DockerIcon },
-  PYTHON: { name: 'Python', title: '', class: 'bg-yellow-400/50 text-white', icon: PythonIcon },
-  FLASK: { name: 'Flask', title: '', class: 'bg-gray-100/50 text-white', icon: FlaskIcon },
-  MONGODB: { name: 'MongoDB', title: '', class: 'bg-emerald-600/50 text-white', icon: MongoDBIcon },
-  STRIPE: { name: '', title: 'Stripe', class: 'bg-gray-100/90 text-white', icon: StripeIcon },
-  VUE: { name: 'Vue', title: '', class: 'bg-emerald-700/50 text-white', icon: VueIcon },
+const ETIQUETAS = {
+  HTML5: { nombre: 'HTML5', titulo: '', clase: 'bg-orange-600/50 text-white', icono: HTML5Icon },
+  CSS3: { nombre: 'CSS3', titulo: '', clase: 'bg-indigo-700/50 text-white', icono: CSS3Icon },
+  TAILWIND: { nombre: 'Tailwind', titulo: '', clase: 'bg-teal-700/50 text-white', icono: TailwindIcon },
+  JS: { nombre: 'Javascript', titulo: '', clase: 'bg-yellow-400/50 text-white', icono: JSIcon },
+  JQUERY: { nombre: 'JQuery', titulo: '', clase: 'bg-sky-600/50 text-white', icono: JQueryIcon },
+  GIT: { nombre: 'Git', titulo: '', clase: 'bg-red-900/50 text-white', icono: GitIcon },
+  PHP: { nombre: 'PHP', titulo: '', clase: 'bg-[#6c70a4] text-white', icono: PHPIcon },
+  WORDPRESS: { nombre: 'Wordpress', titulo: '', clase: 'bg-indigo-800/50 text-white', icono: WordpressIcon },
+  NODEJS: { nombre: 'NodeJS', titulo: '', clase: 'bg-green-800/50 text-white', icono: NodeJSIcon },
+  POSTMAN: { nombre: 'Postman', titulo: '', clase: 'bg-orange-600/50 text-white', icono: PostmanIcon },
+  EXPRESSJS: { nombre: 'ExpressJS', titulo: '', clase: 'bg-gray-100/50 text-white', icono: ExpressJSIcon },
+  SEQUELIZE: { nombre: 'Sequelize', titulo: '', clase: 'bg-indigo-800/50 text-white', icono: SequelizeIcon },
+  PRISMA: { nombre: 'Prisma', titulo: '', clase: 'bg-gray-100/50 text-white', icono: PrismaIcon },
+  TURSO: { nombre: 'Turso', titulo: '', clase: 'bg-gray-100/50 text-white', icono: TursoIcon },
+  VERCEL: { nombre: 'Vercel', titulo: '', clase: 'bg-gray-100/50 text-white', icono: VercelIcon },
+  REACT: { nombre: 'React', titulo: '', clase: 'bg-indigo-800/50 text-white', icono: ReactIcon },
+  MATERIALUI: { nombre: 'MaterialUI', titulo: '', clase: 'bg-indigo-800/50 text-white', icono: MaterialUIIcon },
+  CHROME: { nombre: 'Chrome', titulo: '', clase: 'bg-sky-600/50 text-white', icono: ChromeIcon },
+  DOCKER: { nombre: 'Docker', titulo: '', clase: 'bg-sky-600/50 text-white', icono: DockerIcon },
+  PYTHON: { nombre: 'Python', titulo: '', clase: 'bg-yellow-400/50 text-white', icono: PythonIcon },
+  FLASK: { nombre: 'Flask', titulo: '', clase: 'bg-gray-100/50 text-white', icono: FlaskIcon },
+  MONGODB: { nombre: 'MongoDB', titulo: '', clase: 'bg-emerald-600/50 text-white', icono: MongoDBIcon },
+  STRIPE: { nombre: '', titulo: 'Stripe', clase: 'bg-gray-100/90 text-white', icono: StripeIcon },
+  VUE: { nombre: 'Vue', titulo: '', clase: 'bg-emerald-700/50 text-white', icono: VueIcon },
 }
 
-const PROJECTS_CORPORATE = [
+const PROYECTOS_CORPORATIVOS = [
   {
     projectid: 'ecoinge_canarias',
     title: 'Ecoinge Canarias',
@@ -77,7 +77,7 @@ const PROJECTS_CORPORATE = [
     link: 'https://ecoingecanarias.com/',
     imageDesign: 'cover',
     video: '/projects/EcoingeCanarias.mp4',
-    tags: [TAGS.WORDPRESS, TAGS.PHP, TAGS.HTML5, TAGS.CSS3, TAGS.JS, TAGS.JQUERY],
+    tags: [ETIQUETAS.WORDPRESS, ETIQUETAS.PHP, ETIQUETAS.HTML5, ETIQUETAS.CSS3, ETIQUETAS.JS, ETIQUETAS.JQUERY],
   },
   {
     projectid: 'finanza_honesta',
@@ -90,11 +90,11 @@ const PROJECTS_CORPORATE = [
     link: 'https://finanzahonesta.systeme.io/newsletter',
     image: '/projects/FinanzaHonesta.webp',
     imageDesign: 'contain',
-    tags: [TAGS.HTML5, TAGS.CSS3, TAGS.JS],
+    tags: [ETIQUETAS.HTML5, ETIQUETAS.CSS3, ETIQUETAS.JS],
   },
 ]
 
-const PROJECTS_PRUEBAS_TECNICAS = [
+const PRUEBAS_TECNICAS = [
   {
     projectid: 'pt_phrase_AI',
     title: 'Generación de Texto IA',
@@ -108,13 +108,13 @@ const PROJECTS_PRUEBAS_TECNICAS = [
     image: '/projects/PTPhrasePreview.webp',
     imageDesign: 'cover',
     tags: [
-      TAGS.HTML5, TAGS.CSS3, TAGS.JS, TAGS.REACT, TAGS.NODEJS,
-      TAGS.EXPRESSJS, TAGS.PRISMA, TAGS.TURSO, TAGS.VERCEL, TAGS.GIT,
+      ETIQUETAS.HTML5, ETIQUETAS.CSS3, ETIQUETAS.JS, ETIQUETAS.REACT, ETIQUETAS.NODEJS,
+      ETIQUETAS.EXPRESSJS, ETIQUETAS.PRISMA, ETIQUETAS.TURSO, ETIQUETAS.VERCEL, ETIQUETAS.GIT,
     ],
   },
 ]
 
-const PROJECTS_PERSONAL = [
+const PROYECTOS_PERSONALES = [
   {
     projectid: 'todotoday-extension',
     title: 'ToDoToday Extensión',
@@ -129,8 +129,8 @@ const PROJECTS_PERSONAL = [
     image: '/projects/ToDoToday-Extensión.webp',
     imageDesign: 'contain',
     tags: [
-      TAGS.HTML5, TAGS.CSS3, TAGS.TAILWIND, TAGS.JS, TAGS.REACT, TAGS.GIT,
-      TAGS.DOCKER, TAGS.CHROME, TAGS.PYTHON, TAGS.FLASK, TAGS.MONGODB,
+      ETIQUETAS.HTML5, ETIQUETAS.CSS3, ETIQUETAS.TAILWIND, ETIQUETAS.JS, ETIQUETAS.REACT, ETIQUETAS.GIT,
+      ETIQUETAS.DOCKER, ETIQUETAS.CHROME, ETIQUETAS.PYTHON, ETIQUETAS.FLASK, ETIQUETAS.MONGODB,
     ],
   },
   {
@@ -151,7 +151,7 @@ const PROJECTS_PERSONAL = [
     repositorioRemoto: 'https://github.com/judifede/Competitive-Bracket-Generator',
     image: '/projects/CompetitionBracketGenerator.webp',
     imageDesign: 'cover',
-    tags: [TAGS.HTML5, TAGS.CSS3, TAGS.TAILWIND, TAGS.JS, TAGS.VUE, TAGS.GIT],
+    tags: [ETIQUETAS.HTML5, ETIQUETAS.CSS3, ETIQUETAS.TAILWIND, ETIQUETAS.JS, ETIQUETAS.VUE, ETIQUETAS.GIT],
   },
   {
     projectid: 'ludohana',
@@ -166,7 +166,7 @@ const PROJECTS_PERSONAL = [
     repositorioRemoto: 'https://github.com/judifede/LudOhana',
     image: '/projects/LudOhana.webp',
     imageDesign: 'cover',
-    tags: [TAGS.HTML5, TAGS.CSS3, TAGS.JS, TAGS.REACT, TAGS.MATERIALUI, TAGS.STRIPE, TAGS.GIT],
+    tags: [ETIQUETAS.HTML5, ETIQUETAS.CSS3, ETIQUETAS.JS, ETIQUETAS.REACT, ETIQUETAS.MATERIALUI, ETIQUETAS.STRIPE, ETIQUETAS.GIT],
   },
   {
     projectid: 'ludohana_api',
@@ -181,7 +181,7 @@ const PROJECTS_PERSONAL = [
     repositorioRemoto: 'https://github.com/Yennsanpro/LudOhana-API',
     image: '/projects/LudOhanaAPI.webp',
     imageDesign: 'cover',
-    tags: [TAGS.NODEJS, TAGS.EXPRESSJS, TAGS.SEQUELIZE, TAGS.POSTMAN, TAGS.STRIPE, TAGS.GIT],
+    tags: [ETIQUETAS.NODEJS, ETIQUETAS.EXPRESSJS, ETIQUETAS.SEQUELIZE, ETIQUETAS.POSTMAN, ETIQUETAS.STRIPE, ETIQUETAS.GIT],
   },
   {
     projectid: 'jungle_paradise',
@@ -195,7 +195,7 @@ const PROJECTS_PERSONAL = [
     repositorioRemoto: 'https://github.com/judifede/Jungle-Paradise',
     image: '/projects/JungleParadise.webp',
     imageDesign: 'cover',
-    tags: [TAGS.HTML5, TAGS.CSS3, TAGS.JS, TAGS.GIT],
+    tags: [ETIQUETAS.HTML5, ETIQUETAS.CSS3, ETIQUETAS.JS, ETIQUETAS.GIT],
   },
   {
     projectid: 'solitario_web',
@@ -209,37 +209,37 @@ const PROJECTS_PERSONAL = [
     repositorioRemoto: 'https://github.com/judifede/SolitarioWeb',
     image: '/projects/SolitarioWeb.gif',
     imageDesign: 'cover',
-    tags: [TAGS.HTML5, TAGS.CSS3, TAGS.JS, TAGS.JQUERY],
+    tags: [ETIQUETAS.HTML5, ETIQUETAS.CSS3, ETIQUETAS.JS, ETIQUETAS.JQUERY],
   },
 ]
 
-const buttonBaseClasses = "bg-yellow-400/50 text-white cursor-pointer rounded-full py-2 px-3 duration-300 hover:bg-yellow-400/80 text-xs md:text-base"
-const buttonActiveClasses = "data-[active=true]:bg-yellow-300 data-[active=true]:text-black"
+const clasesBaseBoton = "bg-yellow-400/50 text-white cursor-pointer rounded-full py-2 px-3 duration-300 hover:bg-yellow-400/80 text-xs md:text-base"
+const clasesActivoBoton = "data-[active=true]:bg-yellow-300 data-[active=true]:text-black"
 ---
 
 <Layout>
   <div>
     <nav class="flex justify-between items-center py-4 mb-8" aria-label="Navegación entre secciones del sitio web">
-      <ArrowLeft className="size-8" link="/" />
-      <ArrowRight className="size-8" link="/about" />
+      <FlechaIzquierda className="size-8" link="/" />
+      <FlechaDerecha className="size-8" link="/about" />
     </nav>
 
-    <nav id="filter-nav" class="flex items-center py-4 mb-8 flex-wrap justify-around gap-x-2 sm:gap-x-3" aria-label="Filtros de categorías de proyectos">
-        <button type="button" class:list={[buttonBaseClasses, buttonActiveClasses]} data-active="true" data-filter="all">Proyectos</button>
-        <button type="button" class:list={[buttonBaseClasses, buttonActiveClasses]} data-active="false" data-filter="corporate">Corporativos</button>
-        <button type="button" class:list={[buttonBaseClasses, buttonActiveClasses]} data-active="false" data-filter="pruebas-tecnicas">Pruebas Técnicas</button>
-        <button type="button" class:list={[buttonBaseClasses, buttonActiveClasses]} data-active="false" data-filter="personal">Personales</button>
+    <nav id="navegacion-filtros" class="flex items-center py-4 mb-8 flex-wrap justify-around gap-x-2 sm:gap-x-3" aria-label="Filtros de categorías de proyectos">
+        <button type="button" class:list={[clasesBaseBoton, clasesActivoBoton]} data-active="true" data-filter="all">Proyectos</button>
+        <button type="button" class:list={[clasesBaseBoton, clasesActivoBoton]} data-active="false" data-filter="corporativos">Corporativos</button>
+        <button type="button" class:list={[clasesBaseBoton, clasesActivoBoton]} data-active="false" data-filter="pruebas-tecnicas">Pruebas Técnicas</button>
+        <button type="button" class:list={[clasesBaseBoton, clasesActivoBoton]} data-active="false" data-filter="personales">Personales</button>
     </nav>
 
-    <section id="section-corporate" data-category="corporate">
+    <section id="seccion-corporativos" data-category="corporativos">
       <h1
         class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-yellow-300"
       >
-        <Briefcase class="size-8" />
+        <Maletin class="size-8" />
         Proyectos Corporativos
       </h1>
       {
-        PROJECTS_CORPORATE.map(
+        PROYECTOS_CORPORATIVOS.map(
           ({ projectid, title, descriptions, link, image, imageDesign, video, tags, }) => (
             <article
               id={projectid}
@@ -260,15 +260,15 @@ const buttonActiveClasses = "data-[active=true]:bg-yellow-300 data-[active=true]
                   <ul class="flex flex-wrap flex-row my-2 gap-x-2 justify-end">
                     {tags.map((tag) => (
                       <li class="mt-2">
-                        <span class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-2 px-3 `}>
-                          <tag.icon class={`size-4 ${tag.title === 'Stripe' && 'w-12'}`} />
-                          {tag.name}
+                        <span class={`flex gap-x-2 rounded-full text-xs ${tag.clase} py-2 px-3 `}>
+                          <tag.icono class={`size-4 ${tag.titulo === 'Stripe' && 'w-12'}`} />
+                          {tag.nombre}
                         </span>
                       </li>
                     ))}
                   </ul>
                   <footer class="flex items-end justify-start mt-4 gap-x-4">
-                    {link && <LinkButton href={link}><LinkIcon class="size-5" />Ver proyecto</LinkButton>}
+                    {link && <BotonEnlace href={link}><EnlaceIcon class="size-5" />Ver proyecto</BotonEnlace>}
                   </footer>
                 </div>
               </div>
@@ -278,13 +278,13 @@ const buttonActiveClasses = "data-[active=true]:bg-yellow-300 data-[active=true]
       }
     </section>
 
-    <section id="section-pruebas-tecnicas" data-category="pruebas-tecnicas">
+    <section id="seccion-pruebas-tecnicas" data-category="pruebas-tecnicas">
       <h1 class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-yellow-300">
         <PruebaIcon class="size-8 fill-yellow-300" />
         Pruebas Técnicas
       </h1>
       {
-        PROJECTS_PRUEBAS_TECNICAS.map(
+        PRUEBAS_TECNICAS.map(
           ({ projectid, title, descriptions, link, repositorioRemoto, image, imageDesign, tags, }) => (
             <article
               id={projectid}
@@ -304,16 +304,16 @@ const buttonActiveClasses = "data-[active=true]:bg-yellow-300 data-[active=true]
                   <ul class="flex flex-wrap flex-row my-2 gap-x-2 justify-end">
                     {tags.map((tag) => (
                       <li class="mt-2">
-                        <span class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-2 px-3 `}>
-                          <tag.icon class={`size-4 ${tag.title === 'Stripe' && 'w-12'}`} />
-                          {tag.name}
+                        <span class={`flex gap-x-2 rounded-full text-xs ${tag.clase} py-2 px-3 `}>
+                          <tag.icono class={`size-4 ${tag.titulo === 'Stripe' && 'w-12'}`} />
+                          {tag.nombre}
                         </span>
                       </li>
                     ))}
                   </ul>
                   <footer class="flex items-end justify-start mt-4 gap-x-4">
-                    {repositorioRemoto && <LinkButton href={repositorioRemoto}><GitHubIcon class="size-5" />Code</LinkButton>}
-                    {link && <LinkButton href={link}><LinkIcon class="size-5" />Ver proyecto</LinkButton>}
+                    {repositorioRemoto && <BotonEnlace href={repositorioRemoto}><GitHubIcon class="size-5" />Code</BotonEnlace>}
+                    {link && <BotonEnlace href={link}><EnlaceIcon class="size-5" />Ver proyecto</BotonEnlace>}
                   </footer>
                 </div>
               </div>
@@ -323,13 +323,13 @@ const buttonActiveClasses = "data-[active=true]:bg-yellow-300 data-[active=true]
       }
     </section>
 
-    <section id="section-personal" data-category="personal">
+    <section id="seccion-personales" data-category="personales">
       <h1 class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-yellow-300">
-        <ProfileIcon class="size-8" />
+        <PerfilIcon class="size-8" />
         Proyectos Personales
       </h1>
       {
-        PROJECTS_PERSONAL.map(
+        PROYECTOS_PERSONALES.map(
           ({ projectid, title, descriptions, link, repositorioRemoto, image, imageDesign, tags, }) => (
             <article
               id={projectid}
@@ -349,16 +349,16 @@ const buttonActiveClasses = "data-[active=true]:bg-yellow-300 data-[active=true]
                     <ul class="flex flex-wrap flex-row my-2 gap-x-2 justify-end">
                       {tags.map((tag) => (
                         <li class="mt-2">
-                          <span class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-2 px-3 `}>
-                            <tag.icon class={`size-4 ${tag.title === 'Stripe' && 'w-12'}`} />
-                            {tag.name}
+                          <span class={`flex gap-x-2 rounded-full text-xs ${tag.clase} py-2 px-3 `}>
+                            <tag.icono class={`size-4 ${tag.titulo === 'Stripe' && 'w-12'}`} />
+                            {tag.nombre}
                           </span>
                         </li>
                       ))}
                     </ul>
                     <footer class="flex items-end justify-start mt-4 gap-x-4">
-                      {repositorioRemoto && <LinkButton href={repositorioRemoto}><GitHubIcon class="size-5" />Code</LinkButton>}
-                      {link && <LinkButton href={link}><LinkIcon class="size-5" />Ver proyecto</LinkButton>}
+                      {repositorioRemoto && <BotonEnlace href={repositorioRemoto}><GitHubIcon class="size-5" />Code</BotonEnlace>}
+                      {link && <BotonEnlace href={link}><EnlaceIcon class="size-5" />Ver proyecto</BotonEnlace>}
                     </footer>
                  </div>
               </div>
@@ -372,28 +372,25 @@ const buttonActiveClasses = "data-[active=true]:bg-yellow-300 data-[active=true]
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const filterButtons = document.querySelectorAll('#filter-nav button[data-filter]')
-    const projectSections = [
-      document.getElementById('section-corporate'),
-      document.getElementById('section-pruebas-tecnicas'),
-      document.getElementById('section-personal')
-    ].filter(section => section !== null) // Filtrar nulos por si algún ID no existe
+    const filterButtons = document.querySelectorAll('#navegacion-filtros button[data-filter]')
+    const seccionesProyectos = [
+      document.getElementById('seccion-corporativos'),
+      document.getElementById('seccion-pruebas-tecnicas'),
+      document.getElementById('seccion-personales')
+    ].filter(section => section !== null)
 
-    // Obtener el filtro activo inicial del HTML (el botón con data-active="true")
-    let currentFilter = 'all'
-    const initialActiveButton = document.querySelector('#filter-nav button[data-active="true"]')
-    if (initialActiveButton) {
-      currentFilter = (initialActiveButton as HTMLButtonElement).dataset.filter || 'all'
+    let filtroActual = 'all'
+    const botonActivoInicial = document.querySelector('#navegacion-filtros button[data-active="true"]')
+    if (botonActivoInicial) {
+      filtroActual = (botonActivoInicial as HTMLButtonElement).dataset.filter || 'all'
     }
 
-    function applyFilter() {
-      const showAll = currentFilter === 'all'
+    function aplicarFiltro() {
+      const mostrarTodos = filtroActual === 'all'
 
-      projectSections.forEach(section => {
-        const sectionCategory = section.dataset.category
-        // La sección y su título (h1) se muestran si el filtro es 'all'
-        // o si el filtro coincide con la categoría de la sección.
-        if (showAll || currentFilter === sectionCategory) {
+      seccionesProyectos.forEach(section => {
+        const categoriaSeccion = section.dataset.category
+        if (mostrarTodos || filtroActual === categoriaSeccion) {
           section.classList.remove('hidden')
         } else {
           section.classList.add('hidden')
@@ -403,19 +400,19 @@ const buttonActiveClasses = "data-[active=true]:bg-yellow-300 data-[active=true]
 
     filterButtons.forEach(button => {
       button.addEventListener('click', () => {
-        const newFilter = (button as HTMLButtonElement).dataset.filter
-        if (newFilter === currentFilter) return // No hacer nada si se clickea el mismo filtro
+        const nuevoFiltro = (button as HTMLButtonElement).dataset.filter
+        if (nuevoFiltro === filtroActual) return
 
-        currentFilter = newFilter || 'all'
+        filtroActual = nuevoFiltro || 'all'
 
         filterButtons.forEach(btn => {
-          (btn as HTMLButtonElement).dataset.active = ((btn as HTMLButtonElement).dataset.filter === currentFilter).toString()
+          (btn as HTMLButtonElement).dataset.active = ((btn as HTMLButtonElement).dataset.filter === filtroActual).toString()
         })
 
-        applyFilter()
+        aplicarFiltro()
       })
     })
 
-    applyFilter()
+    aplicarFiltro()
   })
 </script>

@@ -1,11 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import ExperienceItem from '../components/ExperienceItem.astro'
-import Briefcase from '../components/icons/Briefcase.astro'
-import ArrowRight from '../components/icons/ArrowRight.astro'
-import ArrowLeft from '../components/icons/ArrowLeft.astro'
+import ItemExperiencia from '../components/ItemExperiencia.astro'
+import Maletin from '../components/icons/Maletin.astro'
+import FlechaDerecha from '../components/icons/FlechaDerecha.astro'
+import FlechaIzquierda from '../components/icons/FlechaIzquierda.astro'
 
-const EXPERIENCIES = [
+const EXPERIENCIAS = [
 {
     title: 'Desarrollador Web',
     company: 'Itsmo',
@@ -40,7 +40,6 @@ const EXPERIENCIES = [
       'Segunda etapa de la Formación Dual Escuela de Programadores - Desarrolladores Web Full-Stack.',
     descriptionList: [
       'Nueva página web de 21ninjas. Muchos debates productivos con el diseñador y una variedad de herramientas utilizadas para poder impletamentar una maqueta con tanta personalidad. Wordpress, Elementor, PHP, Javascript y CSS',
-      // "Esta página web pone en contacto a Startups con Inversores. Mis tareas se basaron en los formularios de registro, interacturar con la biblioteca de medios para los ficheros desde el panel de admin y las plantillas individuales de ambos roles.",
       'Nueva página web de la Facultad de Ciencias del Mar de la Universidad de Las Palmas de Gran Canaria (ULPGC). Cumpliendo sus criterios de Accesibilidad Web.',
       'SPAR Gran Canaria. Tareas de mantenimiento como nuevas noticias, sorteos y folletos',
       'Proyecto RVSBL. Tienda de bikinis desarrollada en Shopify con secciones creadas desde cero con el lenguaje de programación liquid.',
@@ -48,14 +47,13 @@ const EXPERIENCIES = [
     ],
     link: [
       { url: 'https://21ninjas.es/' },
-      //{ url: 'https://fundedbyangels.com/'},
       { url: 'https://fcm.ulpgc.es/' },
       { url: 'https://spargrancanaria.es/' },
       { url: 'https://rvsbl.com/' },
       {
-        gallery: 'Gallery-EducaAjedrez',
-        galleryPath: 'EducaAjedrez/educaajedrez.local_',
-        length: 8,
+        galeria: 'Galeria-EducaAjedrez',
+        rutaGaleria: 'EducaAjedrez/educaajedrez.local_',
+        cantidad: 8,
       },
     ],
   },
@@ -139,15 +137,15 @@ const EXPERIENCIES = [
 <Layout>
   <section>
     <nav class="flex items-center justify-between py-4">
-      <ArrowLeft className="size-8" link="/about" />
+      <FlechaIzquierda className="size-8" link="/about" />
 
-      <ArrowRight className="size-8" link="/projects" />
+      <FlechaDerecha className="size-8" link="/projects" />
     </nav>
 
     <h1
       class="flex items-center justify-center mb-0 text-3xl font-semibold text-yellow-300 md:justify-start gap-x-3"
     >
-      <Briefcase class="size-8" />
+      <Maletin class="size-8" />
       Experiencia laboral
     </h1>
 	
@@ -158,9 +156,9 @@ const EXPERIENCIES = [
 
     <ol class="relative mt-16">
       {
-        EXPERIENCIES.map((experiencie) => (
+        EXPERIENCIAS.map((experiencia) => (
           <li>
-            <ExperienceItem {...experiencie} />
+            <ItemExperiencia {...experiencia} />
           </li>
         ))
       }

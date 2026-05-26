@@ -1,17 +1,17 @@
 ---
 import '@fontsource-variable/onest'
-import Header from '../components/Header.astro'
-import Footer from '../components/Footer.astro'
+import Cabecera from '../components/Cabecera.astro'
+import PiePagina from '../components/PiePagina.astro'
 import { ViewTransitions } from 'astro:transitions'
-import Hero from '../components/Hero.astro'
-import Toast from '../components/Toast.astro';
+import Heroe from '../components/Heroe.astro'
+import Notificacion from '../components/Notificacion.astro';
 ---
 
 <!doctype html>
 <html lang="es" class="dark">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
+		<meta name="description" content="Porfolio profesional de Diego Fernández - Desarrollador Full Stack y apasionado del Front End. Experiencia en Astro, React, Node.js y WordPress." />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="./favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
@@ -21,13 +21,13 @@ import Toast from '../components/Toast.astro';
 	<body class="relative text-white" >
 		<div class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full bg-gray-950
       bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
-		<Header/>
-		<Toast />
+		<Cabecera/>
+		<Notificacion />
 		<main class="container w-full mx-auto py-32 flex flex-col gap-y-10 items-center justify-center px-4 lg:max-w-4xl md:max-w-2xl md:items-start">
-			<Hero />
+			<Heroe />
 			<slot />
 		</main>
-		<Footer />
+		<PiePagina />
 	</body>
 </html>
 
@@ -38,7 +38,6 @@ import Toast from '../components/Toast.astro';
 
 	html {
 		font-family: "Onest Variable", system-ui, sans-serif;
-		min-width: 550px;
 	}
 
 	body {

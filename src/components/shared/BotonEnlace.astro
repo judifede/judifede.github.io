@@ -1,0 +1,18 @@
+---
+interface Props {
+  href: string
+  etiquetaAria?: string
+}
+
+const { href, etiquetaAria } = Astro.props
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={etiquetaAria}
+  class="inline-flex items-center justify-center gap-2 rounded-full border border-gray-700 bg-gray-800 px-4 py-2 text-white transition-colors duration-200 hover:border-yellow-300/70 hover:bg-yellow-300/5 hover:text-yellow-300 motion-reduce:transition-none text-sm sm:text-base min-h-11"
+>
+  <slot />
+</a>

@@ -1,0 +1,15 @@
+{
+  "pendingDetection": true,
+  "engine": null,
+  "client": null,
+  "detected_from": null,
+  "connection": null,
+  "schema_snapshot": {
+    "tables_or_collections": [],
+    "last_updated": null
+  },
+  "conventions": {
+    "migration_dir": null,
+    "test_dir": null
+  }
+}

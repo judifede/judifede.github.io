@@ -1,0 +1,56 @@
+﻿
+> judifede-porfolio@2.0.0 build
+> astro check && astro build
+
+16:50:48 [content] Syncing content
+16:50:48 [content] Synced content
+16:50:48 [types] Generated 336ms
+16:50:48 [check] Getting diagnostics for Astro files in C:\Repositorios\Diego\judifede.github.io...
+Result (0 files): 
+- 0 errors
+- 0 warnings
+- 0 hints
+
+16:50:52 [content] Syncing content
+16:50:52 [content] Synced content
+16:50:52 [types] Generated 338ms
+16:50:52 [build] output: "static"
+16:50:52 [build] mode: "static"
+16:50:52 [build] directory: C:\Repositorios\Diego\judifede.github.io\dist\
+16:50:52 [build] Collecting build info...
+16:50:52 [build] Ô£ô Completed in 400ms.
+16:50:52 [build] Building static entrypoints...
+16:50:54 [vite] [32mÔ£ô built in 1.99s[39m
+16:50:54 [build] Ô£ô Completed in 2.02s.
+
+ building client (vite) 
+16:50:54 [vite] transforming...
+16:50:54 [vite] [32mÔ£ô[39m 56 modules transformed.
+16:50:54 [vite] rendering chunks...
+16:50:54 [vite] computing gzip size...
+16:50:54 [vite] [2mdist/[22m[36m_astro/projects.astro_astro_type_script_index_0_lang.CdIQELkU.js      [39m[1m[2m 4.33 kB[22m[1m[22m[2m Ôöé gzip:  1.60 kB[22m
+16:50:54 [vite] [2mdist/[22m[36m_astro/ClientRouter.astro_astro_type_script_index_0_lang.CtSceO8m.js  [39m[1m[2m14.78 kB[22m[1m[22m[2m Ôöé gzip:  5.06 kB[22m
+16:50:54 [vite] [2mdist/[22m[36m_astro/photoswipe.esm.CKV1Bsxh.js                                     [39m[1m[2m60.41 kB[22m[1m[22m[2m Ôöé gzip: 17.48 kB[22m
+16:50:54 [vite] [2mdist/[22m[36m_astro/Galeria.astro_astro_type_script_index_0_lang.vJ32fnUG.js       [39m[1m[2m87.57 kB[22m[1m[22m[2m Ôöé gzip: 26.73 kB[22m
+16:50:54 [vite] [32mÔ£ô built in 451ms[39m
+
+ generating static routes 
+16:50:54 ÔûÂ src/pages/about.astro
+16:50:54   ÔööÔöÇ /about/index.html (+17ms) 
+16:50:54 ÔûÂ src/pages/index.astro
+16:50:54   ÔööÔöÇ /index.html (+9ms) 
+16:50:55 ÔûÂ src/pages/projects.astro
+16:50:55   ÔööÔöÇ /projects/index.html (+15ms) 
+16:50:55 Ô£ô Completed in 72ms.
+
+ generating optimized images 
+16:50:55   ÔûÂ /_astro/competition-bracket-generator.BOl5MrqU_Z2cwESN.webp (reused cache entry) (+3ms) (1/6)
+16:50:55   ÔûÂ /_astro/generacion-texto-ia.DmhEuIer_fUC5C.webp (reused cache entry) (+4ms) (2/6)
+16:50:55   ÔûÂ /_astro/todo-today-extension.Dyv5EOg1_Z1nfQKR.webp (reused cache entry) (+4ms) (3/6)
+16:50:55   ÔûÂ /_astro/ludohana-api.BY-f5Z17_Zg1lAA.webp (reused cache entry) (+4ms) (4/6)
+16:50:55   ÔûÂ /_astro/ludohana.DK62HY2P_ZiDLxJ.webp (reused cache entry) (+4ms) (5/6)
+16:50:55   ÔûÂ /_astro/jungle-paradise.C0q6fqSG_Z2bDo3H.webp (reused cache entry) (+5ms) (6/6)
+16:50:55 Ô£ô Completed in 7ms.
+
+16:50:55 [build] 3 page(s) built in 3.01s
+16:50:55 [build] Complete!

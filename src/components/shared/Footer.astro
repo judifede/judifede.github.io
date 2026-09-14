@@ -1,0 +1,115 @@
+---
+import EnlacesSociales from './EnlacesSociales.astro'
+
+const año = new Date().getFullYear()
+
+const focusClasses =
+  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300 focus-visible:ring-offset-4 focus-visible:ring-offset-gray-950'
+---
+
+<footer
+  class="relative overflow-hidden border-t border-violet-400/20 text-gray-100 bg-[radial-gradient(ellipse_at_top_left,rgba(139,92,246,0.12),transparent_42%)] bg-gray-950"
+  aria-labelledby="footer-cercano-title"
+>
+  <div
+    class="pointer-events-none absolute left-[8%] top-0 h-px w-28 bg-yellow-300 sm:w-40"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div
+    class="container relative mx-auto w-full px-4 py-14 md:max-w-2xl md:py-20 lg:max-w-4xl lg:py-24"
+  >
+    <div
+      class="grid items-center gap-10 md:grid-cols-[minmax(0,2fr)_minmax(12rem,1fr)] md:gap-8 lg:gap-12"
+    >
+      <div class="min-w-0">
+        <div class="mb-5 flex items-center gap-4">
+          <p class="text-xs font-bold uppercase tracking-[0.22em] text-yellow-300">
+            HABLEMOS DE TU PROYECTO
+          </p>
+          <div class="relative ml-auto flex shrink-0 items-center justify-center md:hidden">
+            <span
+              class="absolute h-12 w-14 rounded-full bg-violet-500/25 blur-xl"
+              aria-hidden="true"></span>
+            <img
+              src="/logos/jd-knight-gold-light.png"
+              alt=""
+              aria-hidden="true"
+              width="64"
+              height="64"
+              loading="lazy"
+              decoding="async"
+              class="relative h-14 w-14 select-none object-contain"
+            />
+          </div>
+        </div>
+
+        <h2
+          id="footer-cercano-title"
+          class="max-w-2xl text-4xl font-semibold leading-[1.08] tracking-[-0.025em] sm:text-5xl"
+        >
+          ¿Lo vemos juntos?
+        </h2>
+        <p class="mt-6 max-w-2xl text-base leading-relaxed text-gray-300 sm:text-lg">
+          Te ayudo a convertir una idea o un proceso complejo en una solución clara, sólida y fácil
+          de mantener.
+        </p>
+
+        <EnlacesSociales layout="grid" />
+      </div>
+
+      <div class="relative hidden min-h-52 items-center justify-end md:flex" aria-hidden="true">
+        <span class="absolute h-28 w-36 rounded-full bg-violet-400/25 blur-3xl md:h-40 md:w-52"
+        ></span>
+        <img
+          src="/logos/jd-knight-gold-light.png"
+          alt=""
+          aria-hidden="true"
+          width="288"
+          height="288"
+          loading="lazy"
+          decoding="async"
+          class="relative h-auto w-28 select-none object-contain md:w-48 lg:w-56"
+        />
+      </div>
+    </div>
+
+    <div
+      class="mt-12 flex flex-col items-center gap-4 border-t border-gray-800/80 pt-6 text-sm text-gray-300 sm:flex-row sm:items-center sm:justify-between md:mt-16"
+    >
+      <nav aria-label="Navegación secundaria" class="mx-auto text-center sm:mx-0 sm:text-left">
+        <ul class="flex flex-wrap justify-center gap-x-6 sm:justify-start">
+          <li>
+            <a
+              class:list={[
+                'inline-flex min-h-11 items-center hover:text-yellow-300 visited:text-yellow-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-200',
+                focusClasses,
+              ]}
+              href="/">Experiencia</a
+            >
+          </li>
+          <li>
+            <a
+              class:list={[
+                'inline-flex min-h-11 items-center hover:text-yellow-300 visited:text-yellow-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-200',
+                focusClasses,
+              ]}
+              href="/projects">Proyectos</a
+            >
+          </li>
+          <li>
+            <a
+              class:list={[
+                'inline-flex min-h-11 items-center hover:text-yellow-300 visited:text-yellow-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-200',
+                focusClasses,
+              ]}
+              href="/about">Sobre mí</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <p class="mx-auto shrink-0 text-gray-400 sm:mx-0">© {año} Diego Fernández</p>
+    </div>
+  </div>
+</footer>

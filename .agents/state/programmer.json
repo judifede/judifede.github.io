@@ -1,0 +1,11 @@
+{
+  "framework": "Astro",
+  "language": "TypeScript",
+  "styling": "Tailwind CSS",
+  "structure": {
+    "pages": "src/pages",
+    "components": "src/components",
+    "layouts": "src/layouts",
+    "publicAssets": "public"
+  }
+}

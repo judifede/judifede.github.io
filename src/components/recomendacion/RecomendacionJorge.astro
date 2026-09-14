@@ -1,0 +1,67 @@
+---
+import { RECOMENDACION_JORGE as RECOMENDACION } from '../../data/recomendaciones'
+
+interface Props {
+  variant?: 'page' | 'modal'
+}
+
+const { variant = 'page' } = Astro.props
+
+const titleId = variant === 'page' ? 'recomendacion-jorge-title' : 'recomendacion-jorge-modal-title'
+
+const parrafoClases = 'text-base sm:text-lg leading-relaxed'
+const blockquoteClases = 'border-l-4 border-yellow-300 pl-5 text-pretty'
+const footerClases = 'mt-6 flex flex-col gap-1 text-sm md:flex-row md:flex-wrap md:gap-x-2'
+---
+
+{
+  variant === 'page' ? (
+    <section
+      class="mt-12 rounded-2xl border border-yellow-200/20 bg-white/5 p-6 md:p-8"
+      aria-labelledby={titleId}
+    >
+      <h2 id={titleId} class="mb-6 text-2xl font-semibold text-yellow-300">
+        Recomendación profesional
+      </h2>
+      <blockquote class={blockquoteClases}>
+        <p class={parrafoClases}>{RECOMENDACION.cita1}</p>
+        <p class:list={['mt-4', parrafoClases]}>{RECOMENDACION.cita2}</p>
+        <footer class={footerClases}>
+          <cite class="not-italic font-semibold">
+            <a
+              href={RECOMENDACION.hrefLinkedIn}
+              aria-label="Perfil de Jorge Mor en LinkedIn"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-yellow-200 underline decoration-yellow-200/50 underline-offset-4"
+            >
+              {RECOMENDACION.nombre}
+            </a>
+          </cite>
+          <span>{RECOMENDACION.cargo}</span>
+          <time datetime={RECOMENDACION.fechaISO}>{RECOMENDACION.fecha}</time>
+        </footer>
+      </blockquote>
+    </section>
+  ) : (
+    <blockquote class={blockquoteClases}>
+      <p class={parrafoClases}>{RECOMENDACION.cita1}</p>
+      <p class:list={['mt-4', parrafoClases]}>{RECOMENDACION.cita2}</p>
+      <footer class={footerClases}>
+        <cite class="not-italic font-semibold">
+          <a
+            href={RECOMENDACION.hrefLinkedIn}
+            aria-label="Perfil de Jorge Mor en LinkedIn"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-yellow-200 underline decoration-yellow-200/50 underline-offset-4"
+          >
+            {RECOMENDACION.nombre}
+          </a>
+        </cite>
+        <span>{RECOMENDACION.cargo}</span>
+        <time datetime={RECOMENDACION.fechaISO}>{RECOMENDACION.fecha}</time>
+      </footer>
+    </blockquote>
+  )
+}

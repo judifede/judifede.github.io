@@ -1,0 +1,24 @@
+---
+import RecomendacionJorge from './RecomendacionJorge.astro'
+---
+
+<dialog
+  id="recomendacion-jorge"
+  class="backdrop:bg-black/60 max-w-2xl w-full m-auto mx-4 rounded-2xl border border-yellow-200/20 bg-gray-950 text-white p-5 sm:p-8 md:p-10"
+  aria-labelledby="recomendacion-jorge-modal-title"
+>
+  <h2 id="recomendacion-jorge-modal-title" class="sr-only">
+    Recomendación profesional de Jorge Mor
+  </h2>
+
+  <button
+    type="button"
+    data-close-dialog
+    aria-label="Cerrar recomendación"
+    class="absolute top-2 right-2 sm:top-3 sm:right-3 inline-flex items-center justify-center rounded-full size-9 text-2xl leading-none text-yellow-200 hover:bg-yellow-300/10 focus:outline-none focus:ring-2 focus:ring-yellow-300/50"
+  >
+    ×
+  </button>
+
+  <RecomendacionJorge variant="modal" />
+</dialog>

@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets'
+
+import type { AjusteRecurso, RecursoProyecto } from './recursos'
+
+interface Props {
+  recurso: RecursoProyecto
+}
+
+const { recurso } = Astro.props
+
+const CLASES_AJUSTE: Record<AjusteRecurso, string> = {
+  recortar: 'object-cover',
+  encajar: 'object-contain',
+}
+
+const claseAjuste = CLASES_AJUSTE[recurso.ajuste]
+---
+
+<div class="w-full overflow-hidden rounded-xl transition duration-500 md:hover:shadow-2xl">
+  {
+    recurso.tipo === 'imagen' ? (
+      <Image
+        src={recurso.fuente}
+        alt={recurso.textoAlternativo}
+        loading="lazy"
+        class:list={[
+          'block h-auto w-full max-h-[420px] object-center transition duration-500 md:hover:scale-110',
+          claseAjuste,
+        ]}
+      />
+    ) : (
+      <video
+        class:list={['block h-auto w-full max-h-[420px] object-center', claseAjuste]}
+        data-video-proyecto
+        controls
+        loop
+        muted
+        playsinline
+        preload="metadata"
+        poster={recurso.cartel.src}
+        width={recurso.ancho}
+        height={recurso.alto}
+        aria-label={recurso.etiquetaAccesible}
+      >
+        <source src={recurso.fuente} type="video/mp4" />
+        Tu navegador no permite reproducir este vídeo.
+      </video>
+    )
+  }
+</div>

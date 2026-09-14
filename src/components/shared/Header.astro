@@ -1,0 +1,71 @@
+---
+// TODO: Implementar cambio de idioma
+const navItems = [
+  {
+    title: 'Experiencia',
+    label: 'Enlace a experiencia',
+    url: '/',
+  },
+  {
+    title: 'Proyectos',
+    label: 'Enlace a proyectos',
+    url: '/projects',
+  },
+  {
+    title: 'Sobre mí',
+    label: 'Enlace a sobre mí',
+    url: '/about',
+  },
+]
+
+// Normaliza para que `/projects` y `/projects/` se consideren la misma ruta.
+const normalizePath = (path: string) => (path.length > 1 ? path.replace(/\/+$/, '') : path)
+
+const currentPath = normalizePath(Astro.url.pathname)
+---
+
+<header
+  class="fixed inset-x-0 top-0 z-40 flex items-center justify-center my-3 sm:my-5 w-full mx-auto px-4"
+>
+  <nav
+    class="flex flex-row items-center gap-x-2 sm:gap-x-3 lg:gap-x-4 opacity-90 text-base sm:text-lg p-2.5 rounded-xl bg-neutral-950/80 backdrop-blur-md ring-1 ring-white/10 shadow-lg"
+  >
+    {
+      navItems.map((link) => {
+        const activo = normalizePath(link.url) === currentPath
+        return (
+          <span>
+            <a
+              href={link.url}
+              aria-label={link.label}
+              aria-current={activo ? 'page' : undefined}
+              class:list={[
+                'inline-flex min-h-11 items-center rounded-full px-3 py-1 font-bold transition-colors duration-200 motion-reduce:transition-none',
+                activo
+                  ? 'bg-yellow-300/15 text-yellow-300 ring-1 ring-yellow-300/30'
+                  : 'text-yellow-300/90 hover:text-yellow-300 hover:bg-yellow-300/5',
+                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950',
+              ]}
+            >
+              {link.title}
+            </a>
+          </span>
+        )
+      })
+    }
+  </nav>
+</header>
+
+<style>
+  nav {
+    animation: nav-shadown 1s linear both;
+    animation-timeline: scroll();
+    animation-range: 0 100px;
+  }
+
+  @keyframes nav-shadown {
+    to {
+      @apply shadow-lg ring-1 backdrop-blur bg-gray-800/90  ring-white/10;
+    }
+  }
+</style>

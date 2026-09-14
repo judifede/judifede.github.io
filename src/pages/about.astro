@@ -1,45 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import Perfil from '../components/icons/Perfil.astro'
-import Escuela from '../components/icons/Escuela.astro'
-import ItemFormacion from '../components/ItemFormacion.astro'
-import FlechaIzquierda from '../components/icons/FlechaIzquierda.astro'
-import FlechaDerecha from '../components/icons/FlechaDerecha.astro'
+import { getCollection } from 'astro:content'
 
-const FORMACIONES = [
-  {
-    title: 'Desarrollo Web Full-Stack',
-    company: 'Reboot Academy',
-    date: 'Enero - Abril 2024',
-    description:
-      'Formación Dual Escuela de Programadores en colaboración con la Fundación Universitaria de Las Palmas y la Universidad de Las Palmas de Gran Canaria.',
-    files: ['Diploma.pdf', 'Contenidos.pdf', 'Certificado_full-stack-Juan-Diego.pdf'],
-  },
+import Perfil from '../components/shared/icons/Perfil.astro'
+import Escuela from '../components/shared/icons/Escuela.astro'
+import ItemFormacion from '../components/formacion/ItemFormacion.astro'
+import RecomendacionJorge from '../components/recomendacion/RecomendacionJorge.astro'
 
-  {
-    title: 'Desarrollo de Aplicaciones Multiplataforma',
-    company: 'IES El Rincón',
-    url: 'https://www.todofp.es/que-estudiar/loe/informatica-comunicaciones/des-aplicaciones-multiplataforma.html',
-    date: '2016 - 2017',
-    description: 'Ciclo Superior de Desarrollo de Aplicaciones Multiplataforma.',
-  },
-  {
-    title: 'Desarrollo de Aplicaciones Web',
-    company: 'IES El Rincón',
-    url: 'https://www.todofp.es/que-estudiar/loe/informatica-comunicaciones/des-aplicaciones-web.html',
-    date: '2014 - 2016',
-    description: 'Ciclo Superior de Desarrollo de Aplicaciones Web.',
-  },
-]
+const formaciones = (await getCollection('formacion')).sort((a, b) => a.data.order - b.data.order)
 ---
 
 <Layout>
   <section>
-    <nav class="flex justify-between items-center py-4">
-      <FlechaIzquierda className="size-8" link="/projects" />
-
-      <FlechaDerecha className="size-8" link="/" />
-    </nav>
     <article>
       <h1
         class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-yellow-300"
@@ -55,22 +27,29 @@ const FORMACIONES = [
 
       <ol class="relative mt-16">
         {
-          FORMACIONES.map((formacion) => (
-            <li>
-              <ItemFormacion {...formacion} />
+          formaciones.map((formacion) => (
+            <li class="[&:first-child>article]:border-t-0 [&:first-child>article]:pt-0">
+              <ItemFormacion {...formacion.data} />
             </li>
           ))
         }
       </ol>
     </article>
 
+    <RecomendacionJorge variant="page" />
+
     <article class="mt-16">
       <h1
-        class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-white"
+        class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-yellow-300"
       >
         <Perfil class="size-8" />
         Sobre mí
       </h1>
+
+      <div
+        class="before:content-[''] before:block before:w-full before:h-[2px] before:bg-yellow-100 before:mb-8 before:mt-6"
+      >
+      </div>
 
       <div class="mt-16 flex justify-between items-center gap-4 text-pretty flex-col md:flex-row">
         <p class="[&>*>strong]:text-yellow-100 [&>*>strong]:font-medium order-2 md:order-1">
@@ -79,7 +58,8 @@ const FORMACIONES = [
             <br />Empecé en el mundo de la programación en 4º ESO con HTML y CSS, sin saber que a
             día de hoy me iba a seguir gustando tanto, tenía 15 años. Actualmente he podido <strong
               >trabajar en diferentes roles dentro de la informática</strong
-            >.</span>
+            >.</span
+          >
           <br />
           <br />
           <span>
@@ -91,10 +71,10 @@ const FORMACIONES = [
           >
         </p>
 
-        <div class="min-w-72 w-96 order-1 md:order-2 p-1 lg:p-2">
+        <div class="min-w-0 w-full max-w-sm md:min-w-72 md:w-96 order-1 md:order-2 p-1 lg:p-2">
           <picture>
             <source media="(max-width:767px)" srcset="/about/about_mv.png" />
-            <img class="" src="/about/about.png" alt="About" />
+            <img class="block h-auto w-full" src="/about/about.png" alt="About" />
           </picture>
         </div>
       </div>

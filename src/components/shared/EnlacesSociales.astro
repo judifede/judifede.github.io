@@ -1,0 +1,172 @@
+---
+import CorreoIcon from './icons/Correo.astro'
+import LinkedInIcon from './icons/LinkedIn.astro'
+import GitHubIcon from './icons/GitHub.astro'
+
+interface Props {
+  /** Lista semántica a la que pertenece el bloque de enlaces sociales. */
+  ariaLabel?: string
+  /** Disposición del contenedor de enlaces. */
+  layout?: 'flex' | 'grid'
+}
+
+const { ariaLabel = 'Canales de contacto', layout = 'flex' } = Astro.props
+
+const containerClasses =
+  layout === 'grid'
+    ? 'mt-9 grid grid-cols-1 gap-3 w-full sm:grid-cols-2 sm:w-2/3'
+    : 'mt-9 flex flex-wrap gap-3'
+
+const correo = 'judifede217@gmail.com'
+const linkedin = 'https://www.linkedin.com/in/diego-fdez-1b0009109/'
+const github = 'https://github.com/judifede'
+
+const focusClasses =
+  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300 focus-visible:ring-offset-4 focus-visible:ring-offset-gray-950'
+
+const baseClases =
+  'inline-flex min-h-11 w-full items-center gap-3 px-5 py-2 text-sm font-semibold text-gray-200 transition-colors duration-200 hover:border-yellow-300/70 hover:bg-yellow-300/5 hover:text-yellow-300 motion-reduce:transition-none rounded-full border border-gray-700 sm:w-auto'
+---
+
+<ul class={containerClasses} aria-label={ariaLabel}>
+  <li>
+    <a
+      href={`mailto:${correo}`}
+      aria-label="Escribir un correo a Diego Fernández"
+      class:list={[baseClases, focusClasses]}
+    >
+      <CorreoIcon class="size-5 shrink-0" aria-hidden="true" />
+      <span>Escribir</span>
+    </a>
+  </li>
+  <li>
+    <button
+      type="button"
+      data-correo={correo}
+      data-feedback-id="enlaces-sociales-feedback"
+      aria-label="Copiar el correo de Diego Fernández al portapapeles"
+      class:list={[baseClases, 'cursor-pointer', focusClasses]}
+    >
+      <CorreoIcon class="size-5 shrink-0" aria-hidden="true" />
+      <span>Copiar correo</span>
+    </button>
+  </li>
+  <li>
+    <a
+      href={linkedin}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Abrir LinkedIn de Diego Fernández en una pestaña nueva"
+      class:list={[baseClases, focusClasses]}
+    >
+      <LinkedInIcon class="size-5 shrink-0" aria-hidden="true" />
+      <span>LinkedIn</span>
+    </a>
+  </li>
+  <li>
+    <a
+      href={github}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Abrir GitHub de Diego Fernández en una pestaña nueva"
+      class:list={[baseClases, focusClasses]}
+    >
+      <GitHubIcon class="size-5 shrink-0" aria-hidden="true" />
+      <span>GitHub</span>
+    </a>
+  </li>
+</ul>
+
+<p id="enlaces-sociales-feedback" role="status" aria-live="polite" class="sr-only">
+  Correo copiado
+</p>
+
+<script>
+  const SELECTOR_BOTON = '[data-correo][data-feedback-id]'
+  const FEEDBACK_ID = 'enlaces-sociales-feedback'
+  const MENSAJE_OK = 'Correo copiado'
+  const MENSAJE_FALLBACK = 'No se pudo copiar el correo. Cópialo manualmente.'
+  const DURACION_FEEDBACK_MS = 2200
+
+  type FeedbackEl = HTMLElement & { _feedbackTimeout?: number }
+
+  function restaurarFeedback(feedback: FeedbackEl) {
+    feedback.textContent = MENSAJE_OK
+  }
+
+  function anunciar(feedback: FeedbackEl, mensaje: string) {
+    feedback.textContent = ''
+    window.setTimeout(() => {
+      feedback.textContent = mensaje
+    }, 30)
+  }
+
+  async function copiar(texto: string, feedback: FeedbackEl): Promise<boolean> {
+    try {
+      if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+        await navigator.clipboard.writeText(texto)
+        return true
+      }
+    } catch (error) {
+      console.warn('Clipboard API no disponible, usando fallback:', error)
+    }
+
+    const resultado = fallbackPortapapeles(texto)
+    if (!resultado) {
+      anunciar(feedback, MENSAJE_FALLBACK)
+    }
+    return resultado
+  }
+
+  function fallbackPortapapeles(texto: string): boolean {
+    const entrada = document.createElement('textarea')
+    entrada.value = texto
+    entrada.setAttribute('readonly', '')
+    entrada.style.position = 'fixed'
+    entrada.style.top = '-1000px'
+    entrada.style.opacity = '0'
+    document.body.appendChild(entrada)
+    entrada.focus()
+    entrada.select()
+    let ok = false
+    try {
+      ok = document.execCommand('copy')
+    } catch (error) {
+      console.warn('Fallback execCommand falló:', error)
+      ok = false
+    }
+    document.body.removeChild(entrada)
+    return ok
+  }
+
+  function configurar() {
+    const feedback = document.getElementById(FEEDBACK_ID) as FeedbackEl | null
+    if (!feedback) return
+
+    const botones = document.querySelectorAll<HTMLButtonElement>(SELECTOR_BOTON)
+    botones.forEach((boton) => {
+      if (boton.dataset.enlacesSocialesVinculado === 'true') return
+      boton.dataset.enlacesSocialesVinculado = 'true'
+
+      boton.addEventListener('click', async (evento) => {
+        evento.preventDefault()
+        const correo = boton.dataset.correo
+        if (!correo) return
+
+        const exito = await copiar(correo, feedback)
+        if (exito) {
+          anunciar(feedback, MENSAJE_OK)
+        }
+
+        if (feedback._feedbackTimeout) {
+          window.clearTimeout(feedback._feedbackTimeout)
+        }
+        feedback._feedbackTimeout = window.setTimeout(() => {
+          restaurarFeedback(feedback)
+        }, DURACION_FEEDBACK_MS)
+      })
+    })
+  }
+
+  document.addEventListener('astro:page-load', configurar)
+</script>

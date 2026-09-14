@@ -1,50 +1,65 @@
 ---
 import '@fontsource-variable/onest'
-import Cabecera from '../components/Cabecera.astro'
-import PiePagina from '../components/PiePagina.astro'
-import { ViewTransitions } from 'astro:transitions'
-import Heroe from '../components/Heroe.astro'
-import Notificacion from '../components/Notificacion.astro';
+import '../styles/global.css'
+import Cabecera from '../components/shared/Header.astro'
+import Footer from '../components/shared/Footer.astro'
+import { ClientRouter } from 'astro:transitions'
+import Hero from '../components/shared/Hero.astro'
+import PopupRecomendacion from '../components/recomendacion/PopupRecomendacion.astro'
+
+const showLocalCvManager = import.meta.env.LOCAL_CV_MANAGER_ENABLED
 ---
 
 <!doctype html>
 <html lang="es" class="dark">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Porfolio profesional de Diego Fernández - Desarrollador Full Stack y apasionado del Front End. Experiencia en Astro, React, Node.js y WordPress." />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<ViewTransitions />
-		<title>Porfolio de Diego Fernández - Desarrollador y Programador Web</title>
-	</head>
-	<body class="relative text-white" >
-		<div class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full bg-gray-950
-      bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
-		<Cabecera/>
-		<Notificacion />
-		<main class="container w-full mx-auto py-32 flex flex-col gap-y-10 items-center justify-center px-4 lg:max-w-4xl md:max-w-2xl md:items-start">
-			<Heroe />
-			<slot />
-		</main>
-		<PiePagina />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Porfolio de Diego Fernández, desarrollador web full stack y automatización. Disponibilidad inmediata en Las Palmas de Gran Canaria y modalidad flexible."
+    />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <ClientRouter />
+    <link rel="icon" type="image/png" href="/logos/jd-knight-gold-deep.png" />
+    <title>Porfolio de Diego Fernández - Desarrollador y Programador Web</title>
+  </head>
+  <body class="relative overflow-x-clip text-white">
+    <div
+      class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full bg-gray-950
+      bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
+    >
+    </div>
+    <Cabecera />
+    <main
+      class="container w-full mx-auto py-32 flex flex-col gap-y-10 items-center justify-center px-4 lg:max-w-4xl md:max-w-2xl md:items-start pt-24 sm:pt-28"
+    >
+      <Hero />
+      <slot />
+    </main>
+    <Footer />
+    <PopupRecomendacion />
+    {showLocalCvManager && <script is:inline data-astro-rerun src="/local/cv/cv-manager.js" />}
+  </body>
 </html>
 
 <style is:global>
-	:root {
-		color-scheme: dark;
-	}
+  :root {
+    color-scheme: dark;
+  }
 
-	html {
-		font-family: "Onest Variable", system-ui, sans-serif;
-	}
+  html {
+    font-family: 'Onest Variable', system-ui, sans-serif;
+  }
 
-	body {
-		color: white;
-		display: flex;
-		flex-direction: column;
-		min-height: 100vh;
-	}
-
+  body {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
 </style>
+
+<script>
+  import '../utils/dialogs.ts'
+</script>

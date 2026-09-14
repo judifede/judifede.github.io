@@ -1,0 +1,216 @@
+---
+import InformacionIcon from '../shared/icons/Informacion.astro'
+import EnlaceIcon from '../shared/icons/Enlace.astro'
+import GaleriaIcon from '../shared/icons/Galeria.astro'
+import Galeria from './Galeria.astro'
+import FlechaDerecha from '../shared/icons/FlechaDerecha.astro'
+import { parseMd } from '../../utils/md'
+
+interface Props {
+  title: string
+  company: string
+  companyDetail?: string
+  blockquote?: string
+  descriptions?: Array<string>
+  descriptionList?: Array<string>
+  impact?: ImpactItem[]
+  link?: Array<Enlace>
+  date: string
+}
+
+interface Enlace {
+  url?: string
+  galeria?: string
+  rutaGaleria?: string
+  cantidad?: number
+}
+
+type ImpactSubItem = string | { texto: string; openDialogId?: string }
+type ImpactItem =
+  | string
+  | { texto: string; openDialogId?: string; externalUrl?: string; subitems?: ImpactSubItem[] }
+
+const {
+  title,
+  company,
+  companyDetail,
+  blockquote,
+  descriptions,
+  descriptionList,
+  impact,
+  link,
+  date,
+} = Astro.props
+
+function renderItem(item: ImpactItem) {
+  const texto = typeof item === 'string' ? item : item.texto
+  const openDialogId = typeof item === 'string' ? undefined : item.openDialogId
+  const externalUrl = typeof item === 'string' ? undefined : item.externalUrl
+  const subitems = typeof item === 'string' ? undefined : item.subitems
+  return { texto, openDialogId, externalUrl, subitems }
+}
+---
+
+<article
+  class="relative mx-4 sm:mx-12 pt-6 sm:pt-0 pb-6 grid place-items-center md:place-items-start border-t-2 border-yellow-100 sm:border-t-0 before:absolute before:left-2 sm:before:left-[-35px] before:hidden sm:before:block before:h-full before:border-l-2 before:border-white/15 before:content-[''] md:grid-cols-5 md:gap-10 max-w-full"
+>
+  <span class="hidden sm:inline text-yellow-400 -left-3 sm:-left-[42px] -top-2 absolute rounded-full text-5xl align-middle"
+    >&bull;</span
+  >
+  <div class="pb-12 md:col-span-2 flex flex-col items-center md:flex-none md:items-start w-full min-w-0">
+    <h2 class="text-xl font-bold text-yellow-400">{title}</h2>
+    <h3 class="mt-2 text-xl font-semibold text-white inline-block">{company}</h3>
+    <blockquote class="text-lg font-semibold text-white flex gap-x-1 items-center">
+      {companyDetail}
+      {
+        blockquote && (
+          <>
+            <InformacionIcon class="inline-block size-5 text-yellow-400" />
+            <div
+              data-tip={blockquote}
+              class="relative
+            before:content-[attr(data-tip)]
+            before:absolute
+            before:px-4 before:py-2
+            before:left-1/2 before:-top-5
+            before:w-[min(280px,calc(100vw-2rem))] before:max-w-xs
+            before:-translate-x-1/2 before:-translate-y-full
+            before:bg-gray-800 before:border-gray-600 before:text-white
+            before:rounded-md before:opacity-0
+            before:z-10
+            before:transition-all
+            
+            after:absolute
+            after:-right-0.5
+            after:-top-5
+            after:h-0 after:w-0
+            after:-translate-x-1/2
+            after:border-8
+            after:border-transparent
+            after:border-t-gray-800
+            after:opacity-0
+            after:transition-all
+
+            pointer-events-none
+           "
+            />
+          </>
+        )
+      }
+    </blockquote>
+    <time class="mt-4 text-md">{date}</time>
+  </div>
+  <div class="relative flex flex-col gap-2 pb-4 text-gray-300 md:col-span-3 min-w-0 w-full break-words">
+    {
+      impact && impact.length > 0 && (
+        <section class="mb-5 rounded-lg border-l-2 border-yellow-400 bg-yellow-400/5 px-4 py-3 min-w-0 break-words">
+          <h4 class="text-base font-semibold text-yellow-300">Hitos / Impacto</h4>
+          <ul class="mt-2 list-disc space-y-2 pl-5 marker:text-yellow-400">
+            {impact.map((item) => {
+              const { texto, openDialogId, externalUrl, subitems } = renderItem(item)
+              return (
+                <li class="pl-1 text-gray-200">
+                  <p class="break-words"><span set:html={parseMd(texto)} /></p>
+                  {openDialogId && (
+                    <span class="mt-2 flex justify-end">
+                      <button
+                        type="button"
+                        data-open-dialog={openDialogId}
+                        aria-haspopup="dialog"
+                        aria-controls={openDialogId}
+                        class="btn-link-pill"
+                      >
+                        Ver recomendación
+                      </button>
+                    </span>
+                  )}
+                  {subitems && subitems.length > 0 && (
+                    <ul class="list-disc pl-5 mt-2 space-y-1 marker:text-yellow-400">
+                      {subitems.map((sub) => (
+                        <li
+                          class="pl-1 text-gray-200 break-words"
+                          set:html={parseMd(typeof sub === 'string' ? sub : sub.texto)}
+                        />
+                      ))}
+                    </ul>
+                  )}
+                  {externalUrl && (
+                    <span class="mt-2 flex justify-end">
+                      <a
+                        href={externalUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn-link-pill"
+                      >
+                        <EnlaceIcon class="size-5" />
+                        Ver automatización
+                      </a>
+                    </span>
+                  )}
+                </li>
+              )
+            })}
+          </ul>
+        </section>
+      )
+    }
+    {
+      descriptions &&
+        descriptions.map((description) => <p class="my-1" set:html={parseMd(description)} />)
+    }
+    {
+      descriptionList && (
+        <ul class="space-y-3">
+          {descriptionList.map((item, index) => (
+            <li class="min-w-80 text-body-color dark:text-dark-6 flex text-base">
+              <span class="text-primary mr-2.5 mt-0.5">
+                <FlechaDerecha className="size-5" />
+              </span>
+              <p class="flex flex-col w-full break-words">
+                <span set:html={parseMd(item)} />
+
+                {link && link?.[index].url != undefined ? (
+                  <a
+                    href={link?.[index].url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn-link-pill"
+                  >
+                    <EnlaceIcon class="size-5" />
+                    Ver proyecto
+                  </a>
+                ) : link?.[index].galeria != undefined ? (
+                  <>
+                    <span id={link?.[index].galeria} class="btn-link-pill cursor-pointer">
+                      <GaleriaIcon class="size-5" />
+                      Ver proyecto
+                    </span>
+                    <Galeria
+                      carpeta={link?.[index].rutaGaleria?.split('/')[0] ?? ''}
+                      rutaGaleria={
+                        link?.[index].rutaGaleria?.includes('/')
+                          ? link[index]!.rutaGaleria!.split('/').slice(1).join('/')
+                          : link?.[index].rutaGaleria
+                      }
+                      idBotonGaleria={link?.[index].galeria}
+                      cantidad={link?.[index].cantidad}
+                    />
+                  </>
+                ) : (
+                  ''
+                )}
+              </p>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  blockquote:hover div:after,
+  blockquote:hover div:before {
+    opacity: 1;
+  }
+</style>

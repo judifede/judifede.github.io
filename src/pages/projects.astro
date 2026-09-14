@@ -1,418 +1,477 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import { getCollection } from 'astro:content'
+import type { ImageMetadata } from 'astro'
 
-import GitHubIcon from '../components/icons/GitHub.astro'
-import EnlaceIcon from '../components/icons/Enlace.astro'
+import RecursoProyecto from '../components/proyectos/RecursoProyecto.astro'
+import type { RecursoProyecto as RecursoMultimedia } from '../components/proyectos/recursos'
 
-import HTML5Icon from '../components/icons/languages/HTML5.astro'
-import CSS3Icon from '../components/icons/languages/CSS3.astro'
-import TailwindIcon from '../components/icons/languages/Tailwind.astro'
-import JSIcon from '../components/icons/languages/JS.astro'
-import JQueryIcon from '../components/icons/languages/JQuery.astro'
-import GitIcon from '../components/icons/languages/Git.astro'
-import PHPIcon from '../components/icons/languages/PHP.astro'
-import WordpressIcon from '../components/icons/languages/Wordpress.astro'
-import NodeJSIcon from '../components/icons/languages/NodeJS.astro'
-import PostmanIcon from '../components/icons/languages/Postman.astro'
-import ExpressJSIcon from '../components/icons/languages/ExpressJS.astro'
-import SequelizeIcon from '../components/icons/languages/Sequelize.astro'
-import PrismaIcon from '../components/icons/languages/Prisma.astro'
-import TursoIcon from '../components/icons/languages/Turso.astro'
-import VercelIcon from '../components/icons/languages/Vercel.astro'
-import ReactIcon from '../components/icons/languages/React.astro'
-import MaterialUIIcon from '../components/icons/languages/MaterialUI.astro'
-import StripeIcon from '../components/icons/languages/Stripe.astro'
-import VueIcon from '../components/icons/languages/Vue.astro'
-import ChromeIcon from '../components/icons/languages/Chrome.astro'
-import PythonIcon from '../components/icons/languages/Python.astro'
-import FlaskIcon from '../components/icons/languages/Flask.astro'
-import MongoDBIcon from '../components/icons/languages/MongoDB.astro'
-import DockerIcon from '../components/icons/languages/Docker.astro'
+import { ETIQUETAS, type Etiqueta } from '../data/etiquetas'
+import { SECCIONES_PROYECTOS_META } from '../data/categorias'
 
-import BotonEnlace from '../components/BotonEnlace.astro'
-import PerfilIcon from '../components/icons/Perfil.astro'
-import PruebaIcon from '../components/icons/Prueba.astro'
-import Maletin from '../components/icons/Maletin.astro'
-import FlechaIzquierda from '../components/icons/FlechaIzquierda.astro'
-import FlechaDerecha from '../components/icons/FlechaDerecha.astro'
+import BotonEnlace from '../components/shared/BotonEnlace.astro'
+import GitHubIcon from '../components/shared/icons/GitHub.astro'
+import EnlaceIcon from '../components/shared/icons/Enlace.astro'
+import PerfilIcon from '../components/shared/icons/Perfil.astro'
+import PruebaIcon from '../components/shared/icons/Prueba.astro'
+import Maletin from '../components/shared/icons/Maletin.astro'
+import FiltrosIcon from '../components/shared/icons/FiltrosIcon.astro'
 
+// Cargar todos los assets de proyectos desde src/content/proyectos/<id>/.
+// Convención: el archivo de imagen tiene el mismo nombre que el slug de la carpeta.
+const imagenesPorCarpeta = import.meta.glob<{ default: ImageMetadata }>(
+  '../content/proyectos/*/*.{webp,png,jpg}',
+  { eager: true }
+)
+const videosPorCarpeta = import.meta.glob<string>('../content/proyectos/*/*.mp4', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+})
 
-const ETIQUETAS = {
-  HTML5: { nombre: 'HTML5', titulo: '', clase: 'bg-orange-600/50 text-white', icono: HTML5Icon },
-  CSS3: { nombre: 'CSS3', titulo: '', clase: 'bg-indigo-700/50 text-white', icono: CSS3Icon },
-  TAILWIND: { nombre: 'Tailwind', titulo: '', clase: 'bg-teal-700/50 text-white', icono: TailwindIcon },
-  JS: { nombre: 'Javascript', titulo: '', clase: 'bg-yellow-400/50 text-white', icono: JSIcon },
-  JQUERY: { nombre: 'JQuery', titulo: '', clase: 'bg-sky-600/50 text-white', icono: JQueryIcon },
-  GIT: { nombre: 'Git', titulo: '', clase: 'bg-red-900/50 text-white', icono: GitIcon },
-  PHP: { nombre: 'PHP', titulo: '', clase: 'bg-[#6c70a4] text-white', icono: PHPIcon },
-  WORDPRESS: { nombre: 'Wordpress', titulo: '', clase: 'bg-indigo-800/50 text-white', icono: WordpressIcon },
-  NODEJS: { nombre: 'NodeJS', titulo: '', clase: 'bg-green-800/50 text-white', icono: NodeJSIcon },
-  POSTMAN: { nombre: 'Postman', titulo: '', clase: 'bg-orange-600/50 text-white', icono: PostmanIcon },
-  EXPRESSJS: { nombre: 'ExpressJS', titulo: '', clase: 'bg-gray-100/50 text-white', icono: ExpressJSIcon },
-  SEQUELIZE: { nombre: 'Sequelize', titulo: '', clase: 'bg-indigo-800/50 text-white', icono: SequelizeIcon },
-  PRISMA: { nombre: 'Prisma', titulo: '', clase: 'bg-gray-100/50 text-white', icono: PrismaIcon },
-  TURSO: { nombre: 'Turso', titulo: '', clase: 'bg-gray-100/50 text-white', icono: TursoIcon },
-  VERCEL: { nombre: 'Vercel', titulo: '', clase: 'bg-gray-100/50 text-white', icono: VercelIcon },
-  REACT: { nombre: 'React', titulo: '', clase: 'bg-indigo-800/50 text-white', icono: ReactIcon },
-  MATERIALUI: { nombre: 'MaterialUI', titulo: '', clase: 'bg-indigo-800/50 text-white', icono: MaterialUIIcon },
-  CHROME: { nombre: 'Chrome', titulo: '', clase: 'bg-sky-600/50 text-white', icono: ChromeIcon },
-  DOCKER: { nombre: 'Docker', titulo: '', clase: 'bg-sky-600/50 text-white', icono: DockerIcon },
-  PYTHON: { nombre: 'Python', titulo: '', clase: 'bg-yellow-400/50 text-white', icono: PythonIcon },
-  FLASK: { nombre: 'Flask', titulo: '', clase: 'bg-gray-100/50 text-white', icono: FlaskIcon },
-  MONGODB: { nombre: 'MongoDB', titulo: '', clase: 'bg-emerald-600/50 text-white', icono: MongoDBIcon },
-  STRIPE: { nombre: '', titulo: 'Stripe', clase: 'bg-gray-100/90 text-white', icono: StripeIcon },
-  VUE: { nombre: 'Vue', titulo: '', clase: 'bg-emerald-700/50 text-white', icono: VueIcon },
+type CategoriaProyecto = 'corporativos' | 'pruebas-tecnicas' | 'personales'
+
+interface ProyectoCompleto {
+  id: string
+  titulo: string
+  descripciones: readonly string[]
+  enlace?: string
+  repositorio?: string
+  recurso: RecursoMultimedia
+  etiquetas: readonly Etiqueta[]
+  categoria: CategoriaProyecto
+  order: number
 }
 
-const PROYECTOS_CORPORATIVOS = [
-  {
-    projectid: 'ecoinge_canarias',
-    title: 'Ecoinge Canarias',
-    descriptions: [
-      '<strong class="text-yellow-100">Ecoinge Canarias</strong> es una empresa de ingeniería cuya misión es mejorar el uso de la tecnología combinándola con la sostenibilidad y el medio ambiente.',
-      'El proyecto se ha centrado en el blueprint (organización de contenido), utilizando código propio <strong class="text-yellow-100">(CSS y JQuery)</strong> y Elementor para su maquetación.',
-      'Para poner a prueba el diseño, se han aplicado pruebas de usabilidad con diferentes perfiles de usuarios, haciendo los últimos cambios necesarios en base a los resultados obtenidos.',
-      'Se ha configurado un <strong class="text-yellow-100">trabajo cron en PHP</strong> para los números de los contadores.',
-    ],
-    link: 'https://ecoingecanarias.com/',
-    imageDesign: 'cover',
-    video: '/projects/EcoingeCanarias.mp4',
-    tags: [ETIQUETAS.WORDPRESS, ETIQUETAS.PHP, ETIQUETAS.HTML5, ETIQUETAS.CSS3, ETIQUETAS.JS, ETIQUETAS.JQUERY],
-  },
-  {
-    projectid: 'finanza_honesta',
-    title: 'Finanza Honesta',
-    descriptions: [
-      '<strong class="text-yellow-100">Finanza Honesta</strong> es un proyecto enfocado en la educación y salud financiera de las personas.',
-      'El proyecto es una <strong class="text-yellow-100">landing page</strong> para promocionar su newsletter, que permite mantener a los usuarios informados sobre las últimas noticias y consejos financieros.',
-      `Se hace uso de <strong class="text-yellow-100">Systeme.io</strong>, una herramienta de marketing que permite maquetar landings con su dominio.`,
-    ],
-    link: 'https://finanzahonesta.systeme.io/newsletter',
-    image: '/projects/FinanzaHonesta.webp',
-    imageDesign: 'contain',
-    tags: [ETIQUETAS.HTML5, ETIQUETAS.CSS3, ETIQUETAS.JS],
-  },
-]
+const proyectosEntries = await getCollection('proyectos')
 
-const PRUEBAS_TECNICAS = [
-  {
-    projectid: 'pt_phrase_AI',
-    title: 'Generación de Texto IA',
-    descriptions: [
-      '<strong class="text-yellow-100">Objetivo de la prueba:</strong> Permitir a los usuarios generar texto utilizando una API que simule el comportamiento de una Inteligencia Artificial para generación de texto.',
-      'Se opta por generar frases célebres en base a la palabra de nuestro prompt con un debounce. Se destaca la animación de escritura para la generación de texto, la implementación del ORM Prisma y la conexión de la base de datos remota mediante el servicio Turso.',
-      'Todos los detalles en el <strong class="text-yellow-100">README</strong> del repositorio.',
-    ],
-    link: 'https://pt-phrase-ai.vercel.app/',
-    repositorioRemoto: 'https://github.com/judifede/PT_Generacion_Texto_IA',
-    image: '/projects/PTPhrasePreview.webp',
-    imageDesign: 'cover',
-    tags: [
-      ETIQUETAS.HTML5, ETIQUETAS.CSS3, ETIQUETAS.JS, ETIQUETAS.REACT, ETIQUETAS.NODEJS,
-      ETIQUETAS.EXPRESSJS, ETIQUETAS.PRISMA, ETIQUETAS.TURSO, ETIQUETAS.VERCEL, ETIQUETAS.GIT,
-    ],
-  },
-]
+const proyectos: ProyectoCompleto[] = proyectosEntries
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((entry) => {
+    // Cuando los .md viven en subcarpetas con `index.md`, Astro devuelve
+    // `entry.id` como `<carpeta>/<archivo>` (p. ej. "ecoinge-canarias/index").
+    // Usamos el primer segmento para mantener la convención de nombres.
+    const id = entry.id.split('/')[0]
+    const carpeta = `../content/proyectos/${id}/`
+    const data = entry.data
 
-const PROYECTOS_PERSONALES = [
-  {
-    projectid: 'todotoday-extension',
-    title: 'ToDoToday Extensión',
-    descriptions: [
-      '<strong class="text-yellow-100">Extensión de Chrome</strong> que permite gestionar tareas.',
-      'La extensión se conecta a una API creada con <strong class="text-yellow-100">Flask (Hosteada en Render) y MongoDB (Atlas)</strong>, permitiendo gestionar las tareas de forma remota.',
-      'Permite añadir, editar, eliminar y marcar tareas como completadas una vez el <strong class="text-yellow-100">usuario</strong> ha iniciado sesión.',
-      'Además, el <strong class="text-yellow-100">modo claro y oscuro con Tailwind</strong> y controlar el tamaño de los fuentes para la <strong class="text-yellow-100">accesibilidad</strong>.',
-      'En el <strong class="text-yellow-100">README</strong> del repositorio se explica cómo usarla de forma local y cómo <strong class="text-yellow-100">instalar la extensión</strong>.',
-    ],
-    repositorioRemoto: 'https://github.com/judifede/ToDo-Today',
-    image: '/projects/ToDoToday-Extensión.webp',
-    imageDesign: 'contain',
-    tags: [
-      ETIQUETAS.HTML5, ETIQUETAS.CSS3, ETIQUETAS.TAILWIND, ETIQUETAS.JS, ETIQUETAS.REACT, ETIQUETAS.GIT,
-      ETIQUETAS.DOCKER, ETIQUETAS.CHROME, ETIQUETAS.PYTHON, ETIQUETAS.FLASK, ETIQUETAS.MONGODB,
-    ],
-  },
-  {
-    projectid: 'competitive-bracket-generator',
-    title: 'Competitive Bracket Generator',
-    descriptions: [
-      'Generador de Bracket para torneos, copas, ligas, etc.',
-      'Primero, podremos mediante un formulario crear la lista de jugadores, elegir el tipo de competición y ponerle nombre. Tras esto pasaremos al cuerpo principal de la aplicación.',
-      'Al ver el bracket tenemos <strong class="text-yellow-100">4 acciones:</strong>',
-      '- Volver atrás',
-      '- Reordenar el bracket',
-      '- Actualizar el bracket (para descartar o añadir jugadores)',
-      '- Elegir ganador',
-      'Enfocado principalmente al entrenamiento de Vue, junto a Tailwind, disponemos de slots condicionales, etiquetado de componente por prop, variables de estado (ref, reactive y computed) y, el núcleo del proyecto, los brackets generados de forma dinámica.',
-      'Proyecto responsive, modales con "vue-final-modal" y mensajes toast con "vue-sonner".',
-    ],
-    link: 'https://competitive-bracket-generator.vercel.app/',
-    repositorioRemoto: 'https://github.com/judifede/Competitive-Bracket-Generator',
-    image: '/projects/CompetitionBracketGenerator.webp',
-    imageDesign: 'cover',
-    tags: [ETIQUETAS.HTML5, ETIQUETAS.CSS3, ETIQUETAS.TAILWIND, ETIQUETAS.JS, ETIQUETAS.VUE, ETIQUETAS.GIT],
-  },
-  {
-    projectid: 'ludohana',
-    title: 'LudOhana',
-    descriptions: [
-      '<strong class="text-yellow-100">Proyecto 3 - Bloque Full-Stack de la Escuela de Programadores:</strong> Formación Dual de Desarrolladores Web Full-Stack (Fundación Universitaria de Las Palmas, Reboot Academy).',
-      'LudOhana es una página web sobre eventos, para escuelas y familias, enfocados en la educación de los niños. Se utiliza la API creada en el proyecto del bloque 2.',
-      'Trabajamos principalmente con React y MaterialUI, aunque también tuvimos que adaptar el proyecto de la API para dar más funcionalidad al front. Utilizamos Stripe para las donaciones de los eventos.',
-      'Información completa en el README del proyecto.',
-    ],
-    link: 'https://ludohana.zeabur.app',
-    repositorioRemoto: 'https://github.com/judifede/LudOhana',
-    image: '/projects/LudOhana.webp',
-    imageDesign: 'cover',
-    tags: [ETIQUETAS.HTML5, ETIQUETAS.CSS3, ETIQUETAS.JS, ETIQUETAS.REACT, ETIQUETAS.MATERIALUI, ETIQUETAS.STRIPE, ETIQUETAS.GIT],
-  },
-  {
-    projectid: 'ludohana_api',
-    title: 'LudOhana-API',
-    descriptions: [
-      '<strong class="text-yellow-100">Proyecto 2 - Bloque Back-End de la Escuela de Programadores:</strong> Formación Dual de Desarrolladores Web Full-Stack (Fundación Universitaria de Las Palmas, Reboot Academy).',
-      'LudOhana es una página web sobre eventos, para escuelas y familias, enfocados en la educación de los niños. Se crea la API que posteriormente se utilizaría en el proyecto 3.',
-      'Usamos el workspace compartido de Postman para tener los endpoints almacenados por entidad, entorno (desarrollo o producción) y los tokens de autentificación necesarios. Además de Node, Express, Sequelize y MySQL.',
-      'El proyecto desplegado tiene un pequeño front para presentar la integración de Stripe y hacer operaciones en nuestra base de datos una vez se procese el pago.',
-      'Información completa en el README del proyecto.',
-    ],
-    repositorioRemoto: 'https://github.com/Yennsanpro/LudOhana-API',
-    image: '/projects/LudOhanaAPI.webp',
-    imageDesign: 'cover',
-    tags: [ETIQUETAS.NODEJS, ETIQUETAS.EXPRESSJS, ETIQUETAS.SEQUELIZE, ETIQUETAS.POSTMAN, ETIQUETAS.STRIPE, ETIQUETAS.GIT],
-  },
-  {
-    projectid: 'jungle_paradise',
-    title: 'Jungle Paradise',
-    descriptions: [
-      '<strong class="text-yellow-100">Proyecto 1 - Bloque Front-End de la Escuela de Programadores:</strong> Formación Dual de Desarrolladores Web Full-Stack (Fundación Universitaria de Las Palmas, Reboot Academy).',
-      'Videojuego en navegador, inspirado en Whac-A-Mole, en el que tendremos que matar a todos los mosquitos que podamos antes de que acabe el tiempo.',
-      'El mayor reto de este proyecto consistió en implementar el juego en 3 días, utilizando para ello el control de versiones con Git, y poniendo en prácticas los conocimientos adquiridos en las tecnologías Front-End.',
-    ],
-    link: 'https://judifede.github.io/Jungle-Paradise/',
-    repositorioRemoto: 'https://github.com/judifede/Jungle-Paradise',
-    image: '/projects/JungleParadise.webp',
-    imageDesign: 'cover',
-    tags: [ETIQUETAS.HTML5, ETIQUETAS.CSS3, ETIQUETAS.JS, ETIQUETAS.GIT],
-  },
-  {
-    projectid: 'solitario_web',
-    title: 'Solitario Web',
-    descriptions: [
-      'El juego Solitario tiene muchas variantes y nos hemos centrado en una de ellas.',
-      'Dispone de 3 niveles de dificultad y animaciones de victoria y derrota.',
-      'El proyecto cuenta con ajustes de apariencia y permite cambiar el idioma entre el español y el inglés.',
-    ],
-    link: 'https://judifede.github.io/SolitarioWeb/',
-    repositorioRemoto: 'https://github.com/judifede/SolitarioWeb',
-    image: '/projects/SolitarioWeb.gif',
-    imageDesign: 'cover',
-    tags: [ETIQUETAS.HTML5, ETIQUETAS.CSS3, ETIQUETAS.JS, ETIQUETAS.JQUERY],
-  },
-]
+    let recurso: RecursoMultimedia
+    if (data.resource.type === 'imagen') {
+      const imagenKey = `${carpeta}${id}.webp`
+      const img = imagenesPorCarpeta[imagenKey]
+      if (!img) throw new Error(`No se encontró imagen ${imagenKey}`)
+      recurso = {
+        tipo: 'imagen',
+        fuente: img.default,
+        textoAlternativo: data.resource.alt,
+        ajuste: data.resource.fit,
+      }
+    } else {
+      const videoKey = `${carpeta}${id}.mp4`
+      const cartelKey = `${carpeta}${id}.webp`
+      const video = videosPorCarpeta[videoKey]
+      const cartel = imagenesPorCarpeta[cartelKey]
+      if (!video || !cartel) throw new Error(`No se encontró vídeo o cartel para ${id}`)
+      recurso = {
+        tipo: 'video',
+        fuente: video,
+        cartel: cartel.default,
+        etiquetaAccesible: data.resource.accessibleLabel,
+        ajuste: data.resource.fit,
+        ancho: data.resource.width,
+        alto: data.resource.height,
+      }
+    }
 
-const clasesBaseBoton = "bg-yellow-400/50 text-white cursor-pointer rounded-full py-2 px-3 duration-300 hover:bg-yellow-400/80 text-xs md:text-base"
-const clasesActivoBoton = "data-[active=true]:bg-yellow-300 data-[active=true]:text-black"
+    return {
+      id,
+      titulo: data.title,
+      descripciones: data.descriptions,
+      enlace: data.link,
+      repositorio: data.repository,
+      recurso,
+      etiquetas: data.tags.map((t) => ETIQUETAS[t]),
+      categoria: data.category,
+      order: data.order,
+    }
+  })
+
+const proyectosPorCategoria: Record<CategoriaProyecto, ProyectoCompleto[]> = {
+  corporativos: proyectos.filter((p) => p.categoria === 'corporativos'),
+  'pruebas-tecnicas': proyectos.filter((p) => p.categoria === 'pruebas-tecnicas'),
+  personales: proyectos.filter((p) => p.categoria === 'personales'),
+}
+
+const clasesBaseBoton =
+  'inline-flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-yellow-400/50 px-3 py-2 text-xs text-white duration-300 hover:bg-yellow-400/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-200 sm:w-auto md:text-base'
+const clasesActivoBoton =
+  'data-[active=true]:border-2 data-[active=true]:border-yellow-300/20 data-[active=true]:pb-[calc(0.5rem-2px)] data-[active=true]:bg-yellow-300 data-[active=true]:text-black'
+
+// Clases específicas para los botones del rail vertical (sm en adelante).
+const clasesBaseBotonRail =
+  'flex w-full min-h-11 min-w-11 cursor-pointer items-center justify-center gap-1 rounded-md bg-yellow-400/50 px-2 py-2 text-xs text-white duration-300 hover:bg-yellow-400/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-200 sm:w-auto'
+const clasesActivoBotonRail =
+  'data-[active=true]:border-2 data-[active=true]:border-yellow-300/20 data-[active=true]:bg-yellow-300 data-[active=true]:text-black'
 ---
 
 <Layout>
   <div>
-    <nav class="flex justify-between items-center py-4 mb-8" aria-label="Navegación entre secciones del sitio web">
-      <FlechaIzquierda className="size-8" link="/" />
-      <FlechaDerecha className="size-8" link="/about" />
-    </nav>
-
-    <nav id="navegacion-filtros" class="flex items-center py-4 mb-8 flex-wrap justify-around gap-x-2 sm:gap-x-3" aria-label="Filtros de categorías de proyectos">
-        <button type="button" class:list={[clasesBaseBoton, clasesActivoBoton]} data-active="true" data-filter="all">Proyectos</button>
-        <button type="button" class:list={[clasesBaseBoton, clasesActivoBoton]} data-active="false" data-filter="corporativos">Corporativos</button>
-        <button type="button" class:list={[clasesBaseBoton, clasesActivoBoton]} data-active="false" data-filter="pruebas-tecnicas">Pruebas Técnicas</button>
-        <button type="button" class:list={[clasesBaseBoton, clasesActivoBoton]} data-active="false" data-filter="personales">Personales</button>
-    </nav>
-
-    <section id="seccion-corporativos" data-category="corporativos">
-      <h1
-        class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-yellow-300"
+    <div id="rail-wrapper">
+      <!-- Nav en flujo: grid 3+1 con etiquetas -->
+      <nav
+        id="navegacion-filtros-flujo"
+        aria-label="Filtros de categorías de proyectos"
+        class="md:hidden grid grid-cols-3 gap-2 mb-6 bg-black transition-opacity duration-300 ease-in-out"
+        style="opacity: 1; padding-top: 7px; padding-bottom: 7px;"
       >
-        <Maletin class="size-8" />
-        Proyectos Corporativos
-      </h1>
-      {
-        PROYECTOS_CORPORATIVOS.map(
-          ({ projectid, title, descriptions, link, image, imageDesign, video, tags, }) => (
+        <button data-active="true" data-filter="todos" aria-pressed="true" aria-label="Todos" title="Todos" class:list={[clasesBaseBotonRail, clasesActivoBotonRail, 'col-span-3']}>
+          <FiltrosIcon class="size-4" aria-hidden="true" />
+          <span>Todos</span>
+        </button>
+        <button data-active="false" data-filter="corporativos" aria-pressed="false" aria-label="Corporativos" title="Corporativos" class:list={[clasesBaseBotonRail, clasesActivoBotonRail]}>
+          <Maletin class="size-4" aria-hidden="true" />
+          <span>Corporativos</span>
+        </button>
+        <button data-active="false" data-filter="pruebas-tecnicas" aria-pressed="false" aria-label="Pruebas Técnicas" title="Pruebas Técnicas" class:list={[clasesBaseBotonRail, clasesActivoBotonRail]}>
+          <PruebaIcon class="size-4" aria-hidden="true" />
+          <span>Pruebas Técnicas</span>
+        </button>
+        <button data-active="false" data-filter="personales" aria-pressed="false" aria-label="Personales" title="Personales" class:list={[clasesBaseBotonRail, clasesActivoBotonRail]}>
+          <PerfilIcon class="size-4" aria-hidden="true" />
+          <span>Personales</span>
+        </button>
+      </nav>
+
+      <!-- Nav pegado: fila horizontal con solo iconos -->
+      <nav
+        id="navegacion-filtros-pegado"
+        aria-label="Filtros de categorías de proyectos"
+        aria-hidden="true"
+        style="position: fixed; top: 6rem; left: 50%; translate: -50% 0; z-index: 30; opacity: 0; pointer-events: none;"
+      >
+        <button data-active="true" data-filter="todos" aria-pressed="true" aria-label="Todos" title="Todos" class="flex min-h-11 min-w-11 items-center justify-center rounded-full bg-yellow-400/50 px-2 py-2 text-xs text-white duration-300 hover:bg-yellow-400/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-200 data-[active=true]:bg-yellow-300 data-[active=true]:text-black">
+          <FiltrosIcon class="size-4" aria-hidden="true" />
+        </button>
+        <button data-active="false" data-filter="corporativos" aria-pressed="false" aria-label="Corporativos" title="Corporativos" class="flex min-h-11 min-w-11 items-center justify-center rounded-full bg-yellow-400/50 px-2 py-2 text-xs text-white duration-300 hover:bg-yellow-400/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-200 data-[active=true]:bg-yellow-300 data-[active=true]:text-black">
+          <Maletin class="size-4" aria-hidden="true" />
+        </button>
+        <button data-active="false" data-filter="pruebas-tecnicas" aria-pressed="false" aria-label="Pruebas Técnicas" title="Pruebas Técnicas" class="flex min-h-11 min-w-11 items-center justify-center rounded-full bg-yellow-400/50 px-2 py-2 text-xs text-white duration-300 hover:bg-yellow-400/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-200 data-[active=true]:bg-yellow-300 data-[active=true]:text-black">
+          <PruebaIcon class="size-4" aria-hidden="true" />
+        </button>
+        <button data-active="false" data-filter="personales" aria-pressed="false" aria-label="Personales" title="Personales" class="flex min-h-11 min-w-11 items-center justify-center rounded-full bg-yellow-400/50 px-2 py-2 text-xs text-white duration-300 hover:bg-yellow-400/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-200 data-[active=true]:bg-yellow-300 data-[active=true]:text-black">
+          <PerfilIcon class="size-4" aria-hidden="true" />
+        </button>
+      </nav>
+    </div>
+
+    <nav
+      id="navegacion-filtros-md"
+      aria-label="Filtros de categorías de proyectos"
+      class="hidden md:flex md:flex-row md:flex-wrap md:items-center md:justify-between md:gap-x-3 md:sticky md:top-24 md:z-30 md:mb-10 md:rounded-full md:bg-gray-900/95 md:px-4 md:py-3 md:shadow-md md:shadow-black/40 md:backdrop-blur-sm md:border md:border-yellow-300/20"
+    >
+      <button
+        type="button"
+        class:list={[clasesBaseBoton, clasesActivoBoton]}
+        data-active="true"
+        data-filter="todos"
+        aria-pressed="true"
+      >
+        <FiltrosIcon class="size-4" aria-hidden="true" />
+        Todos
+      </button>
+        <button
+          type="button"
+          class:list={[clasesBaseBoton, clasesActivoBoton]}
+          data-active="false"
+          data-filter="corporativos"
+          aria-pressed="false"
+        >
+          <Maletin class="size-4" aria-hidden="true" />
+          Corporativos
+        </button>
+        <button
+          type="button"
+          class:list={[clasesBaseBoton, clasesActivoBoton]}
+          data-active="false"
+          data-filter="pruebas-tecnicas"
+          aria-pressed="false"
+        >
+          <PruebaIcon class="size-4" aria-hidden="true" />
+          Pruebas Técnicas
+        </button>
+        <button
+          type="button"
+          class:list={[clasesBaseBoton, clasesActivoBoton]}
+          data-active="false"
+          data-filter="personales"
+          aria-pressed="false"
+        >
+          <PerfilIcon class="size-4" aria-hidden="true" />
+          Personales
+        </button>
+    </nav>
+
+    {
+      SECCIONES_PROYECTOS_META.map(({ id, categoria, titulo, icono: IconoSeccion, claseIcono }) => (
+        <section id={id} data-category={categoria}>
+          <h1 class="mb-6 flex scroll-mt-32 items-center justify-center gap-x-3 text-3xl font-semibold text-yellow-300 md:scroll-mt-32 md:justify-start">
+            <IconoSeccion class:list={['size-8', claseIcono]} />
+            {titulo}
+          </h1>
+
+          {proyectosPorCategoria[categoria].map((proyecto) => (
             <article
-              id={projectid}
-              class="project-article flex flex-col space-x-0 space-y-8 mb-20 relative before:content-[''] before:block before:w-full before:h-[2px] before:bg-yellow-100 before:mb-8"
+              id={proyecto.id}
+              class="project-article relative mb-20 flex flex-col space-y-8 before:mb-8 before:block before:h-[2px] before:w-full before:bg-yellow-100 before:content-['']"
             >
-              <h2 class="text-2xl text-center font-bold text-gray-100">{title}</h2>
-              <div class="w-full">
-                <div class={`size-full overflow-hidden transition duration-500 rounded-xl md:group-hover:-translate-y-1 md:hover:shadow-2xl `}>
-                  {image && <img src={image} class={`size-full max-h-[420px] object-${imageDesign} object-center transition duration-500 md:hover:scale-110`} loading="lazy" alt={`Imagen del proyecto ${title}`} />}
-                  {video && <video class="size-full max-h-[420px] scale-125" autoplay loop muted="muted" controlslist="nodownload" src={video} />}
+              <h2 class="text-center text-2xl font-bold text-gray-100">{proyecto.titulo}</h2>
+
+              <RecursoProyecto recurso={proyecto.recurso} />
+
+              <div class="flex flex-col flex-wrap">
+                <div class="mt-3">
+                  {proyecto.descripciones.map((descripcion) => (
+                    <p class="my-2" set:html={descripcion} />
+                  ))}
                 </div>
-              </div>
-              <div class="w-full">
-                <div class="flex flex-col flex-wrap mt-2 h-4/5">
-                  <span class="mt-3">
-                    {descriptions && descriptions.map((description) => <p class="my-2" set:html={description} />)}
-                  </span>
-                  <ul class="flex flex-wrap flex-row my-2 gap-x-2 justify-end">
-                    {tags.map((tag) => (
+
+                <ul class="my-2 flex flex-row flex-wrap justify-start gap-x-2">
+                  {proyecto.etiquetas.map(
+                    ({ nombre, titulo: tituloEtiqueta, clase, icono: IconoEtiqueta }) => (
                       <li class="mt-2">
-                        <span class={`flex gap-x-2 rounded-full text-xs ${tag.clase} py-2 px-3 `}>
-                          <tag.icono class={`size-4 ${tag.titulo === 'Stripe' && 'w-12'}`} />
-                          {tag.nombre}
+                        <span class:list={['flex gap-x-2 rounded-full px-3 py-2 text-xs', clase]}>
+                          <IconoEtiqueta
+                            class:list={['size-4', tituloEtiqueta === 'Stripe' && 'w-12']}
+                          />
+                          {nombre}
                         </span>
                       </li>
-                    ))}
-                  </ul>
-                  <footer class="flex items-end justify-start mt-4 gap-x-4">
-                    {link && <BotonEnlace href={link}><EnlaceIcon class="size-5" />Ver proyecto</BotonEnlace>}
-                  </footer>
-                </div>
-              </div>
-            </article>
-          )
-        )
-      }
-    </section>
+                    )
+                  )}
+                </ul>
 
-    <section id="seccion-pruebas-tecnicas" data-category="pruebas-tecnicas">
-      <h1 class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-yellow-300">
-        <PruebaIcon class="size-8 fill-yellow-300" />
-        Pruebas Técnicas
-      </h1>
-      {
-        PRUEBAS_TECNICAS.map(
-          ({ projectid, title, descriptions, link, repositorioRemoto, image, imageDesign, tags, }) => (
-            <article
-              id={projectid}
-              class="project-article flex flex-col space-x-0 space-y-8 mb-20 relative before:content-[''] before:block before:w-full before:h-[2px] before:bg-yellow-100 before:mb-8"
-            >
-              <h2 class="text-2xl text-center font-bold text-gray-100">{title}</h2>
-              <div class="w-full">
-                 <div class={`size-full overflow-hidden transition duration-500 rounded-xl md:group-hover:-translate-y-1 md:hover:shadow-2xl `}>
-                   {image && <img src={image} class={`size-full max-h-[420px] object-${imageDesign} object-center transition duration-500 md:hover:scale-110`} loading="lazy" alt={`Imagen del proyecto ${title}`} />}
-                 </div>
-              </div>
-              <div class="w-full">
-                <div class="flex flex-col flex-wrap mt-2 h-4/5">
-                  <span class="mt-3">
-                    {descriptions && descriptions.map((description) => <p class="my-2" set:html={description} />)}
-                  </span>
-                  <ul class="flex flex-wrap flex-row my-2 gap-x-2 justify-end">
-                    {tags.map((tag) => (
-                      <li class="mt-2">
-                        <span class={`flex gap-x-2 rounded-full text-xs ${tag.clase} py-2 px-3 `}>
-                          <tag.icono class={`size-4 ${tag.titulo === 'Stripe' && 'w-12'}`} />
-                          {tag.nombre}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                  <footer class="flex items-end justify-start mt-4 gap-x-4">
-                    {repositorioRemoto && <BotonEnlace href={repositorioRemoto}><GitHubIcon class="size-5" />Code</BotonEnlace>}
-                    {link && <BotonEnlace href={link}><EnlaceIcon class="size-5" />Ver proyecto</BotonEnlace>}
-                  </footer>
-                </div>
+                <footer class="mt-4 flex flex-col sm:flex-row items-stretch sm:items-end justify-start gap-2 sm:gap-x-4">
+                  {proyecto.repositorio && (
+                    <BotonEnlace href={proyecto.repositorio}>
+                      <GitHubIcon class="size-5" />
+                      Código
+                    </BotonEnlace>
+                  )}
+                  {proyecto.enlace && (
+                    <BotonEnlace href={proyecto.enlace}>
+                      <EnlaceIcon class="size-5" />
+                      Ver proyecto
+                    </BotonEnlace>
+                  )}
+                </footer>
               </div>
             </article>
-          )
-        )
-      }
-    </section>
+          ))}
+        </section>
+      ))
+    }
 
-    <section id="seccion-personales" data-category="personales">
-      <h1 class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-yellow-300">
-        <PerfilIcon class="size-8" />
-        Proyectos Personales
-      </h1>
-      {
-        PROYECTOS_PERSONALES.map(
-          ({ projectid, title, descriptions, link, repositorioRemoto, image, imageDesign, tags, }) => (
-            <article
-              id={projectid}
-              class="project-article flex flex-col space-x-0 space-y-8 mb-20 relative before:content-[''] before:block before:w-full before:h-[2px] before:bg-yellow-100 before:mb-8"
-            >
-              <h2 class="text-2xl text-center font-bold text-gray-100">{title}</h2>
-               <div class="w-full">
-                 <div class={`size-full overflow-hidden transition duration-500 rounded-xl ${image && 'md:group-hover:-translate-y-1 md:hover:shadow-2xl '}`}>
-                   {image && <img src={image} class={`size-full max-h-[420px] object-${imageDesign} object-center transition duration-500 md:hover:scale-110`} loading="lazy" alt={`Imagen del proyecto ${title}`} />}
-                 </div>
-              </div>
-              <div class="w-full">
-                 <div class="flex flex-col flex-wrap mt-2 h-4/5">
-                    <span class="mt-3">
-                      {descriptions && descriptions.map((description) => <p class="my-2" set:html={description} />)}
-                    </span>
-                    <ul class="flex flex-wrap flex-row my-2 gap-x-2 justify-end">
-                      {tags.map((tag) => (
-                        <li class="mt-2">
-                          <span class={`flex gap-x-2 rounded-full text-xs ${tag.clase} py-2 px-3 `}>
-                            <tag.icono class={`size-4 ${tag.titulo === 'Stripe' && 'w-12'}`} />
-                            {tag.nombre}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                    <footer class="flex items-end justify-start mt-4 gap-x-4">
-                      {repositorioRemoto && <BotonEnlace href={repositorioRemoto}><GitHubIcon class="size-5" />Code</BotonEnlace>}
-                      {link && <BotonEnlace href={link}><EnlaceIcon class="size-5" />Ver proyecto</BotonEnlace>}
-                    </footer>
-                 </div>
-              </div>
-            </article>
-          )
-        )
-      }
-    </section>
+    <div id="anuncio-filtro" class="sr-only" role="status" aria-live="polite" aria-atomic="true">
+    </div>
   </div>
 </Layout>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const filterButtons = document.querySelectorAll('#navegacion-filtros button[data-filter]')
+  import '../utils/reproduccionVideosProyectos'
+  import { MENSAJES_ANUNCIO_FILTRO } from '../data/filtros'
+
+  // Estado y listeners del rail (sm y menores). Se limpian en astro:before-swap.
+  let rafScroll: number | null = null
+  let listenerScroll: (() => void) | null = null
+  let navegacionFiltrosSm: HTMLElement | null = null
+  let estaPegado = false
+
+  const UMBRAL_STICKY_PX = 96 // 6rem
+
+  function evaluarPegado() {
+    rafScroll = null
+    const flujo = document.getElementById('navegacion-filtros-flujo')
+    const pegado = document.getElementById('navegacion-filtros-pegado')
+    if (!flujo || !pegado) return
+
+    const estaEnSm = window.matchMedia('(max-width: 767px)').matches
+    const nuevoEstado = estaEnSm && flujo.getBoundingClientRect().top <= UMBRAL_STICKY_PX
+
+    if (nuevoEstado === estaPegado) return
+    estaPegado = nuevoEstado
+
+    if (nuevoEstado) {
+      flujo.style.opacity = '0'
+      flujo.setAttribute('aria-hidden', 'true')
+      flujo.style.pointerEvents = 'none'
+      pegado.style.opacity = '1'
+      pegado.setAttribute('aria-hidden', 'false')
+      pegado.style.pointerEvents = 'auto'
+    } else {
+      flujo.style.opacity = '1'
+      flujo.setAttribute('aria-hidden', 'false')
+      flujo.style.pointerEvents = 'auto'
+      pegado.style.opacity = '0'
+      pegado.setAttribute('aria-hidden', 'true')
+      pegado.style.pointerEvents = 'none'
+    }
+  }
+
+  function onScroll() {
+    if (rafScroll !== null) return
+    rafScroll = requestAnimationFrame(evaluarPegado)
+  }
+
+  function limpiarEstadoSticky() {
+    if (rafScroll !== null) {
+      cancelAnimationFrame(rafScroll)
+      rafScroll = null
+    }
+    if (listenerScroll) {
+      window.removeEventListener('scroll', listenerScroll)
+      listenerScroll = null
+    }
+    navegacionFiltrosSm = null
+    estaPegado = false
+  }
+
+  function inicializarEstadoSticky() {
+    if (listenerScroll) return // ya inicializado
+
+    const nav = document.querySelector<HTMLElement>('#navegacion-filtros-flujo')
+    if (!nav) return
+
+    navegacionFiltrosSm = nav
+    estaPegado = false
+
+    listenerScroll = onScroll
+    window.addEventListener('scroll', listenerScroll, { passive: true })
+    // Estado inicial por si la página carga ya con scroll.
+    onScroll()
+  }
+
+  function inicializarNavegacionFiltros() {
+    const navegacionFiltros = document.querySelector<HTMLElement>('#navegacion-filtros-flujo')
+    if (!navegacionFiltros) return
+
+    inicializarEstadoSticky()
+    if (navegacionFiltros.dataset.filtrosInicializados === 'true') return
+
+    navegacionFiltros.dataset.filtrosInicializados = 'true'
+
+    const esSeccionValida = (seccion: HTMLElement | null): seccion is HTMLElement =>
+      seccion !== null
     const seccionesProyectos = [
       document.getElementById('seccion-corporativos'),
       document.getElementById('seccion-pruebas-tecnicas'),
-      document.getElementById('seccion-personales')
-    ].filter(section => section !== null)
+      document.getElementById('seccion-personales'),
+    ].filter(esSeccionValida)
+    const anuncioFiltro = document.getElementById('anuncio-filtro')
 
-    let filtroActual = 'all'
-    const botonActivoInicial = document.querySelector('#navegacion-filtros button[data-active="true"]')
+    // Selecciona TODOS los botones con data-filter (rail + barra md+).
+    const botonesFiltro: NodeListOf<HTMLButtonElement> =
+      document.querySelectorAll('button[data-filter]')
+
+    let filtroActual = 'todos'
+    const botonActivoInicial = navegacionFiltros.querySelector<HTMLButtonElement>(
+      'button[data-active="true"]'
+    )
     if (botonActivoInicial) {
-      filtroActual = (botonActivoInicial as HTMLButtonElement).dataset.filter || 'all'
+      filtroActual = botonActivoInicial.dataset.filter || 'todos'
+    }
+
+    function sincronizarBotones() {
+      botonesFiltro.forEach((boton) => {
+        const estaActivo = boton.dataset.filter === filtroActual
+        boton.dataset.active = estaActivo.toString()
+        boton.setAttribute('aria-pressed', estaActivo.toString())
+      })
     }
 
     function aplicarFiltro() {
-      const mostrarTodos = filtroActual === 'all'
+      const mostrarTodos = filtroActual === 'todos'
 
-      seccionesProyectos.forEach(section => {
-        const categoriaSeccion = section.dataset.category
-        if (mostrarTodos || filtroActual === categoriaSeccion) {
-          section.classList.remove('hidden')
-        } else {
-          section.classList.add('hidden')
-        }
+      seccionesProyectos.forEach((seccion) => {
+        const categoriaSeccion = seccion.dataset.category
+        seccion.classList.toggle('hidden', !mostrarTodos && filtroActual !== categoriaSeccion)
       })
     }
 
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const nuevoFiltro = (button as HTMLButtonElement).dataset.filter
+    function sincronizarAnuncio() {
+      if (!anuncioFiltro) return
+      const mensaje = MENSAJES_ANUNCIO_FILTRO[filtroActual] ?? MENSAJES_ANUNCIO_FILTRO.todos
+      anuncioFiltro.textContent = mensaje
+    }
+
+    botonesFiltro.forEach((boton) => {
+      boton.addEventListener('click', () => {
+        const nuevoFiltro = boton.dataset.filter
         if (nuevoFiltro === filtroActual) return
 
-        filtroActual = nuevoFiltro || 'all'
-
-        filterButtons.forEach(btn => {
-          (btn as HTMLButtonElement).dataset.active = ((btn as HTMLButtonElement).dataset.filter === filtroActual).toString()
-        })
-
+        filtroActual = nuevoFiltro || 'todos'
+        sincronizarBotones()
         aplicarFiltro()
+        sincronizarAnuncio()
       })
     })
 
+    sincronizarBotones()
     aplicarFiltro()
-  })
+    sincronizarAnuncio()
+  }
+
+  document.addEventListener('DOMContentLoaded', inicializarNavegacionFiltros)
+  document.addEventListener('astro:page-load', inicializarNavegacionFiltros)
+  document.addEventListener('astro:before-swap', limpiarEstadoSticky)
 </script>
+
+<style is:global>
+  #rail-wrapper {
+    position: relative;
+    width: 100%;
+    z-index: 30;
+  }
+
+  #navegacion-filtros-pegado {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: rgba(10, 10, 10, 0.8);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(253, 224, 71, 0.3);
+    border-radius: 9999px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+    width: fit-content;
+    max-width: calc(100vw - 2rem);
+    transition: opacity 300ms ease;
+  }
+
+  #navegacion-filtros-pegado > button {
+    background: transparent;
+    border: 0;
+    border-radius: 9999px;
+    box-shadow: none;
+    padding: 0.25rem 0.5rem;
+    color: #ffffff;
+  }
+
+  #navegacion-filtros-pegado > button[data-active="true"] {
+    background: #facc15;
+    color: #000000;
+  }
+
+  #navegacion-filtros-pegado > button[data-active="true"] svg {
+    color: #000000;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #navegacion-filtros-flujo,
+    #navegacion-filtros-pegado {
+      transition: none;
+    }
+  }
+</style>

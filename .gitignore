@@ -34,3 +34,6 @@ pnpm-debug.log*
 
 # Passos (temporales)
 .passos/
+
+# Capturas de validación visual del agente (no versionadas)
+.agents/screenshots/

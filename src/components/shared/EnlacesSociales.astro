@@ -14,7 +14,7 @@ const { ariaLabel = 'Canales de contacto', layout = 'flex' } = Astro.props
 
 const containerClasses =
   layout === 'grid'
-    ? 'mt-9 grid grid-cols-1 gap-3 w-full sm:grid-cols-2 sm:w-2/3'
+    ? 'mt-9 grid grid-cols-1 gap-3 w-full sm:grid-cols-2 sm:w-full'
     : 'mt-9 flex flex-wrap gap-3'
 
 const correo = 'judifede217@gmail.com'
@@ -87,6 +87,7 @@ const baseClases =
   const MENSAJE_OK = 'Correo copiado'
   const MENSAJE_FALLBACK = 'No se pudo copiar el correo. Cópialo manualmente.'
   const DURACION_FEEDBACK_MS = 2200
+  const RETARDO_ANUNCIO_MS = 30
 
   type FeedbackEl = HTMLElement & { _feedbackTimeout?: number }
 
@@ -98,7 +99,7 @@ const baseClases =
     feedback.textContent = ''
     window.setTimeout(() => {
       feedback.textContent = mensaje
-    }, 30)
+    }, RETARDO_ANUNCIO_MS)
   }
 
   async function copiar(texto: string, feedback: FeedbackEl): Promise<boolean> {

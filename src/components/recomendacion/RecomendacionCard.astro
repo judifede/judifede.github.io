@@ -1,4 +1,6 @@
 ---
+import RecomendacionBloque from './RecomendacionBloque.astro'
+
 interface Props {
   nombre: string
   cargo: string
@@ -31,7 +33,6 @@ const nombreSlug = nombre
   .replace(/^-+|-+$/g, '')
 
 const titleId = `recomendacion-card-a-${nombreSlug}`
-const ariaLabel = `Perfil de ${nombre} en LinkedIn`
 ---
 
 <aside
@@ -54,32 +55,18 @@ const ariaLabel = `Perfil de ${nombre} en LinkedIn`
     <p class="text-xs font-semibold uppercase tracking-widest text-yellow-300/90">Recomendación</p>
   </div>
 
-  <blockquote class="relative text-pretty text-left flex-1 mt-4">
-    <p class="text-base sm:text-lg leading-relaxed text-white/90">{cita1}</p>
-    <p class="mt-4 text-base sm:text-lg leading-relaxed text-white/90">{cita2}</p>
-  </blockquote>
-
-  <footer class="mt-6 flex flex-col items-end gap-1 text-sm">
-    <div class="flex flex-wrap items-baseline gap-x-2">
-      <cite class="not-italic font-semibold">
-        <a
-          href={hrefLinkedIn}
-          aria-label={ariaLabel}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-yellow-200 underline decoration-yellow-200/70 underline-offset-4 hover:text-yellow-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300/60 focus-visible:rounded-sm"
-        >
-          {nombre}
-        </a>
-      </cite>
-      <span aria-hidden="true" class="text-white/50">·</span>
-      <span class="text-white/70">{relacion}</span>
-    </div>
-    <p class="font-semibold text-white/85">
-      <span>{cargo}</span>
-      en
-      <span>{empresa}</span>
-    </p>
-    <time datetime={fechaISO} class="text-white/60">{fecha}</time>
-  </footer>
+  <RecomendacionBloque
+    variante="card"
+    recomendacion={{
+      nombre,
+      cargo,
+      empresa,
+      relacion,
+      fecha,
+      fechaISO,
+      cita1,
+      cita2,
+      hrefLinkedIn,
+    }}
+  />
 </aside>

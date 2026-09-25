@@ -1,5 +1,4 @@
 ---
-import InformacionIcon from '../shared/icons/Informacion.astro'
 import ArchivoPDFIcon from '../shared/icons/ArchivoPDF.astro'
 
 interface Props {
@@ -30,7 +29,7 @@ const { title, company, companyDetail, description, files, date } = Astro.props
       {companyDetail}
     </blockquote>
 
-    <time class="mt-4 text-md">{date}</time>
+    <time class="mt-4 text-base">{date}</time>
   </div>
 
   <div
@@ -54,10 +53,3 @@ const { title, company, companyDetail, description, files, date } = Astro.props
     }
   </div>
 </article>
-
-<style>
-  blockquote:hover div:after,
-  blockquote:hover div:before {
-    opacity: 1;
-  }
-</style>

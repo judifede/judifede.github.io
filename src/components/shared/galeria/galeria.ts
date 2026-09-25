@@ -27,6 +27,7 @@ const AJUSTE_CLASE: Record<GaleriaItem['fit'], string> = {
 const SWIPE_UMBRAL_PX = 50
 const KEY_IZQUIERDA = ['ArrowLeft']
 const KEY_DERECHA = ['ArrowRight']
+const DURACION_AUTOHIDE_CONTROLES_MS = 3000
 
 type Limpieza = () => void
 
@@ -569,7 +570,7 @@ class GaleriaController {
       }
       this.timerOcultarControles = window.setTimeout(() => {
         this.modal.classList.remove('controles-visibles')
-      }, 3000)
+      }, DURACION_AUTOHIDE_CONTROLES_MS)
     }
     this.modal.addEventListener('click', mostrar)
     this.modal.addEventListener('touchstart', mostrar, { passive: true })

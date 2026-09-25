@@ -1,0 +1,81 @@
+---
+import type { Recomendacion } from '../../data/recomendaciones'
+
+interface Props {
+  recomendacion: Recomendacion
+  variante: 'card' | 'page' | 'modal'
+}
+
+const { recomendacion, variante } = Astro.props
+const {
+  nombre,
+  cargo,
+  empresa,
+  relacion = 'Supervisor directo',
+  fecha,
+  fechaISO,
+  cita1,
+  cita2,
+  hrefLinkedIn,
+} = recomendacion
+---
+
+<blockquote
+  class:list={[
+    'text-pretty text-left',
+    variante === 'card' && 'relative flex-1 mt-4',
+    variante === 'page' && 'block border-t-4 border-yellow-300/70 pt-6 max-w-2xl mx-auto',
+  ]}
+>
+  <p class:list={['text-base sm:text-lg leading-relaxed', variante === 'card' && 'text-white/90']}>
+    {cita1}
+  </p>
+  <p
+    class:list={[
+      'mt-4 text-base sm:text-lg leading-relaxed',
+      variante === 'card' && 'text-white/90',
+    ]}
+  >
+    {cita2}
+  </p>
+  <footer
+    class:list={[
+      'mt-6 flex flex-col gap-1 text-sm',
+      variante === 'card' ? 'items-end' : 'items-start',
+    ]}
+  >
+    <div class="flex flex-wrap items-baseline gap-x-2">
+      <cite class="not-italic font-semibold">
+        <a
+          href={hrefLinkedIn}
+          aria-label={`Perfil de ${nombre} en LinkedIn`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class:list={[
+            'text-yellow-200 underline underline-offset-4 hover:text-yellow-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300/60 focus-visible:rounded-sm',
+            variante === 'card' ? 'decoration-yellow-200/70' : 'decoration-yellow-200/50',
+          ]}
+        >
+          {nombre}
+        </a>
+      </cite>
+      <span aria-hidden="true" class="text-white/50">·</span>
+      <span class="text-white/70">{relacion}</span>
+    </div>
+    {
+      variante === 'card' ? (
+        <p class="font-semibold text-white/85">
+          <span>{cargo}</span>
+          en
+          <span>{empresa}</span>
+        </p>
+      ) : (
+        <>
+          <span class="text-white/70">{cargo}</span>
+          <span class="font-semibold text-white/85">{empresa}</span>
+        </>
+      )
+    }
+    <time datetime={fechaISO} class="text-white/60">{fecha}</time>
+  </footer>
+</blockquote>

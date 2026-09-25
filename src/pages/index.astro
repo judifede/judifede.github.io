@@ -32,7 +32,7 @@ const experienciaAdicional = todasExperiencias
       {
         experiencias.map((exp) => (
           <li class="[&:first-child>article]:border-t-0 [&:first-child>article]:pt-0">
-            <ItemExperiencia {...exp.data} link={exp.data.links} />
+            <ItemExperiencia {...exp.data} links={exp.data.links} />
           </li>
         ))
       }
@@ -53,7 +53,7 @@ const experienciaAdicional = todasExperiencias
       {
         experienciaAdicional.map((exp) => (
           <li class="[&:first-child>article]:border-t-0 [&:first-child>article]:pt-0">
-            <ItemExperiencia {...exp.data} link={exp.data.links} />
+            <ItemExperiencia {...exp.data} links={exp.data.links} />
           </li>
         ))
       }

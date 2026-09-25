@@ -7,7 +7,6 @@ dist/
 # dependencies
 .vscode
 node_modules/
-.eslintrc.cjs
 
 # logs
 npm-debug.log*

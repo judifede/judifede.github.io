@@ -1,6 +1,11 @@
-const ICONOS = import.meta.glob<{ default: any }>('../components/shared/tech-icons/*.astro', {
-  eager: true,
-})
+import type { AstroComponentFactory } from 'astro/runtime/server/index.js'
+
+const ICONOS = import.meta.glob<{ default: AstroComponentFactory }>(
+  '../components/shared/tech-icons/*.astro',
+  {
+    eager: true,
+  }
+)
 
 export const ETIQUETAS = {
   HTML5: {
@@ -220,8 +225,6 @@ export const ETIQUETAS = {
     icono: ICONOS['../components/shared/tech-icons/GoogleTakeout.astro'].default,
   },
 } as const
-
-import type { AstroComponentFactory } from 'astro/runtime/server/index.js'
 
 export type Etiqueta = {
   nombre: string

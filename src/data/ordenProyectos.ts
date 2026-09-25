@@ -42,11 +42,3 @@ export function obtenerPosicionOrden(slug: string): number {
   }
   return posicion
 }
-
-export function cargarMapaOrden(): Record<string, number> {
-  const resultado: Record<string, number> = {}
-  for (const [slug, posicion] of mapaPosiciones) {
-    resultado[slug] = posicion
-  }
-  return resultado
-}

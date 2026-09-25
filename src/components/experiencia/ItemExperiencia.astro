@@ -16,7 +16,7 @@ interface Props {
   descriptions?: Array<string>
   descriptionList?: Array<string>
   impact?: ImpactItem[]
-  link?: Array<Enlace>
+  links?: Array<Enlace>
   date: string
 }
 
@@ -43,7 +43,7 @@ const {
   descriptions,
   descriptionList,
   impact,
-  link,
+  links,
   date,
 } = Astro.props
 
@@ -88,9 +88,9 @@ async function resolverImagenesGaleria(itemGaleria: ItemGaleria): Promise<Galeri
 
 // Pre-resolvemos todas las galerías del item en SSR para no bloquear la UI.
 const galeriasResueltas = new Map<number, GaleriaItem[]>()
-if (link) {
-  for (let i = 0; i < link.length; i++) {
-    const enlace = link[i]
+if (links) {
+  for (let i = 0; i < links.length; i++) {
+    const enlace = links[i]
     if (!enlace || typeof enlace.galeria !== 'object' || !enlace.galeria) continue
     const imagenes = await resolverImagenesGaleria(enlace.galeria as ItemGaleria)
     if (imagenes.length > 0) {
@@ -150,7 +150,7 @@ if (link) {
         )
       }
     </blockquote>
-    <time class="mt-4 text-md">{date}</time>
+    <time class="mt-4 text-base">{date}</time>
   </div>
   <div
     class="relative flex flex-col gap-2 pb-4 text-gray-300 md:col-span-3 min-w-0 w-full break-words"
@@ -220,14 +220,14 @@ if (link) {
           {descriptionList.map((item, index) => (
             <li class="min-w-80 text-body-color dark:text-dark-6 flex text-base">
               <span class="text-primary mr-2.5 mt-0.5">
-                <FlechaDerecha className="size-5" />
+                <FlechaDerecha class="size-5" />
               </span>
               <div class="flex flex-col w-full break-words">
                 <span set:html={parseMd(item)} />
 
-                {link && link?.[index].url != undefined ? (
+                {links && links?.[index].url != undefined ? (
                   <a
-                    href={link?.[index].url}
+                    href={links?.[index].url}
                     target="_blank"
                     rel="noopener noreferrer"
                     class="btn-link-pill"
@@ -235,11 +235,11 @@ if (link) {
                     <EnlaceIcon class="size-5" />
                     Ver proyecto
                   </a>
-                ) : link?.[index].galeria != null &&
-                  typeof link?.[index].galeria === 'object' &&
+                ) : links?.[index].galeria != null &&
+                  typeof links?.[index].galeria === 'object' &&
                   galeriasResueltas.has(index) ? (
                   <Galeria
-                    idInstancia={`galeria-${index}-${(link[index]?.galeria as ItemGaleria).carpeta}`}
+                    idInstancia={`galeria-${index}-${(links[index]?.galeria as ItemGaleria).carpeta}`}
                     imagenes={galeriasResueltas.get(index)!}
                   >
                     <GaleriaIcon slot="icono" class="size-5" />

@@ -58,12 +58,12 @@ const currentPath = normalizePath(Astro.url.pathname)
 
 <style>
   nav {
-    animation: nav-shadown 1s linear both;
+    animation: nav-shadow-on-scroll 1s linear both;
     animation-timeline: scroll();
     animation-range: 0 100px;
   }
 
-  @keyframes nav-shadown {
+  @keyframes nav-shadow-on-scroll {
     to {
       @apply shadow-lg ring-1 backdrop-blur bg-gray-800/90  ring-white/10;
     }

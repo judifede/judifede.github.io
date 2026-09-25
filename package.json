@@ -25,9 +25,6 @@
     "typescript": "5.3.3"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "7.18.0",
-    "@typescript-eslint/parser": "7.18.0",
-    "eslint": "8.57.0",
     "prettier": "3.3.3",
     "prettier-plugin-astro": "0.14.1"
   }

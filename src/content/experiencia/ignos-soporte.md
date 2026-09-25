@@ -14,5 +14,3 @@ descriptionList:
   - 'JIRA | Confluence'
 order: 5
 ---
-
-Gestión del área de soporte nivel 1 del proyecto SISPECAN del Servicio Canario de Empleo.

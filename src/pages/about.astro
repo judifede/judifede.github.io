@@ -5,7 +5,10 @@ import { getCollection } from 'astro:content'
 import Perfil from '../components/shared/icons/Perfil.astro'
 import Escuela from '../components/shared/icons/Escuela.astro'
 import ItemFormacion from '../components/formacion/ItemFormacion.astro'
-import RecomendacionJorge from '../components/recomendacion/RecomendacionJorge.astro'
+import RecomendacionCard from '../components/recomendacion/RecomendacionCard.astro'
+import { recomendaciones } from '../data/recomendaciones'
+import BotonEnlace from '../components/shared/BotonEnlace.astro'
+import ArchivoPDFSvg from '../components/shared/icons/ArchivoPDFSvg.astro'
 
 const formaciones = (await getCollection('formacion')).sort((a, b) => a.data.order - b.data.order)
 ---
@@ -36,9 +39,7 @@ const formaciones = (await getCollection('formacion')).sort((a, b) => a.data.ord
       </ol>
     </article>
 
-    <RecomendacionJorge variant="page" />
-
-    <article class="mt-16">
+    <article id="sobre-mi" class="mt-16">
       <h1
         class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-yellow-300"
       >
@@ -51,25 +52,49 @@ const formaciones = (await getCollection('formacion')).sort((a, b) => a.data.ord
       >
       </div>
 
-      <div class="mt-16 flex justify-between items-center gap-4 text-pretty flex-col md:flex-row">
-        <p class="[&>*>strong]:text-yellow-100 [&>*>strong]:font-medium order-2 md:order-1">
-          <span
-            >Me llamo Diego Fernández, un placer tratar contigo.
-            <br />Empecé en el mundo de la programación en 4º ESO con HTML y CSS, sin saber que a
-            día de hoy me iba a seguir gustando tanto, tenía 15 años. Actualmente he podido <strong
-              >trabajar en diferentes roles dentro de la informática</strong
-            >.</span
-          >
-          <br />
-          <br />
-          <span>
-            Me considero una <strong>persona empática, proactiva y analítica</strong>. Estas
-            cualidades se reflejan tanto en mi trabajo como en mis actividades. Ya sea, desde los 10
-            años, a través del <strong>ajedrez</strong> como una de mis grandes pasiones, como al descubrir
-            diferentes deportes, juegos y competiciones. Esta variedad de intereses me ha dado una perspectiva
-            amplia y un enfoque adaptable en mi <strong>carrera como programador</strong>.</span
-          >
-        </p>
+      <div class="mt-16 flex justify-between items-start gap-6 text-pretty flex-col md:flex-row">
+        <div class="flex flex-col gap-4 order-2 md:order-1">
+          <p class="[&>*>strong]:text-yellow-100 [&>*>strong]:font-medium">
+            <span
+              >Me llamo Diego Fernández y soy <strong>desarrollador web full stack</strong> especializado
+              también en <strong>automatización</strong>. Empecé a interesarme por la programación <strong
+                >con 15 años en 4.º de ESO</strong
+              >, cuando descubrí HTML y CSS. Lo que entonces empezó como curiosidad terminó
+              convirtiéndose en mi profesión.</span
+            >
+            <br />
+            <br />
+            <span
+              >A lo largo de mi trayectoria he trabajado en distintos ámbitos de la informática,
+              desde
+              <strong>soporte funcional y análisis</strong> hasta <strong
+                >desarrollo web y automatización</strong
+              >. Esa variedad me ha ayudado a entender los proyectos más allá del código: comprender
+              qué se necesita, adaptarme al contexto y encontrar una solución que tenga sentido
+              tanto a nivel técnico como funcional.</span
+            >
+            <br />
+            <br />
+            <span
+              >Me considero una persona <strong>empática, proactiva y analítica</strong>, con
+              facilidad para aprender y desenvolverme en entornos diferentes. Fuera de la
+              programación, una de mis grandes aficiones es el <strong>ajedrez</strong>, que
+              practico desde pequeño y con el que comparto algo que también disfruto en mi trabajo:
+              analizar una situación, plantear estrategias y buscar distintas formas de resolver un
+              problema.</span
+            >
+          </p>
+
+          <div class="flex justify-end">
+            <BotonEnlace
+              href="/about/CV_Juan_Diego_Fernandez_Deniz.pdf"
+              etiquetaAria="Descargar currículum de Juan Diego Fernández Déniz en PDF"
+            >
+              <ArchivoPDFSvg class="size-5" />
+              Descargar CV
+            </BotonEnlace>
+          </div>
+        </div>
 
         <div class="min-w-0 w-full max-w-sm md:min-w-72 md:w-96 order-1 md:order-2 p-1 lg:p-2">
           <picture>
@@ -78,6 +103,19 @@ const formaciones = (await getCollection('formacion')).sort((a, b) => a.data.ord
           </picture>
         </div>
       </div>
+
+      <section aria-labelledby="recomendaciones-title" class="mt-12">
+        <h2 id="recomendaciones-title" class="sr-only">Recomendaciones</h2>
+        <ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {
+            recomendaciones.map((recomendacion) => (
+              <li class="h-full">
+                <RecomendacionCard {...recomendacion} />
+              </li>
+            ))
+          }
+        </ul>
+      </section>
     </article>
   </section>
 </Layout>

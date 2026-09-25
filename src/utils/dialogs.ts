@@ -75,7 +75,11 @@ function bind(): void {
     dialog.dataset.backdropBound = '1'
 
     dialog.addEventListener('click', (event) => {
-      if (event.target === dialog) {
+      const rect = dialog.getBoundingClientRect()
+      const x = event.clientX
+      const y = event.clientY
+      const fueraDelDialog = x < rect.left || x > rect.right || y < rect.top || y > rect.bottom
+      if (fueraDelDialog) {
         dialog.close()
       }
     })

@@ -11,5 +11,3 @@ descriptionList:
   - .Net (C#)
 order: 7
 ---
-
-Prácticas del Ciclo Superior de Desarrollo de Aplicaciones Multiplataforma. Aprendizaje de metodología de trabajo, análisis previo al código y lógica de programación.

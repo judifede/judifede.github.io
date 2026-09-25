@@ -10,5 +10,3 @@ descriptionList:
   - 'PrestaShop 1.7'
 order: 6
 ---
-
-Maquetación web front-end con tecnologías HTML, CSS, Javascript y JQuery.

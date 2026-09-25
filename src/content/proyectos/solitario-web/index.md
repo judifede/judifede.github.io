@@ -18,7 +18,4 @@ tags:
   - CSS3
   - JS
   - JQUERY
-order: 6
 ---
-
-Juego del Solitario Web con 3 niveles de dificultad e i18n.

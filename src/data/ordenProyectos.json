@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "orden": {
+    "corporativos": ["notas-guia", "ecoinge-canarias"],
+    "personales": [
+      "mercurio",
+      "todo-today-extension",
+      "competition-bracket-generator",
+      "jungle-paradise",
+      "ludohana",
+      "ludohana-api",
+      "solitario-web"
+    ],
+    "pruebas-tecnicas": ["generacion-texto-ia"]
+  }
+}

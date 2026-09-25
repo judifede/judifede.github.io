@@ -8,8 +8,8 @@ export const MENSAJES_ANUNCIO_FILTRO: Record<string, string> = {
 export const CATEGORIAS_FILTRO = [
   { id: 'todos', nombre: 'Todos' },
   { id: 'corporativos', nombre: 'Corporativos' },
-  { id: 'pruebas-tecnicas', nombre: 'Pruebas Técnicas' },
   { id: 'personales', nombre: 'Personales' },
+  { id: 'pruebas-tecnicas', nombre: 'Pruebas Técnicas' },
 ] as const
 
 export type CategoriaFiltro = (typeof CATEGORIAS_FILTRO)[number]['id']

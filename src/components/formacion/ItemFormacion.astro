@@ -17,10 +17,13 @@ const { title, company, companyDetail, description, files, date } = Astro.props
 <article
   class="relative mx-4 sm:mx-12 pt-6 sm:pt-0 pb-6 grid place-items-center md:place-items-start border-t-2 border-yellow-100 sm:border-t-0 before:absolute before:left-2 sm:before:left-[-35px] before:hidden sm:before:block before:h-full before:border-l-2 before:border-white/15 before:content-[''] md:grid-cols-5 md:gap-10 max-w-full"
 >
-  <span class="hidden sm:inline text-yellow-400 -left-3 sm:-left-[42px] -top-2 absolute rounded-full text-5xl align-middle"
+  <span
+    class="hidden sm:inline text-yellow-400 -left-3 sm:-left-[42px] -top-2 absolute rounded-full text-5xl align-middle"
     >&bull;</span
   >
-  <div class="pb-12 md:col-span-2 flex flex-col items-center md:flex-none md:items-start w-full min-w-0">
+  <div
+    class="pb-12 md:col-span-2 flex flex-col items-center md:flex-none md:items-start w-full min-w-0"
+  >
     <h2 class="text-xl font-bold text-yellow-400">{title}</h2>
     <h3 class="mt-2 text-xl font-semibold text-white">{company}</h3>
     <blockquote class="text-lg font-semibold text-white flex gap-x-1 items-center">
@@ -30,7 +33,9 @@ const { title, company, companyDetail, description, files, date } = Astro.props
     <time class="mt-4 text-md">{date}</time>
   </div>
 
-  <div class="relative flex flex-col gap-2 pb-4 text-gray-300 md:col-span-3 min-w-0 w-full break-words">
+  <div
+    class="relative flex flex-col gap-2 pb-4 text-gray-300 md:col-span-3 min-w-0 w-full break-words"
+  >
     {description}
     {
       files && (

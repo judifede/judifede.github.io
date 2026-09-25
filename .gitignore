@@ -22,5 +22,15 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-# local CV working copies
-/local/cv/
+/public/logos/originales
+# Local tooling (not versioned while in evaluation)
+.tools/archify/
+
+# IA working artefacts (movidos y nunca trackeados)
+.files-ia/
+
+# Playwright MCP browser artefacts
+.playwright-mcp/
+
+# Passos (temporales)
+.passos/

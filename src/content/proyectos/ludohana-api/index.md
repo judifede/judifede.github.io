@@ -19,7 +19,4 @@ tags:
   - POSTMAN
   - STRIPE
   - GIT
-order: 4
 ---
-
-API REST de LudOhana con Node, Express, Sequelize y MySQL.

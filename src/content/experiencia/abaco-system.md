@@ -14,5 +14,3 @@ descriptionList:
   - Uikit
 order: 8
 ---
-
-Prácticas del Ciclo Superior de Desarrollo de Aplicaciones Web. Realización de la nueva página web de Ábaco System.

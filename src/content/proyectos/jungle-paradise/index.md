@@ -16,7 +16,4 @@ tags:
   - CSS3
   - JS
   - GIT
-order: 5
 ---
-
-Videojuego en navegador inspirado en Whac-A-Mole.

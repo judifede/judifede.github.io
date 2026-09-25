@@ -26,9 +26,23 @@ const experiencia = defineCollection({
       .array(
         z.object({
           url: z.string().url().optional(),
-          galeria: z.string().optional(),
-          rutaGaleria: z.string().optional(),
-          cantidad: z.number().optional(),
+          galeria: z
+            .union([
+              z.string(),
+              z.object({
+                carpeta: z.string(),
+                items: z
+                  .array(
+                    z.object({
+                      nombre: z.string(),
+                      alt: z.string(),
+                      fit: z.enum(['recortar', 'encajar']).default('encajar'),
+                    })
+                  )
+                  .min(1),
+              }),
+            ])
+            .optional(),
         })
       )
       .optional(),
@@ -56,6 +70,7 @@ const proyectos = defineCollection({
   schema: z.object({
     title: z.string(),
     category: z.enum(['corporativos', 'pruebas-tecnicas', 'personales']),
+    status: z.enum(['publicado', 'en-desarrollo']).default('publicado'),
     link: z.string().url().optional(),
     repository: z.string().url().optional(),
     descriptions: z.array(z.string()),
@@ -71,6 +86,19 @@ const proyectos = defineCollection({
         fit: z.enum(['recortar', 'encajar']),
         width: z.number(),
         height: z.number(),
+      }),
+      z.object({
+        type: z.literal('galeria'),
+        items: z
+          .array(
+            z.object({
+              type: z.literal('imagen'),
+              nombre: z.string(),
+              alt: z.string(),
+              fit: z.enum(['recortar', 'encajar']),
+            })
+          )
+          .min(1),
       }),
     ]),
     tags: z.array(
@@ -99,9 +127,20 @@ const proyectos = defineCollection({
         'MONGODB',
         'STRIPE',
         'VUE',
+        'TYPESCRIPT',
+        'ASTRO',
+        'SQLITE',
+        'GOOGLECALENDAR',
+        'TODOIST',
+        'PLAYWRIGHT',
+        'SUPABASE',
+        'POSTGRESQL',
+        'RESEND',
+        'OPENCODE',
+        'GOOGLEKEEP',
+        'GOOGLETAKEOUT',
       ])
     ),
-    order: z.number(),
   }),
 })
 

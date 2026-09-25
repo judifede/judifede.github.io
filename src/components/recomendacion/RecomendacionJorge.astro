@@ -10,57 +10,85 @@ const { variant = 'page' } = Astro.props
 const titleId = variant === 'page' ? 'recomendacion-jorge-title' : 'recomendacion-jorge-modal-title'
 
 const parrafoClases = 'text-base sm:text-lg leading-relaxed'
-const blockquoteClases = 'border-l-4 border-yellow-300 pl-5 text-pretty'
-const footerClases = 'mt-6 flex flex-col gap-1 text-sm md:flex-row md:flex-wrap md:gap-x-2'
+
+const {
+  nombre,
+  cargo,
+  empresa,
+  relacion = 'Supervisor directo',
+  fecha,
+  fechaISO,
+  cita1,
+  cita2,
+  hrefLinkedIn,
+} = RECOMENDACION
 ---
 
 {
   variant === 'page' ? (
     <section
-      class="mt-12 rounded-2xl border border-yellow-200/20 bg-white/5 p-6 md:p-8"
+      class="mt-12 mx-auto w-full rounded-2xl border border-yellow-200/20 bg-white/5 p-6 md:p-8 text-center"
       aria-labelledby={titleId}
     >
       <h2 id={titleId} class="mb-6 text-2xl font-semibold text-yellow-300">
-        Recomendación profesional
+        Recomendación
       </h2>
-      <blockquote class={blockquoteClases}>
+      <blockquote class="block border-t-4 border-yellow-300/70 pt-6 max-w-2xl mx-auto text-pretty text-left">
         <p class={parrafoClases}>{RECOMENDACION.cita1}</p>
         <p class:list={['mt-4', parrafoClases]}>{RECOMENDACION.cita2}</p>
-        <footer class={footerClases}>
-          <cite class="not-italic font-semibold">
-            <a
-              href={RECOMENDACION.hrefLinkedIn}
-              aria-label="Perfil de Jorge Mor en LinkedIn"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-yellow-200 underline decoration-yellow-200/50 underline-offset-4"
-            >
-              {RECOMENDACION.nombre}
-            </a>
-          </cite>
-          <span>{RECOMENDACION.cargo}</span>
-          <time datetime={RECOMENDACION.fechaISO}>{RECOMENDACION.fecha}</time>
+        <footer class="mt-6 flex flex-col items-start gap-1 text-sm">
+          <div class="flex flex-wrap items-baseline gap-x-2">
+            <cite class="not-italic font-semibold">
+              <a
+                href={hrefLinkedIn}
+                aria-label="Perfil de Jorge Mor en LinkedIn"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-yellow-200 underline decoration-yellow-200/50 underline-offset-4 hover:text-yellow-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300/60 focus-visible:rounded-sm"
+              >
+                {nombre}
+              </a>
+            </cite>
+            <span aria-hidden="true" class="text-white/50">
+              ·
+            </span>
+            <span class="text-white/70">{relacion}</span>
+          </div>
+          <span class="text-white/70">{cargo}</span>
+          <span class="font-semibold text-white/85">{empresa}</span>
+          <time datetime={fechaISO} class="text-white/60">
+            {fecha}
+          </time>
         </footer>
       </blockquote>
     </section>
   ) : (
-    <blockquote class={blockquoteClases}>
+    <blockquote class="text-pretty text-left">
       <p class={parrafoClases}>{RECOMENDACION.cita1}</p>
       <p class:list={['mt-4', parrafoClases]}>{RECOMENDACION.cita2}</p>
-      <footer class={footerClases}>
-        <cite class="not-italic font-semibold">
-          <a
-            href={RECOMENDACION.hrefLinkedIn}
-            aria-label="Perfil de Jorge Mor en LinkedIn"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-yellow-200 underline decoration-yellow-200/50 underline-offset-4"
-          >
-            {RECOMENDACION.nombre}
-          </a>
-        </cite>
-        <span>{RECOMENDACION.cargo}</span>
-        <time datetime={RECOMENDACION.fechaISO}>{RECOMENDACION.fecha}</time>
+      <footer class="mt-6 flex flex-col items-start gap-1 text-sm">
+        <div class="flex flex-wrap items-baseline gap-x-2">
+          <cite class="not-italic font-semibold">
+            <a
+              href={hrefLinkedIn}
+              aria-label="Perfil de Jorge Mor en LinkedIn"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-yellow-200 underline decoration-yellow-200/50 underline-offset-4 hover:text-yellow-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300/60 focus-visible:rounded-sm"
+            >
+              {nombre}
+            </a>
+          </cite>
+          <span aria-hidden="true" class="text-white/50">
+            ·
+          </span>
+          <span class="text-white/70">{relacion}</span>
+        </div>
+        <span class="text-white/70">{cargo}</span>
+        <span class="font-semibold text-white/85">{empresa}</span>
+        <time datetime={fechaISO} class="text-white/60">
+          {fecha}
+        </time>
       </footer>
     </blockquote>
   )

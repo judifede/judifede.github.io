@@ -20,7 +20,4 @@ tags:
   - MATERIALUI
   - STRIPE
   - GIT
-order: 3
 ---
-
-Front-end de la plataforma de eventos educativos LudOhana.

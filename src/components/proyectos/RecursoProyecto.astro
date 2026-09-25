@@ -1,51 +1,178 @@
 ---
 import { Image } from 'astro:assets'
+import { ImageOff, VideoOff } from '@lucide/astro'
 
 import type { AjusteRecurso, RecursoProyecto } from './recursos'
 
 interface Props {
   recurso: RecursoProyecto
+  proyectoId?: string
 }
 
-const { recurso } = Astro.props
+const { recurso, proyectoId } = Astro.props
 
 const CLASES_AJUSTE: Record<AjusteRecurso, string> = {
   recortar: 'object-cover',
   encajar: 'object-contain',
 }
 
-const claseAjuste = CLASES_AJUSTE[recurso.ajuste]
+const ajuste = recurso.tipo === 'galeria' ? (recurso.items[0]?.ajuste ?? 'encajar') : recurso.ajuste
+const claseAjuste = CLASES_AJUSTE[ajuste]
+const imagenPreviewGaleria = recurso.tipo === 'galeria' ? recurso.preview : undefined
+
+const previewAspectRatio =
+  recurso.tipo === 'galeria' && imagenPreviewGaleria?.fuente
+    ? `${imagenPreviewGaleria.fuente.width} / ${imagenPreviewGaleria.fuente.height}`
+    : null
+
+// Decide qué renderizar. Importante: `recurso.fuente` puede ser `undefined`,
+// así que NUNCA pasamos ese valor a `<Image>` cuando no existe. Usamos `<img>`
+// nativo para el caso "imagen sin fuente" como salvaguarda, aunque en la
+// práctica mostraremos el placeholder.
+const mostrarPlaceholder =
+  recurso.tipo === 'placeholder' ||
+  (recurso.tipo === 'imagen' && !recurso.fuente) ||
+  (recurso.tipo === 'video' && (!recurso.fuente || !recurso.cartel))
+
+const motivoPlaceholder: 'imagen' | 'video' =
+  recurso.tipo === 'placeholder' ? recurso.motivo : recurso.tipo === 'video' ? 'video' : 'imagen'
+
+const textoAlt =
+  recurso.tipo === 'placeholder'
+    ? recurso.textoAlternativo
+    : recurso.tipo === 'imagen'
+      ? recurso.textoAlternativo
+      : recurso.tipo === 'video'
+        ? recurso.etiquetaAccesible
+        : (imagenPreviewGaleria?.textoAlternativo ?? 'Galería no disponible')
+
+const etiquetaPlaceholder =
+  motivoPlaceholder === 'video' ? 'Vídeo no disponible' : 'Imagen no disponible'
+
+// Decidimos si el contenedor externo se convierte en un <button> disparador
+// de la galería (click → abre el modal del footer). Solo aplica cuando:
+//   1) el recurso es una galería,
+//   2) tenemos `proyectoId` para enrutar al botón real,
+//   3) hay preview disponible (`imagenPreviewGaleria?.fuente`), para no abrir
+//      un modal vacío. Si no hay preview, mantenemos el <div> intacto.
+//
+// En Astro no es posible cambiar dinámicamente el tag del contenedor raíz
+// (la sintaxis `{cond ? (</button>) : (</div>)}` no compila), por eso
+// elegimos la etiqueta en el frontmatter y la fijamos en el template.
+const TagContenedor: 'button' | 'div' =
+  recurso.tipo === 'galeria' && !!proyectoId && !!imagenPreviewGaleria?.fuente ? 'button' : 'div'
+
+const idDisparadorGaleria =
+  TagContenedor === 'button' && proyectoId ? `galeria-abrir-btn-galeria-${proyectoId}` : null
+
+// Atributos extra solo cuando el contenedor es <button>.
+const atributosBoton: Record<string, string | boolean> = {
+  type: 'button',
+  'data-disparador-galeria': idDisparadorGaleria ?? '',
+  'aria-label': 'Abrir galería de imágenes',
+}
 ---
 
-<div class="w-full overflow-hidden rounded-xl transition duration-500 md:hover:shadow-2xl">
+<TagContenedor
+  class="relative w-full overflow-hidden rounded-xl bg-gray-900 transition duration-500 md:hover:shadow-2xl"
+  class:list={[TagContenedor === 'button' && 'cursor-pointer text-left']}
+  style={previewAspectRatio ? `--preview-ratio: ${previewAspectRatio};` : undefined}
+  {...TagContenedor === 'button' ? atributosBoton : {}}
+>
   {
-    recurso.tipo === 'imagen' ? (
+    imagenPreviewGaleria?.fuente && recurso.tipo === 'galeria' && (
+      <span class="absolute top-3 left-3 z-10 inline-flex items-center gap-1 rounded-full bg-black/60 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-yellow-200 ring-1 ring-yellow-300/40">
+        1 / {recurso.items.length}
+      </span>
+    )
+  }
+  {
+    mostrarPlaceholder ? (
+      <div
+        role="img"
+        aria-label={`${etiquetaPlaceholder}: ${textoAlt}`}
+        class="flex h-[420px] w-full flex-col items-center justify-center gap-3 bg-gray-800/40 text-gray-400"
+      >
+        {motivoPlaceholder === 'video' ? (
+          <VideoOff class="size-16" aria-hidden="true" />
+        ) : (
+          <ImageOff class="size-16" aria-hidden="true" />
+        )}
+        <span class="text-sm uppercase tracking-wide">{etiquetaPlaceholder}</span>
+      </div>
+    ) : imagenPreviewGaleria?.fuente ? (
       <Image
-        src={recurso.fuente}
-        alt={recurso.textoAlternativo}
+        src={imagenPreviewGaleria.fuente}
+        alt={imagenPreviewGaleria.textoAlternativo}
+        widths={[400, 800, 1200]}
+        sizes="(max-width: 768px) 100vw, 800px"
         loading="lazy"
+        decoding="async"
         class:list={[
-          'block h-auto w-full max-h-[420px] object-center transition duration-500 md:hover:scale-110',
+          'preview-img block w-full transition duration-500 md:hover:scale-110',
           claseAjuste,
         ]}
       />
-    ) : (
+    ) : recurso.tipo === 'imagen' && recurso.fuente && recurso.fuente.src ? (
+      <Image
+        src={recurso.fuente}
+        alt={recurso.textoAlternativo}
+        widths={[400, 800, 1200]}
+        sizes="(max-width: 768px) 100vw, 800px"
+        loading="lazy"
+        decoding="async"
+        class:list={[
+          'block h-auto w-full max-h-[480px] object-center transition duration-500 md:hover:scale-110',
+          claseAjuste,
+        ]}
+      />
+    ) : recurso.tipo === 'video' && recurso.fuente && recurso.cartel ? (
       <video
-        class:list={['block h-auto w-full max-h-[420px] object-center', claseAjuste]}
+        class:list={['block h-auto w-full max-h-[480px] object-center', claseAjuste]}
         data-video-proyecto
         controls
         loop
         muted
         playsinline
-        preload="metadata"
-        poster={recurso.cartel.src}
+        preload="none"
         width={recurso.ancho}
         height={recurso.alto}
+        poster={recurso.cartel.src}
         aria-label={recurso.etiquetaAccesible}
       >
         <source src={recurso.fuente} type="video/mp4" />
         Tu navegador no permite reproducir este vídeo.
       </video>
+    ) : (
+      <div
+        role="img"
+        aria-label={`Recurso no disponible: ${textoAlt}`}
+        class="flex h-[420px] w-full flex-col items-center justify-center gap-3 bg-gray-800/40 text-gray-400"
+      >
+        <ImageOff class="size-16" aria-hidden="true" />
+        <span class="text-sm uppercase tracking-wide">Recurso no disponible</span>
+      </div>
     )
   }
-</div>
+</TagContenedor>
+
+<script is:inline>
+  document.addEventListener('click', function (ev) {
+    var t = ev.target
+    if (!(t instanceof Element)) return
+    var trig = t.closest('[data-disparador-galeria]')
+    if (!trig) return
+    var targetId = trig.getAttribute('data-disparador-galeria')
+    if (!targetId) return
+    var realButton = document.getElementById(targetId)
+    if (realButton) realButton.click()
+  })
+</script>
+
+<style>
+  .preview-img {
+    aspect-ratio: var(--preview-ratio, 16 / 9);
+    object-fit: contain;
+    max-height: 480px;
+  }
+</style>

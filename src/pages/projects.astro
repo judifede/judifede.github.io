@@ -1,102 +1,26 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import { getCollection } from 'astro:content'
-import type { ImageMetadata } from 'astro'
 
-import RecursoProyecto from '../components/proyectos/RecursoProyecto.astro'
-import type { RecursoProyecto as RecursoMultimedia } from '../components/proyectos/recursos'
-
-import { ETIQUETAS, type Etiqueta } from '../data/etiquetas'
 import { SECCIONES_PROYECTOS_META } from '../data/categorias'
 
-import BotonEnlace from '../components/shared/BotonEnlace.astro'
-import GitHubIcon from '../components/shared/icons/GitHub.astro'
-import EnlaceIcon from '../components/shared/icons/Enlace.astro'
+import ProyectoArticulo from '../components/proyectos/ProyectoArticulo.astro'
+import { obtenerEntradasProyectos, resolverProyectos } from '../utils/proyectos'
+
 import PerfilIcon from '../components/shared/icons/Perfil.astro'
-import PruebaIcon from '../components/shared/icons/Prueba.astro'
+import PruebaIcon from '../components/shared/icons/PruebasTecnicas.astro'
 import Maletin from '../components/shared/icons/Maletin.astro'
 import FiltrosIcon from '../components/shared/icons/FiltrosIcon.astro'
 
-// Cargar todos los assets de proyectos desde src/content/proyectos/<id>/.
-// Convención: el archivo de imagen tiene el mismo nombre que el slug de la carpeta.
-const imagenesPorCarpeta = import.meta.glob<{ default: ImageMetadata }>(
-  '../content/proyectos/*/*.{webp,png,jpg}',
-  { eager: true }
-)
-const videosPorCarpeta = import.meta.glob<string>('../content/proyectos/*/*.mp4', {
-  eager: true,
-  query: '?url',
-  import: 'default',
-})
+// Resolución centralizada en `utils/proyectos`: soporta `imagen`, `video`
+// y `galeria`, valida cada `ImageMetadata` con `imagenValida` (defensa ante
+// cachés de Vite que apunten a assets borrados) y devuelve placeholders
+// en lugar de lanzar errores fatales cuando faltan assets.
+const entradas = await obtenerEntradasProyectos()
+const proyectos = await resolverProyectos(entradas)
 
 type CategoriaProyecto = 'corporativos' | 'pruebas-tecnicas' | 'personales'
 
-interface ProyectoCompleto {
-  id: string
-  titulo: string
-  descripciones: readonly string[]
-  enlace?: string
-  repositorio?: string
-  recurso: RecursoMultimedia
-  etiquetas: readonly Etiqueta[]
-  categoria: CategoriaProyecto
-  order: number
-}
-
-const proyectosEntries = await getCollection('proyectos')
-
-const proyectos: ProyectoCompleto[] = proyectosEntries
-  .sort((a, b) => a.data.order - b.data.order)
-  .map((entry) => {
-    // Cuando los .md viven en subcarpetas con `index.md`, Astro devuelve
-    // `entry.id` como `<carpeta>/<archivo>` (p. ej. "ecoinge-canarias/index").
-    // Usamos el primer segmento para mantener la convención de nombres.
-    const id = entry.id.split('/')[0]
-    const carpeta = `../content/proyectos/${id}/`
-    const data = entry.data
-
-    let recurso: RecursoMultimedia
-    if (data.resource.type === 'imagen') {
-      const imagenKey = `${carpeta}${id}.webp`
-      const img = imagenesPorCarpeta[imagenKey]
-      if (!img) throw new Error(`No se encontró imagen ${imagenKey}`)
-      recurso = {
-        tipo: 'imagen',
-        fuente: img.default,
-        textoAlternativo: data.resource.alt,
-        ajuste: data.resource.fit,
-      }
-    } else {
-      const videoKey = `${carpeta}${id}.mp4`
-      const cartelKey = `${carpeta}${id}.webp`
-      const video = videosPorCarpeta[videoKey]
-      const cartel = imagenesPorCarpeta[cartelKey]
-      if (!video || !cartel) throw new Error(`No se encontró vídeo o cartel para ${id}`)
-      recurso = {
-        tipo: 'video',
-        fuente: video,
-        cartel: cartel.default,
-        etiquetaAccesible: data.resource.accessibleLabel,
-        ajuste: data.resource.fit,
-        ancho: data.resource.width,
-        alto: data.resource.height,
-      }
-    }
-
-    return {
-      id,
-      titulo: data.title,
-      descripciones: data.descriptions,
-      enlace: data.link,
-      repositorio: data.repository,
-      recurso,
-      etiquetas: data.tags.map((t) => ETIQUETAS[t]),
-      categoria: data.category,
-      order: data.order,
-    }
-  })
-
-const proyectosPorCategoria: Record<CategoriaProyecto, ProyectoCompleto[]> = {
+const proyectosPorCategoria: Record<CategoriaProyecto, typeof proyectos> = {
   corporativos: proyectos.filter((p) => p.categoria === 'corporativos'),
   'pruebas-tecnicas': proyectos.filter((p) => p.categoria === 'pruebas-tecnicas'),
   personales: proyectos.filter((p) => p.categoria === 'personales'),
@@ -121,22 +45,50 @@ const clasesActivoBotonRail =
       <nav
         id="navegacion-filtros-flujo"
         aria-label="Filtros de categorías de proyectos"
-        class="md:hidden grid grid-cols-3 gap-2 mb-6 bg-black transition-opacity duration-300 ease-in-out"
-        style="opacity: 1; padding-top: 7px; padding-bottom: 7px;"
+        class="md:hidden grid grid-cols-3 gap-2 mb-6 bg-black/30 px-4 py-4 rounded-xl transition-opacity duration-300 ease-in-out"
+        style="opacity: 1;"
       >
-        <button data-active="true" data-filter="todos" aria-pressed="true" aria-label="Todos" title="Todos" class:list={[clasesBaseBotonRail, clasesActivoBotonRail, 'col-span-3']}>
+        <button
+          data-active="true"
+          data-filter="todos"
+          aria-pressed="true"
+          aria-label="Todos"
+          title="Todos"
+          class:list={[clasesBaseBotonRail, clasesActivoBotonRail, 'col-span-3']}
+        >
           <FiltrosIcon class="size-4" aria-hidden="true" />
           <span>Todos</span>
         </button>
-        <button data-active="false" data-filter="corporativos" aria-pressed="false" aria-label="Corporativos" title="Corporativos" class:list={[clasesBaseBotonRail, clasesActivoBotonRail]}>
+        <button
+          data-active="false"
+          data-filter="corporativos"
+          aria-pressed="false"
+          aria-label="Corporativos"
+          title="Corporativos"
+          class:list={[clasesBaseBotonRail, clasesActivoBotonRail]}
+        >
           <Maletin class="size-4" aria-hidden="true" />
           <span>Corporativos</span>
         </button>
-        <button data-active="false" data-filter="pruebas-tecnicas" aria-pressed="false" aria-label="Pruebas Técnicas" title="Pruebas Técnicas" class:list={[clasesBaseBotonRail, clasesActivoBotonRail]}>
+        <button
+          data-active="false"
+          data-filter="pruebas-tecnicas"
+          aria-pressed="false"
+          aria-label="Pruebas Técnicas"
+          title="Pruebas Técnicas"
+          class:list={[clasesBaseBotonRail, clasesActivoBotonRail]}
+        >
           <PruebaIcon class="size-4" aria-hidden="true" />
           <span>Pruebas Técnicas</span>
         </button>
-        <button data-active="false" data-filter="personales" aria-pressed="false" aria-label="Personales" title="Personales" class:list={[clasesBaseBotonRail, clasesActivoBotonRail]}>
+        <button
+          data-active="false"
+          data-filter="personales"
+          aria-pressed="false"
+          aria-label="Personales"
+          title="Personales"
+          class:list={[clasesBaseBotonRail, clasesActivoBotonRail]}
+        >
           <PerfilIcon class="size-4" aria-hidden="true" />
           <span>Personales</span>
         </button>
@@ -149,16 +101,44 @@ const clasesActivoBotonRail =
         aria-hidden="true"
         style="position: fixed; top: 6rem; left: 50%; translate: -50% 0; z-index: 30; opacity: 0; pointer-events: none;"
       >
-        <button data-active="true" data-filter="todos" aria-pressed="true" aria-label="Todos" title="Todos" class="flex min-h-11 min-w-11 items-center justify-center rounded-full bg-yellow-400/50 px-2 py-2 text-xs text-white duration-300 hover:bg-yellow-400/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-200 data-[active=true]:bg-yellow-300 data-[active=true]:text-black">
+        <button
+          data-active="true"
+          data-filter="todos"
+          aria-pressed="true"
+          aria-label="Todos"
+          title="Todos"
+          class="flex min-h-11 min-w-11 items-center justify-center rounded-full bg-yellow-400/50 px-2 py-2 text-xs text-white duration-300 hover:bg-yellow-400/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-200 data-[active=true]:bg-yellow-300 data-[active=true]:text-black"
+        >
           <FiltrosIcon class="size-4" aria-hidden="true" />
         </button>
-        <button data-active="false" data-filter="corporativos" aria-pressed="false" aria-label="Corporativos" title="Corporativos" class="flex min-h-11 min-w-11 items-center justify-center rounded-full bg-yellow-400/50 px-2 py-2 text-xs text-white duration-300 hover:bg-yellow-400/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-200 data-[active=true]:bg-yellow-300 data-[active=true]:text-black">
+        <button
+          data-active="false"
+          data-filter="corporativos"
+          aria-pressed="false"
+          aria-label="Corporativos"
+          title="Corporativos"
+          class="flex min-h-11 min-w-11 items-center justify-center rounded-full bg-yellow-400/50 px-2 py-2 text-xs text-white duration-300 hover:bg-yellow-400/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-200 data-[active=true]:bg-yellow-300 data-[active=true]:text-black"
+        >
           <Maletin class="size-4" aria-hidden="true" />
         </button>
-        <button data-active="false" data-filter="pruebas-tecnicas" aria-pressed="false" aria-label="Pruebas Técnicas" title="Pruebas Técnicas" class="flex min-h-11 min-w-11 items-center justify-center rounded-full bg-yellow-400/50 px-2 py-2 text-xs text-white duration-300 hover:bg-yellow-400/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-200 data-[active=true]:bg-yellow-300 data-[active=true]:text-black">
+        <button
+          data-active="false"
+          data-filter="pruebas-tecnicas"
+          aria-pressed="false"
+          aria-label="Pruebas Técnicas"
+          title="Pruebas Técnicas"
+          class="flex min-h-11 min-w-11 items-center justify-center rounded-full bg-yellow-400/50 px-2 py-2 text-xs text-white duration-300 hover:bg-yellow-400/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-200 data-[active=true]:bg-yellow-300 data-[active=true]:text-black"
+        >
           <PruebaIcon class="size-4" aria-hidden="true" />
         </button>
-        <button data-active="false" data-filter="personales" aria-pressed="false" aria-label="Personales" title="Personales" class="flex min-h-11 min-w-11 items-center justify-center rounded-full bg-yellow-400/50 px-2 py-2 text-xs text-white duration-300 hover:bg-yellow-400/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-200 data-[active=true]:bg-yellow-300 data-[active=true]:text-black">
+        <button
+          data-active="false"
+          data-filter="personales"
+          aria-pressed="false"
+          aria-label="Personales"
+          title="Personales"
+          class="flex min-h-11 min-w-11 items-center justify-center rounded-full bg-yellow-400/50 px-2 py-2 text-xs text-white duration-300 hover:bg-yellow-400/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-200 data-[active=true]:bg-yellow-300 data-[active=true]:text-black"
+        >
           <PerfilIcon class="size-4" aria-hidden="true" />
         </button>
       </nav>
@@ -179,36 +159,36 @@ const clasesActivoBotonRail =
         <FiltrosIcon class="size-4" aria-hidden="true" />
         Todos
       </button>
-        <button
-          type="button"
-          class:list={[clasesBaseBoton, clasesActivoBoton]}
-          data-active="false"
-          data-filter="corporativos"
-          aria-pressed="false"
-        >
-          <Maletin class="size-4" aria-hidden="true" />
-          Corporativos
-        </button>
-        <button
-          type="button"
-          class:list={[clasesBaseBoton, clasesActivoBoton]}
-          data-active="false"
-          data-filter="pruebas-tecnicas"
-          aria-pressed="false"
-        >
-          <PruebaIcon class="size-4" aria-hidden="true" />
-          Pruebas Técnicas
-        </button>
-        <button
-          type="button"
-          class:list={[clasesBaseBoton, clasesActivoBoton]}
-          data-active="false"
-          data-filter="personales"
-          aria-pressed="false"
-        >
-          <PerfilIcon class="size-4" aria-hidden="true" />
-          Personales
-        </button>
+      <button
+        type="button"
+        class:list={[clasesBaseBoton, clasesActivoBoton]}
+        data-active="false"
+        data-filter="corporativos"
+        aria-pressed="false"
+      >
+        <Maletin class="size-4" aria-hidden="true" />
+        Corporativos
+      </button>
+      <button
+        type="button"
+        class:list={[clasesBaseBoton, clasesActivoBoton]}
+        data-active="false"
+        data-filter="pruebas-tecnicas"
+        aria-pressed="false"
+      >
+        <PruebaIcon class="size-4" aria-hidden="true" />
+        Pruebas Técnicas
+      </button>
+      <button
+        type="button"
+        class:list={[clasesBaseBoton, clasesActivoBoton]}
+        data-active="false"
+        data-filter="personales"
+        aria-pressed="false"
+      >
+        <PerfilIcon class="size-4" aria-hidden="true" />
+        Personales
+      </button>
     </nav>
 
     {
@@ -220,52 +200,7 @@ const clasesActivoBotonRail =
           </h1>
 
           {proyectosPorCategoria[categoria].map((proyecto) => (
-            <article
-              id={proyecto.id}
-              class="project-article relative mb-20 flex flex-col space-y-8 before:mb-8 before:block before:h-[2px] before:w-full before:bg-yellow-100 before:content-['']"
-            >
-              <h2 class="text-center text-2xl font-bold text-gray-100">{proyecto.titulo}</h2>
-
-              <RecursoProyecto recurso={proyecto.recurso} />
-
-              <div class="flex flex-col flex-wrap">
-                <div class="mt-3">
-                  {proyecto.descripciones.map((descripcion) => (
-                    <p class="my-2" set:html={descripcion} />
-                  ))}
-                </div>
-
-                <ul class="my-2 flex flex-row flex-wrap justify-start gap-x-2">
-                  {proyecto.etiquetas.map(
-                    ({ nombre, titulo: tituloEtiqueta, clase, icono: IconoEtiqueta }) => (
-                      <li class="mt-2">
-                        <span class:list={['flex gap-x-2 rounded-full px-3 py-2 text-xs', clase]}>
-                          <IconoEtiqueta
-                            class:list={['size-4', tituloEtiqueta === 'Stripe' && 'w-12']}
-                          />
-                          {nombre}
-                        </span>
-                      </li>
-                    )
-                  )}
-                </ul>
-
-                <footer class="mt-4 flex flex-col sm:flex-row items-stretch sm:items-end justify-start gap-2 sm:gap-x-4">
-                  {proyecto.repositorio && (
-                    <BotonEnlace href={proyecto.repositorio}>
-                      <GitHubIcon class="size-5" />
-                      Código
-                    </BotonEnlace>
-                  )}
-                  {proyecto.enlace && (
-                    <BotonEnlace href={proyecto.enlace}>
-                      <EnlaceIcon class="size-5" />
-                      Ver proyecto
-                    </BotonEnlace>
-                  )}
-                </footer>
-              </div>
-            </article>
+            <ProyectoArticulo proyecto={proyecto} />
           ))}
         </section>
       ))
@@ -277,7 +212,6 @@ const clasesActivoBotonRail =
 </Layout>
 
 <script>
-  import '../utils/reproduccionVideosProyectos'
   import { MENSAJES_ANUNCIO_FILTRO } from '../data/filtros'
 
   // Estado y listeners del rail (sm y menores). Se limpian en astro:before-swap.
@@ -459,12 +393,12 @@ const clasesActivoBotonRail =
     color: #ffffff;
   }
 
-  #navegacion-filtros-pegado > button[data-active="true"] {
+  #navegacion-filtros-pegado > button[data-active='true'] {
     background: #facc15;
     color: #000000;
   }
 
-  #navegacion-filtros-pegado > button[data-active="true"] svg {
+  #navegacion-filtros-pegado > button[data-active='true'] svg {
     color: #000000;
   }
 

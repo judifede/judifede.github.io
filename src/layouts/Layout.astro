@@ -4,10 +4,12 @@ import '../styles/global.css'
 import Cabecera from '../components/shared/Header.astro'
 import Footer from '../components/shared/Footer.astro'
 import { ClientRouter } from 'astro:transitions'
+// Nota: ViewTransitions (astro:transitions/view-transitions) usa la API
+// nativa del navegador y reduce el CLS percibido. ClientRouter sigue
+// siendo válido para esta build; si se observa CLS notable al cambiar de
+// ruta, cambiar a ViewTransitions.
 import Hero from '../components/shared/Hero.astro'
 import PopupRecomendacion from '../components/recomendacion/PopupRecomendacion.astro'
-
-const showLocalCvManager = import.meta.env.LOCAL_CV_MANAGER_ENABLED
 ---
 
 <!doctype html>
@@ -16,12 +18,12 @@ const showLocalCvManager = import.meta.env.LOCAL_CV_MANAGER_ENABLED
     <meta charset="UTF-8" />
     <meta
       name="description"
-      content="Porfolio de Diego Fernández, desarrollador web full stack y automatización. Disponibilidad inmediata en Las Palmas de Gran Canaria y modalidad flexible."
+      content="Porfolio de Diego Fernández, desarrollador web full stack especializado en automatización. Disponible en Las Palmas de Gran Canaria y modalidad flexible."
     />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <ClientRouter />
-    <link rel="icon" type="image/png" href="/logos/jd-knight-gold-deep.png" />
+    <link rel="icon" type="image/webp" href="/logos/jd-knight-gold-deep.webp" />
     <title>Porfolio de Diego Fernández - Desarrollador y Programador Web</title>
   </head>
   <body class="relative overflow-x-clip text-white">
@@ -39,7 +41,6 @@ const showLocalCvManager = import.meta.env.LOCAL_CV_MANAGER_ENABLED
     </main>
     <Footer />
     <PopupRecomendacion />
-    {showLocalCvManager && <script is:inline data-astro-rerun src="/local/cv/cv-manager.js" />}
   </body>
 </html>
 

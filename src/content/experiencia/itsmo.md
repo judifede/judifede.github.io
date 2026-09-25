@@ -17,5 +17,3 @@ impact:
       - '+200.000 alcance'
 order: 1
 ---
-
-Desarrollo web, plugins y shortcodes personalizados para Wordpress, soporte técnico y automatizaciones varias.

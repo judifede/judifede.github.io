@@ -1,0 +1,85 @@
+---
+interface Props {
+  nombre: string
+  cargo: string
+  empresa: string
+  relacion?: string
+  fecha: string
+  fechaISO: string
+  cita1: string
+  cita2: string
+  hrefLinkedIn: string
+}
+
+const {
+  nombre,
+  cargo,
+  empresa,
+  relacion = 'Supervisor directo',
+  fecha,
+  fechaISO,
+  cita1,
+  cita2,
+  hrefLinkedIn,
+} = Astro.props
+
+const nombreSlug = nombre
+  .toLowerCase()
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .replace(/[^a-z0-9]+/g, '-')
+  .replace(/^-+|-+$/g, '')
+
+const titleId = `recomendacion-card-a-${nombreSlug}`
+const ariaLabel = `Perfil de ${nombre} en LinkedIn`
+---
+
+<aside
+  aria-labelledby={titleId}
+  class="relative h-full w-full flex flex-col rounded-xl border border-white/15 border-t-4 border-t-yellow-300 bg-white/[0.04] shadow-sm shadow-black/20 pt-5 px-5 md:px-6 pb-5"
+>
+  <span
+    aria-hidden="true"
+    class="pointer-events-none absolute right-4 top-3 text-7xl leading-none font-serif text-yellow-300/20 select-none"
+  >
+    “
+  </span>
+
+  <h2 id={titleId} class="sr-only">
+    Recomendación profesional de {nombre}
+  </h2>
+
+  <div class="relative flex items-center gap-3">
+    <span aria-hidden="true" class="inline-block h-2 w-2 rounded-full bg-yellow-300"></span>
+    <p class="text-xs font-semibold uppercase tracking-widest text-yellow-300/90">Recomendación</p>
+  </div>
+
+  <blockquote class="relative text-pretty text-left flex-1 mt-4">
+    <p class="text-base sm:text-lg leading-relaxed text-white/90">{cita1}</p>
+    <p class="mt-4 text-base sm:text-lg leading-relaxed text-white/90">{cita2}</p>
+  </blockquote>
+
+  <footer class="mt-6 flex flex-col items-end gap-1 text-sm">
+    <div class="flex flex-wrap items-baseline gap-x-2">
+      <cite class="not-italic font-semibold">
+        <a
+          href={hrefLinkedIn}
+          aria-label={ariaLabel}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-yellow-200 underline decoration-yellow-200/70 underline-offset-4 hover:text-yellow-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300/60 focus-visible:rounded-sm"
+        >
+          {nombre}
+        </a>
+      </cite>
+      <span aria-hidden="true" class="text-white/50">·</span>
+      <span class="text-white/70">{relacion}</span>
+    </div>
+    <p class="font-semibold text-white/85">
+      <span>{cargo}</span>
+      en
+      <span>{empresa}</span>
+    </p>
+    <time datetime={fechaISO} class="text-white/60">{fecha}</time>
+  </footer>
+</aside>

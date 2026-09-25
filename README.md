@@ -35,7 +35,7 @@ src/
 └── utils/             Helpers: markdown, diálogos, reproducción de vídeos
 ```
 
-Las carpetas `local/`, `dist/`, `node_modules/` y `.astro/` se ignoran en este resumen: la primera contiene utilidades de desarrollo (ver [CV local](#cv-local-solo-desarrollo)) y el resto son artefactos generados.
+Las carpetas `dist/`, `node_modules/` y `.astro/` se ignoran en este resumen: son artefactos generados.
 
 ## Añadir contenido
 
@@ -103,10 +103,6 @@ Assets en la misma carpeta, con el nombre del slug:
 `category` acepta `corporativos`, `pruebas-tecnicas` o `personales`. `fit` acepta `recortar` o `encajar`.
 
 > **Añadir una etiqueta nueva** requiere tocar tres sitios: añadir el valor al enum `z.enum([...])` de `tags` en `src/content/config.ts`, crear el icono SVG correspondiente en `src/components/shared/tech-icons/` (un componente por etiqueta) y registrar la entrada en `src/data/etiquetas.ts`.
-
-## CV local (solo desarrollo)
-
-Si en `.env` defines `LOCAL_CV_MANAGER=true` y arrancas con `npm run dev`, el plugin `local/cv/vite-plugin.js` sirve los CVs imprimibles bajo `/local/cv/*` y muestra un botón flotante **CV** en la cabecera. En producción (build o `NODE_ENV !== 'development'`) esas rutas devuelven 404 y el botón desaparece.
 
 ## Deploy
 

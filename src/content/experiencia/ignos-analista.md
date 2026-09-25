@@ -10,5 +10,3 @@ descriptionList:
   - 'Proyecto de gráficas estadísticas en front-End, utilizando principalmente JavaScript (D3 | RowChart | Parceljs)'
 order: 4
 ---
-
-Evolutivos en distintos proyectos para el cliente final del Servicio Canario de Empleo.

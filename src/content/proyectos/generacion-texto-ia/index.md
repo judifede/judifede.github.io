@@ -22,7 +22,4 @@ tags:
   - TURSO
   - VERCEL
   - GIT
-order: 1
 ---
-
-Prueba técnica: generación de texto con IA usando React, Node, Express, Prisma y Turso.

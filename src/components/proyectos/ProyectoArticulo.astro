@@ -1,0 +1,121 @@
+---
+import type { ProyectoCompleto } from '../../utils/proyectos'
+import BotonEnlace from '../shared/BotonEnlace.astro'
+import EnlaceIcon from '../shared/icons/Enlace.astro'
+import GaleriaIcon from '../shared/icons/Galeria.astro'
+import GitHubIcon from '../shared/icons/GitHub.astro'
+import Galeria, { type GaleriaItem } from '../shared/galeria/Galeria.astro'
+import RecursoProyecto from './RecursoProyecto.astro'
+
+interface Props {
+  proyecto: ProyectoCompleto
+}
+
+const { proyecto } = Astro.props
+
+const imagenesGaleria: GaleriaItem[] =
+  proyecto.recurso.tipo === 'galeria'
+    ? proyecto.recurso.items
+        .filter((it) => it.fuente)
+        .map((it) => ({
+          src: it.fuente!.src,
+          width: it.fuente!.width,
+          height: it.fuente!.height,
+          alt: it.textoAlternativo,
+          fit: it.ajuste,
+        }))
+    : []
+---
+
+<article
+  id={proyecto.id}
+  class="project-article project-article-lazy relative mb-20 flex flex-col space-y-8 before:mb-8 before:block before:h-[2px] before:w-full before:bg-yellow-100 before:content-['']"
+>
+  <h2
+    class="text-center text-2xl font-bold text-gray-100 flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-3"
+  >
+    <span>{proyecto.titulo}</span>
+    {
+      proyecto.status === 'en-desarrollo' && (
+        <span
+          role="status"
+          aria-label="Proyecto en desarrollo"
+          class="inline-flex items-center gap-1 rounded-full bg-yellow-400/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-yellow-200 ring-1 ring-yellow-300/40"
+        >
+          En desarrollo
+        </span>
+      )
+    }
+  </h2>
+
+  <RecursoProyecto recurso={proyecto.recurso} proyectoId={proyecto.id} />
+
+  <div class="flex flex-col flex-wrap">
+    <div class="mt-3">
+      {proyecto.descripciones.map((descripcion) => <p class="my-2" set:html={descripcion} />)}
+    </div>
+
+    <ul class="my-2 flex flex-row flex-wrap justify-start gap-x-2">
+      {
+        proyecto.etiquetas.map(
+          ({ nombre, titulo: tituloEtiqueta, clase, claseIcono, icono: IconoEtiqueta }) => (
+            <li class="mt-2">
+              <span
+                class:list={['flex items-center gap-x-2 rounded-full px-3 py-2 text-xs', clase]}
+              >
+                <IconoEtiqueta
+                  class:list={[
+                    claseIcono ?? 'size-4',
+                    !claseIcono && tituloEtiqueta === 'Stripe' && 'w-12',
+                    'max-w-full shrink-0',
+                  ]}
+                />
+                {nombre}
+              </span>
+            </li>
+          )
+        )
+      }
+    </ul>
+
+    <footer class="mt-4 flex flex-row flex-wrap items-center justify-center gap-x-2 gap-y-2">
+      {
+        proyecto.repositorio && (
+          <BotonEnlace href={proyecto.repositorio}>
+            <GitHubIcon class="size-5" />
+            Código
+          </BotonEnlace>
+        )
+      }
+      {
+        proyecto.status === 'en-desarrollo' ? (
+          <span
+            role="status"
+            aria-label="Proyecto en desarrollo"
+            class="inline-flex min-h-11 cursor-default items-center justify-center gap-2 self-center rounded-full bg-yellow-400/50 px-4 py-2 text-sm text-white sm:text-base"
+          >
+            En desarrollo
+          </span>
+        ) : (
+          proyecto.enlace && (
+            <BotonEnlace href={proyecto.enlace}>
+              <EnlaceIcon class="size-5" />
+              Ver proyecto
+            </BotonEnlace>
+          )
+        )
+      }
+      {
+        proyecto.recurso.tipo === 'galeria' && imagenesGaleria.length > 0 && (
+          <Galeria
+            idInstancia={`btn-galeria-${proyecto.id}`}
+            imagenes={imagenesGaleria}
+            clasesBoton="text-sm sm:text-base compact-link"
+          >
+            <GaleriaIcon slot="icono" class="size-5" />
+          </Galeria>
+        )
+      }
+    </footer>
+  </div>
+</article>

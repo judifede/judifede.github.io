@@ -1,0 +1,11 @@
+{
+  "servers": {
+    "frontend": {
+      "framework": "astro",
+      "url": "http://localhost:4217",
+      "build_cmd": "npm run build",
+      "notes": "",
+      "updated_at": "2026-09-24"
+    }
+  }
+}

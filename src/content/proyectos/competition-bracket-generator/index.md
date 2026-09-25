@@ -24,7 +24,4 @@ tags:
   - JS
   - VUE
   - GIT
-order: 2
 ---
-
-Generador de cuadros de competición en Vue.

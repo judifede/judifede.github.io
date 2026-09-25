@@ -1,8 +1,10 @@
 ---
+import type { ImageMetadata } from 'astro'
+
 import InformacionIcon from '../shared/icons/Informacion.astro'
 import EnlaceIcon from '../shared/icons/Enlace.astro'
 import GaleriaIcon from '../shared/icons/Galeria.astro'
-import Galeria from './Galeria.astro'
+import Galeria, { type GaleriaItem } from '../shared/galeria/Galeria.astro'
 import FlechaDerecha from '../shared/icons/FlechaDerecha.astro'
 import { parseMd } from '../../utils/md'
 
@@ -18,11 +20,14 @@ interface Props {
   date: string
 }
 
+interface ItemGaleria {
+  carpeta: string
+  items: Array<{ nombre: string; alt: string; fit?: 'recortar' | 'encajar' }>
+}
+
 interface Enlace {
   url?: string
-  galeria?: string
-  rutaGaleria?: string
-  cantidad?: number
+  galeria?: string | ItemGaleria
 }
 
 type ImpactSubItem = string | { texto: string; openDialogId?: string }
@@ -49,15 +54,62 @@ function renderItem(item: ImpactItem) {
   const subitems = typeof item === 'string' ? undefined : item.subitems
   return { texto, openDialogId, externalUrl, subitems }
 }
+
+/**
+ * Resolvedor lazy de assets para galerías declaradas en `links[].galeria`.
+ * La clave es la ruta absoluta usada por `import.meta.glob`, que apunta a
+ * `src/assets/gallery/<carpeta>/<archivo>`.
+ */
+const loadersImagenesGaleria = import.meta.glob<{ default: ImageMetadata }>(
+  '../../assets/gallery/*/*.{webp,png,jpg}'
+)
+
+async function resolverImagenesGaleria(itemGaleria: ItemGaleria): Promise<GaleriaItem[]> {
+  const carpeta = itemGaleria.carpeta
+  const resultados: GaleriaItem[] = []
+  for (const it of itemGaleria.items) {
+    const clave = `../../assets/gallery/${carpeta}/${it.nombre}`
+    const loader = loadersImagenesGaleria[clave]
+    if (!loader) {
+      console.warn(`[experiencia] (galería "${carpeta}"): no se encontró el asset "${clave}".`)
+      continue
+    }
+    const fuente = (await loader()).default
+    resultados.push({
+      src: fuente.src,
+      width: fuente.width,
+      height: fuente.height,
+      alt: it.alt,
+      fit: it.fit ?? 'encajar',
+    })
+  }
+  return resultados
+}
+
+// Pre-resolvemos todas las galerías del item en SSR para no bloquear la UI.
+const galeriasResueltas = new Map<number, GaleriaItem[]>()
+if (link) {
+  for (let i = 0; i < link.length; i++) {
+    const enlace = link[i]
+    if (!enlace || typeof enlace.galeria !== 'object' || !enlace.galeria) continue
+    const imagenes = await resolverImagenesGaleria(enlace.galeria as ItemGaleria)
+    if (imagenes.length > 0) {
+      galeriasResueltas.set(i, imagenes)
+    }
+  }
+}
 ---
 
 <article
   class="relative mx-4 sm:mx-12 pt-6 sm:pt-0 pb-6 grid place-items-center md:place-items-start border-t-2 border-yellow-100 sm:border-t-0 before:absolute before:left-2 sm:before:left-[-35px] before:hidden sm:before:block before:h-full before:border-l-2 before:border-white/15 before:content-[''] md:grid-cols-5 md:gap-10 max-w-full"
 >
-  <span class="hidden sm:inline text-yellow-400 -left-3 sm:-left-[42px] -top-2 absolute rounded-full text-5xl align-middle"
+  <span
+    class="hidden sm:inline text-yellow-400 -left-3 sm:-left-[42px] -top-2 absolute rounded-full text-5xl align-middle"
     >&bull;</span
   >
-  <div class="pb-12 md:col-span-2 flex flex-col items-center md:flex-none md:items-start w-full min-w-0">
+  <div
+    class="pb-12 md:col-span-2 flex flex-col items-center md:flex-none md:items-start w-full min-w-0"
+  >
     <h2 class="text-xl font-bold text-yellow-400">{title}</h2>
     <h3 class="mt-2 text-xl font-semibold text-white inline-block">{company}</h3>
     <blockquote class="text-lg font-semibold text-white flex gap-x-1 items-center">
@@ -100,7 +152,9 @@ function renderItem(item: ImpactItem) {
     </blockquote>
     <time class="mt-4 text-md">{date}</time>
   </div>
-  <div class="relative flex flex-col gap-2 pb-4 text-gray-300 md:col-span-3 min-w-0 w-full break-words">
+  <div
+    class="relative flex flex-col gap-2 pb-4 text-gray-300 md:col-span-3 min-w-0 w-full break-words"
+  >
     {
       impact && impact.length > 0 && (
         <section class="mb-5 rounded-lg border-l-2 border-yellow-400 bg-yellow-400/5 px-4 py-3 min-w-0 break-words">
@@ -110,7 +164,9 @@ function renderItem(item: ImpactItem) {
               const { texto, openDialogId, externalUrl, subitems } = renderItem(item)
               return (
                 <li class="pl-1 text-gray-200">
-                  <p class="break-words"><span set:html={parseMd(texto)} /></p>
+                  <p class="break-words">
+                    <span set:html={parseMd(texto)} />
+                  </p>
                   {openDialogId && (
                     <span class="mt-2 flex justify-end">
                       <button
@@ -166,7 +222,7 @@ function renderItem(item: ImpactItem) {
               <span class="text-primary mr-2.5 mt-0.5">
                 <FlechaDerecha className="size-5" />
               </span>
-              <p class="flex flex-col w-full break-words">
+              <div class="flex flex-col w-full break-words">
                 <span set:html={parseMd(item)} />
 
                 {link && link?.[index].url != undefined ? (
@@ -179,27 +235,19 @@ function renderItem(item: ImpactItem) {
                     <EnlaceIcon class="size-5" />
                     Ver proyecto
                   </a>
-                ) : link?.[index].galeria != undefined ? (
-                  <>
-                    <span id={link?.[index].galeria} class="btn-link-pill cursor-pointer">
-                      <GaleriaIcon class="size-5" />
-                      Ver proyecto
-                    </span>
-                    <Galeria
-                      carpeta={link?.[index].rutaGaleria?.split('/')[0] ?? ''}
-                      rutaGaleria={
-                        link?.[index].rutaGaleria?.includes('/')
-                          ? link[index]!.rutaGaleria!.split('/').slice(1).join('/')
-                          : link?.[index].rutaGaleria
-                      }
-                      idBotonGaleria={link?.[index].galeria}
-                      cantidad={link?.[index].cantidad}
-                    />
-                  </>
+                ) : link?.[index].galeria != null &&
+                  typeof link?.[index].galeria === 'object' &&
+                  galeriasResueltas.has(index) ? (
+                  <Galeria
+                    idInstancia={`galeria-${index}-${(link[index]?.galeria as ItemGaleria).carpeta}`}
+                    imagenes={galeriasResueltas.get(index)!}
+                  >
+                    <GaleriaIcon slot="icono" class="size-5" />
+                  </Galeria>
                 ) : (
                   ''
                 )}
-              </p>
+              </div>
             </li>
           ))}
         </ul>

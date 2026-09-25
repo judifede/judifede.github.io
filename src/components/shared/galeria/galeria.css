@@ -1,0 +1,281 @@
+/*
+ * Estilos del componente Galeria.
+ *
+ * Todas las clases usan el prefijo `galeria-` para evitar pisar utilidades
+ * globales u otros componentes. Solo afecta al `<dialog>` y sus descendientes.
+ *
+ * NO usamos `@layer components` aquí porque este CSS se procesa de forma
+ * aislada (sin las directivas `@tailwind base/components/utilities` que viven
+ * en `global.css`). El prefijo `galeria-` evita pisar otros estilos.
+ */
+
+.galeria-dialog {
+  /* Layout base: ocupa toda la viewport sin "inset-0" literal. */
+  padding: 0;
+  border: 0;
+  background-color: rgb(17 24 39 / 0.92);
+  color: #fff;
+  width: 100vw;
+  max-width: 100vw;
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* Backdrop oscuro del <dialog>. */
+.galeria-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+.galeria-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: #fde68a;
+}
+
+.galeria-contador {
+  font-weight: 600;
+  font-size: 0.95rem;
+  background-color: rgba(0, 0, 0, 0.55);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(253, 224, 71, 0.35);
+}
+
+.galeria-cerrar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(253, 224, 71, 0.35);
+  background-color: rgba(0, 0, 0, 0.55);
+  color: #fde68a;
+  cursor: pointer;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease;
+}
+
+.galeria-cerrar:hover {
+  background-color: rgba(253, 224, 71, 0.15);
+  color: #fff;
+}
+
+.galeria-cerrar svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.galeria-toolbar {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fde68a;
+  pointer-events: none;
+}
+
+.galeria-toolbar > * {
+  pointer-events: auto;
+}
+
+@media (min-width: 640px) {
+  .galeria-toolbar {
+    top: 2.5rem;
+    left: 2.5rem;
+    right: 2.5rem;
+  }
+}
+
+.galeria-toolbar,
+.galeria-nav-prev,
+.galeria-nav-next {
+  transition: opacity 300ms ease;
+}
+
+.galeria-dialog:not(.controles-visibles) .galeria-toolbar,
+.galeria-dialog:not(.controles-visibles) .galeria-nav-prev,
+.galeria-dialog:not(.controles-visibles) .galeria-nav-next {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.galeria-main {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 1rem 6rem 1rem;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.galeria-imagen {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  aspect-ratio: var(--galeria-ratio, 16 / 9);
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+  cursor: zoom-in;
+  transition: transform 200ms ease;
+  touch-action: manipulation;
+  border: 1px solid rgb(250 204 21 / 0.5);
+  background-color: rgb(250 204 21 / 0.15);
+  border-radius: 0.5rem;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.galeria-imagen.zoom-activo {
+  cursor: zoom-out;
+}
+.galeria-imagen.zoom-arrastrable {
+  cursor: grab;
+}
+.galeria-imagen.zoom-arrastrable:active {
+  cursor: grabbing;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .galeria-imagen {
+    transition: none !important;
+  }
+}
+
+.galeria-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(253, 224, 71, 0.35);
+  background-color: rgba(0, 0, 0, 0.55);
+  color: #fde68a;
+  cursor: pointer;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    transform 200ms ease;
+}
+
+.galeria-nav:hover {
+  background-color: rgba(253, 224, 71, 0.15);
+  color: #fff;
+}
+
+.galeria-nav:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.galeria-nav svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.galeria-nav-prev {
+  left: 1rem;
+}
+
+.galeria-nav-next {
+  right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .galeria-nav-prev {
+    left: 2.5rem;
+  }
+  .galeria-nav-next {
+    right: 2.5rem;
+  }
+}
+
+.galeria-tira {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 0.5rem;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  max-width: calc(100vw - 1rem);
+}
+
+.galeria-miniatura {
+  flex: 0 0 auto;
+  width: clamp(2.75rem, 8vw, 4.5rem);
+  height: clamp(2.75rem, 8vw, 4.5rem);
+  padding: 0;
+  border: 1px solid rgb(250 204 21 / 0.5);
+  background-color: rgb(250 204 21 / 0.15);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  cursor: pointer;
+  scroll-snap-align: center;
+  opacity: 0.65;
+  transition:
+    opacity 200ms ease,
+    transform 200ms ease;
+}
+
+.galeria-miniatura img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.galeria-miniatura:hover {
+  opacity: 0.9;
+}
+
+.galeria-miniatura-activa {
+  opacity: 1;
+  box-shadow: 0 0 0 2px rgb(253 224 71);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .galeria-dialog,
+  .galeria-cerrar,
+  .galeria-nav,
+  .galeria-miniatura,
+  .galeria-toolbar,
+  .galeria-nav-prev,
+  .galeria-nav-next {
+    transition: none !important;
+  }
+
+  .galeria-tira {
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Bloquea el scroll de fondo cuando el modal de la galería está abierto.
+   El atributo `open` lo aplica el navegador al llamar a showModal(). */
+body:has(dialog[open]) {
+  overflow: hidden;
+}

@@ -20,7 +20,4 @@ tags:
   - CSS3
   - JS
   - JQUERY
-order: 1
 ---
-
-Vídeo demo del proyecto Ecoinge Canarias.

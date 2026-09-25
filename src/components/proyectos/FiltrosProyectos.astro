@@ -1,0 +1,151 @@
+<script>
+  import { MENSAJES_ANUNCIO_FILTRO } from '../../data/filtros'
+
+  // Estado y listeners del rail (sm y menores). Se limpian en astro:before-swap.
+  let rafScroll: number | null = null
+  let listenerScroll: (() => void) | null = null
+  let navegacionFiltrosSm: HTMLElement | null = null
+  let estaPegado = false
+
+  const UMBRAL_STICKY_PX = 96 // 6rem
+
+  function evaluarPegado() {
+    rafScroll = null
+    const flujo = document.getElementById('navegacion-filtros-flujo')
+    const pegado = document.getElementById('navegacion-filtros-pegado')
+    if (!flujo || !pegado) return
+
+    const estaEnSm = window.matchMedia('(max-width: 767px)').matches
+    const nuevoEstado = estaEnSm && flujo.getBoundingClientRect().top <= UMBRAL_STICKY_PX
+
+    if (nuevoEstado === estaPegado) return
+    estaPegado = nuevoEstado
+
+    if (nuevoEstado) {
+      flujo.style.opacity = '0'
+      flujo.setAttribute('aria-hidden', 'true')
+      flujo.style.pointerEvents = 'none'
+      pegado.style.opacity = '1'
+      pegado.setAttribute('aria-hidden', 'false')
+      pegado.style.pointerEvents = 'auto'
+    } else {
+      flujo.style.opacity = '1'
+      flujo.setAttribute('aria-hidden', 'false')
+      flujo.style.pointerEvents = 'auto'
+      pegado.style.opacity = '0'
+      pegado.setAttribute('aria-hidden', 'true')
+      pegado.style.pointerEvents = 'none'
+    }
+  }
+
+  function onScroll() {
+    if (rafScroll !== null) return
+    rafScroll = requestAnimationFrame(evaluarPegado)
+  }
+
+  function limpiarEstadoSticky() {
+    if (rafScroll !== null) {
+      cancelAnimationFrame(rafScroll)
+      rafScroll = null
+    }
+    if (listenerScroll) {
+      window.removeEventListener('scroll', listenerScroll)
+      listenerScroll = null
+    }
+    navegacionFiltrosSm = null
+    estaPegado = false
+  }
+
+  function inicializarEstadoSticky() {
+    if (listenerScroll) return // ya inicializado
+
+    const nav = document.querySelector<HTMLElement>('#navegacion-filtros-flujo')
+    if (!nav) return
+
+    navegacionFiltrosSm = nav
+    estaPegado = false
+
+    listenerScroll = onScroll
+    window.addEventListener('scroll', listenerScroll, { passive: true })
+    // Estado inicial por si la página carga ya con scroll.
+    onScroll()
+  }
+
+  // Devuelve todos los contenedores que representan categorías de proyectos.
+  // En SSR completo, son los <section data-category="..."> directamente.
+  function obtenerContenedoresDeCategoria(): HTMLElement[] {
+    return Array.from(document.querySelectorAll<HTMLElement>('section[data-category]'))
+  }
+
+  function inicializarNavegacionFiltros() {
+    const navegacionFiltros = document.querySelector<HTMLElement>('#navegacion-filtros-flujo')
+    if (!navegacionFiltros) return
+
+    inicializarEstadoSticky()
+    if (navegacionFiltros.dataset.filtrosInicializados === 'true') return
+
+    navegacionFiltros.dataset.filtrosInicializados = 'true'
+
+    const contenedores = obtenerContenedoresDeCategoria()
+    const anuncioFiltro = document.getElementById('anuncio-filtro')
+
+    // Selecciona TODOS los botones con data-filter (rail + barra md+).
+    const botonesFiltro: NodeListOf<HTMLButtonElement> =
+      document.querySelectorAll('button[data-filter]')
+
+    let filtroActual = 'todos'
+    const botonActivoInicial = navegacionFiltros.querySelector<HTMLButtonElement>(
+      'button[data-active="true"]'
+    )
+    if (botonActivoInicial) {
+      filtroActual = botonActivoInicial.dataset.filter || 'todos'
+    }
+
+    function sincronizarBotones() {
+      botonesFiltro.forEach((boton) => {
+        const estaActivo = boton.dataset.filter === filtroActual
+        boton.dataset.active = estaActivo.toString()
+        boton.setAttribute('aria-pressed', estaActivo.toString())
+      })
+    }
+
+    function aplicarFiltro() {
+      const mostrarTodos = filtroActual === 'todos'
+
+      contenedores.forEach((contenedor) => {
+        const categoria = contenedor.dataset.category
+        if (!categoria) return
+        const visible = mostrarTodos || filtroActual === categoria
+        contenedor.classList.toggle('hidden', !visible)
+      })
+    }
+
+    function sincronizarAnuncio() {
+      if (!anuncioFiltro) return
+      const mensaje = MENSAJES_ANUNCIO_FILTRO[filtroActual] ?? MENSAJES_ANUNCIO_FILTRO.todos
+      anuncioFiltro.textContent = mensaje
+    }
+
+    botonesFiltro.forEach((boton) => {
+      boton.addEventListener('click', () => {
+        const nuevoFiltro = boton.dataset.filter
+        if (!nuevoFiltro) return
+
+        if (nuevoFiltro === filtroActual) return
+
+        filtroActual = nuevoFiltro
+        sincronizarBotones()
+        aplicarFiltro()
+        sincronizarAnuncio()
+      })
+    })
+
+    sincronizarBotones()
+    aplicarFiltro()
+    sincronizarAnuncio()
+  }
+
+  document.addEventListener('DOMContentLoaded', inicializarNavegacionFiltros)
+  document.addEventListener('astro:page-load', inicializarNavegacionFiltros)
+  document.addEventListener('astro:before-swap', limpiarEstadoSticky)
+</script>

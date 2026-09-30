@@ -1,27 +1,8 @@
 ---
 // TODO: Implementar cambio de idioma
-const navItems = [
-  {
-    title: 'Experiencia',
-    label: 'Enlace a experiencia',
-    url: '/',
-  },
-  {
-    title: 'Proyectos',
-    label: 'Enlace a proyectos',
-    url: '/projects',
-  },
-  {
-    title: 'Sobre mí',
-    label: 'Enlace a sobre mí',
-    url: '/about',
-  },
-]
+import { navItems, esActiva } from '../../utils/nav'
 
-// Normaliza para que `/projects` y `/projects/` se consideren la misma ruta.
-const normalizePath = (path: string) => (path.length > 1 ? path.replace(/\/+$/, '') : path)
-
-const currentPath = normalizePath(Astro.url.pathname)
+const currentPath = Astro.url.pathname
 ---
 
 <header
@@ -32,7 +13,7 @@ const currentPath = normalizePath(Astro.url.pathname)
   >
     {
       navItems.map((link) => {
-        const activo = normalizePath(link.url) === currentPath
+        const activo = esActiva(link.url, currentPath)
         return (
           <span>
             <a

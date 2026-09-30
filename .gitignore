@@ -36,3 +36,4 @@ pnpm-debug.log*
 
 # Capturas de validación visual del agente (no versionadas)
 .agents/screenshots/
+judifede.github.io.code-workspace

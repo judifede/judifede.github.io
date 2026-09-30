@@ -1,0 +1,23 @@
+---
+import RecomendacionBloque from './RecomendacionBloque.astro'
+import type { Recomendacion } from '../../data/recomendaciones'
+
+interface Props {
+  recomendacion: Recomendacion
+}
+
+const { recomendacion } = Astro.props
+---
+
+<aside
+  class="relative w-full flex flex-col rounded-xl border border-white/15 border-1 border-yellow-100/60 border-l-4 border-l-yellow-300 bg-white/[0.04] shadow-sm shadow-black/20 pt-5 px-5 md:px-6 pb-5"
+>
+  <span
+    aria-hidden="true"
+    class="pointer-events-none absolute right-4 top-3 text-7xl leading-none font-serif text-yellow-300/40 select-none"
+  >
+    “
+  </span>
+
+  <RecomendacionBloque variante="card" recomendacion={recomendacion} />
+</aside>

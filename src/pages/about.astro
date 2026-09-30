@@ -5,8 +5,9 @@ import { getCollection } from 'astro:content'
 import Perfil from '../components/shared/icons/Perfil.astro'
 import Escuela from '../components/shared/icons/Escuela.astro'
 import ItemFormacion from '../components/formacion/ItemFormacion.astro'
-import RecomendacionCard from '../components/recomendacion/RecomendacionCard.astro'
+import RecomendacionItem from '../components/recomendacion/RecomendacionItem.astro'
 import { recomendaciones } from '../data/recomendaciones'
+import Maletin from '../components/shared/icons/Maletin.astro'
 import BotonEnlace from '../components/shared/BotonEnlace.astro'
 import ArchivoPDFSvg from '../components/shared/icons/ArchivoPDFSvg.astro'
 
@@ -104,18 +105,30 @@ const formaciones = (await getCollection('formacion')).sort((a, b) => a.data.ord
         </div>
       </div>
 
-      <section aria-labelledby="recomendaciones-title" class="mt-12">
-        <h2 id="recomendaciones-title" class="sr-only">Recomendaciones</h2>
-        <ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {
-            recomendaciones.map((recomendacion) => (
-              <li class="h-full">
-                <RecomendacionCard {...recomendacion} />
-              </li>
-            ))
-          }
-        </ul>
-      </section>
+    </article>
+
+    <article id="recomendaciones" class="mt-16">
+      <h1
+        class="flex items-center justify-center md:justify-start mb-6 text-3xl font-semibold gap-x-3 text-yellow-300"
+      >
+        <Maletin class="size-8" />
+        Recomendaciones
+      </h1>
+
+      <div
+        class="before:content-[''] before:block before:w-full before:h-[2px] before:bg-yellow-100 before:mb-8 before:mt-6"
+      >
+      </div>
+
+      <ol class="mt-16 flex flex-col gap-8">
+        {
+          recomendaciones.map((recomendacion) => (
+            <li class="w-full">
+              <RecomendacionItem recomendacion={recomendacion} />
+            </li>
+          ))
+        }
+      </ol>
     </article>
   </section>
 </Layout>

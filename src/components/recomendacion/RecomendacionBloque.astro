@@ -12,10 +12,7 @@ const {
   cargo,
   empresa,
   relacion = 'Supervisor directo',
-  fecha,
-  fechaISO,
-  cita1,
-  cita2,
+  citas,
   hrefLinkedIn,
 } = recomendacion
 ---
@@ -27,17 +24,18 @@ const {
     variante === 'page' && 'block border-t-4 border-yellow-300/70 pt-6 max-w-2xl mx-auto',
   ]}
 >
-  <p class:list={['text-base sm:text-lg leading-relaxed', variante === 'card' && 'text-white/90']}>
-    {cita1}
-  </p>
-  <p
-    class:list={[
-      'mt-4 text-base sm:text-lg leading-relaxed',
-      variante === 'card' && 'text-white/90',
-    ]}
-  >
-    {cita2}
-  </p>
+  <div class="space-y-4">
+    {citas.map((parrafo) => (
+      <p
+        class:list={[
+          'text-base sm:text-lg leading-relaxed',
+          variante === 'card' && 'text-white/90',
+        ]}
+      >
+        {parrafo}
+      </p>
+    ))}
+  </div>
   <footer
     class:list={[
       'mt-6 flex flex-col gap-1 text-sm',
@@ -76,6 +74,5 @@ const {
         </>
       )
     }
-    <time datetime={fechaISO} class="text-white/60">{fecha}</time>
   </footer>
 </blockquote>
